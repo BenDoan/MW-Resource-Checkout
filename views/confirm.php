@@ -36,7 +36,8 @@ if (isset($cancel)){
 					<input type="hidden" name="schedule_block" value="<?php echo $schedule_block;?>"/>
 					<input type="hidden" name="schedule_resource_id" value="<?php echo $schedule_resource_id;?>" />
 					<input type="hidden" name="schedule_date" value="<?php echo $schedule_date;?>" />
-					<input type="button" onclick="history.go(-1);" value="No" /> <input type="submit" value="Yes" />
+					<input type="submit" value="Yes" />
+					<input type="button" onclick="history.go(-1);" value="No" />
 				</form>
 			</div>
 		<?php
