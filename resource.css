@@ -157,7 +157,12 @@ div.confirm{
 	/*width: 800px;*/
 	margin: 0 auto;
 }
+
 #userinfo p{
 	float:right;
 	margin:0px;	
+}
+
+a.admin {
+    font-size:11px;
 }
