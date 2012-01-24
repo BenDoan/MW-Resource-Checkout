@@ -15,4 +15,4 @@
 		</tr>
 	</table>
 </form>
-<a href="./?p=adminPage">Admin Page</a>
+<a href="views/admin/adminPage.php">Admin Page</a>
