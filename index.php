@@ -7,7 +7,11 @@ require_once('config/db.php');
 require_once('config/app.php');
 
 // Set current page
-$CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : DEFAULT_VIEW;
+if(isLoggedIn() && $_SESSION['user']['user_username'] == 'admin'){
+    $CURR_PAGE = 'adminPage';
+}else{
+    $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : DEFAULT_VIEW;
+}
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 // If user is logged in, or is trying to login, let them
@@ -32,7 +36,7 @@ function isLoggedIn() {
 }
 
 /**
- * Loads the file, if it exists. If the file doesn't exist, 
+ * Loads the file, if it exists. If the file doesn't exist,
  * a location header for the 404 page is sent back to the browser
  * @param String $file File to load
  */
