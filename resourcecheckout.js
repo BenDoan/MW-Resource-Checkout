@@ -4,7 +4,7 @@ $(function() {
 });
 
 $(function() {
-    $( "#accordion" ).accordion();
+    $( "#accordion" ).accordion({autoHeight: false, collapsible: true});
 });
 
 function initCalendar() {
@@ -20,7 +20,7 @@ function initCalendar() {
             var m = date.getMonth() + 1;
             var y = date.getFullYear();
 
-            window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;		
+            window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;
         }
     });
 }

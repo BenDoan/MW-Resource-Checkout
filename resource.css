@@ -72,21 +72,21 @@ h4.dateresults {
 	background-image:url('images/nav2.jpg');
 	background-position:center;
 	background-repeat:no-repeat;
-	
+
 }
 
 #nav ul {
 	list-style-type:none;
 	padding:15px 0px 0px 30px;
 	margin:0px;
-	
+
 }
 
 #nav ul li {
 	float:left;
 	padding-right:18px;
 	margin:0px;
-	
+
 }
 
 #nav ul li.current {
@@ -97,7 +97,7 @@ h4.dateresults {
 
  a.logout  {
 	margin:0px;
-	color:#91b496;	
+	color:#91b496;
 	text-decoration:none;
 	font-size:13pt;
 	padding:0px;
@@ -143,14 +143,14 @@ div.confirm{
 }
 #userinfo {
 	padding:0px;
-	color:#91b496;	
+	color:#91b496;
 	font-size:10pt;
 	width:820px;
 }
 
 #wrapper {
 	background-color:white;
-	
+
 }
 
 #calendar {
@@ -160,9 +160,13 @@ div.confirm{
 
 #userinfo p{
 	float:right;
-	margin:0px;	
+	margin:0px;
 }
 
 a.admin {
     font-size:11px;
+}
+
+.clear {
+  clear: both;
 }
