@@ -11,8 +11,7 @@ if (isset($cancel)){
 			<p>Are you sure you want to permanently delete <strong>this request</strong>?</p>
 			<form action="./?action=cancel" method="post">
 				<input type="hidden" name="schedule_id" value="<?php echo $schedule_id;?>" />
-                <input type="submit" value="Yes" />
-                <input type="button" onclick="history.go(-1);" value="No" />
+				<input type="button" onclick="history.go(-1);" value="No" /> <input type="submit" value="Yes" />
 			</form>
 		</div>
 	<?php
@@ -45,7 +44,7 @@ if (isset($cancel)){
 	} else {
 		redirect('./?p=404', 'You have reached this page due to an error. Please use the provided navigation.');
 	}
-
+	
 }else{
 	redirect('./?p=404', 'You have reached this page due to an error. Please use the provided navigation.');
 }

@@ -22,11 +22,12 @@ while($row = $results->fetch_assoc()){
             <td>$user_firstname</td>
             <td>$user_lastname</td>
             <td>$user_username</td>
-            <td><a style=\"color:blue;font-size:12px;\" href=\"./?action=deleteUser.php?user=$user_id&type=user\">delete</a></td>
+            <td><a style=\"color:blue;font-size:12px;\" href=\"./?action=delete&user=$user_id&type=user\">delete</a></td>
         </tr>
     ";
 }
 print "</tbody></table>";
+print '<button href=\"./?action=addUser\">Add User</button>';
 
 $conn->close();
 ?>

@@ -23,11 +23,12 @@ while($row = $results->fetch_assoc()){
             <td>$resource_details</td>
             <td>$resource_identifier</td>
             <td>$resource_blocktype</td>
-            <td><a style=\"color:blue;font-size:12px;\" href=\"./?action=deleteUser.php?user=$user_id&type=resource\">delete</a></td>
+            <td><a style=\"color:blue;font-size:12px;\" href=\"./?action=delete&resource=$resource_id&type=resource\">delete</a></td>
         </tr>
     ";
 }
 print "</tbody></table>";
+print '<button href=\"./?action=addResource\">Add Resource</button>';
 
 $conn->close();
 ?>

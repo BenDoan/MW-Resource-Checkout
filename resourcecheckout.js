@@ -3,9 +3,6 @@ $(function() {
     $('input[name=date]').datepicker({dateFormat: 'mm/dd/yy'});
 });
 
-$(function() {
-    $( "#accordion" ).accordion({autoHeight: false, collapsible: true});
-});
 
 function initCalendar() {
     var date = new Date();
