@@ -27,7 +27,7 @@ while($row = $results->fetch_assoc()){
     ";
 }
 print "</tbody></table>";
-print '<button href=\"./?action=addUser\">Add User</button>';
+print "<a class=\"add\" href=\"./?p=add&type=user\">Add</a>";
 
 $conn->close();
 ?>

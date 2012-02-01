@@ -31,5 +31,6 @@ while($row = $results->fetch_assoc()){
     ";
 }
 print "</tbody></table>";
+print "<a class=\"add\" href=\"./?p=add&type=request\">Add</a>";
 $conn->close();
 ?>

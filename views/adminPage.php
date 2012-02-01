@@ -1,5 +1,5 @@
-<!--TODO: make delete page
-          add user page
+<!--TODO:
+          'add user' page
           paginate pages
  -->
 
@@ -50,5 +50,4 @@ if (isset($selection)) {
 	<div>
         <?php include('admin/resources.php');?>
 	</div>
-
 </div>
