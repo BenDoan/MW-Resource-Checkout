@@ -27,7 +27,7 @@ while($row = $results->fetch_assoc()){
             <td>$schedule_date</td>
             <td>$schedule_block</td>
             <td>
-            <a href=\"./?action=delete&user=$user_id&type=request\"class=\" btn btn-small btn-danger\">
+            <a href=\"./?action=delete&user=$user_id&type=request&request=$schedule_id\"class=\" btn btn-small btn-danger\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
@@ -35,6 +35,6 @@ while($row = $results->fetch_assoc()){
     ";
 }
 print "</tbody></table>";
-print "<a class=\"btn add\" href=\"./?p=add&type=request\">Add</a>";
+print "<a class=\"btn add\" href=\"./?p=add&type=request\">Add request</a>";
 $conn->close();
 ?>

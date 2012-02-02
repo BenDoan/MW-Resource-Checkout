@@ -25,5 +25,5 @@ if (isset($type)) {
         break;
     }
 }
-redirect("./?selection=$selection", "Deletion successfull");
+redirect("./?selection=$type", "Deletion successfull");
 ?>

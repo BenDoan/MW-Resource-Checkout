@@ -24,7 +24,7 @@ while($row = $results->fetch_assoc()){
             <td>$resource_identifier</td>
             <td>$resource_blocktype</td>
             <td>
-            <a href=\"./?action=delete&user=$user_id&type=resource\"class=\" btn btn-small btn-danger\">
+            <a href=\"./?action=delete&user=$user_id&type=resource&resource=$resource_id\" class=\" btn btn-small btn-danger\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
@@ -32,7 +32,7 @@ while($row = $results->fetch_assoc()){
     ";
 }
 print "</tbody></table>";
-print "<a class=\"btn add\" href=\"./?p=add&type=resources\">Add</a>";
+print "<a class=\"btn add\" href=\"./?p=add&type=resource\">Add resource</a>";
 
 $conn->close();
 ?>

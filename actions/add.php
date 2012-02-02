@@ -11,9 +11,9 @@ if ($type == 'user') {
     $results = $conn->query($sql);
 }elseif ($type == 'request'){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$type','$username','$date','$block')";
+    $sql = "INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rtype','$username','$date','$block')";
     $results = $conn->query($sql);
 }
 $cap_type = ucfirst($type);
-redirect("./", "$cap_type successfully added");
+redirect("./?selection=$type", "$cap_type successfully added");
 ?>

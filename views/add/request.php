@@ -3,35 +3,60 @@
 
 $date=(isset($_SESSION['GET']['date'])) ? $_SESSION['GET']['date'] : "";
 ?>
+<div class="span8">
+      <form class="form-horizontal" method="post" action="./?action=add">
+        <input type="hidden" name="type" value="<?php print $_GET['type'] ?>" />
+        <fieldset>
+          <legend>Add a request</legend>
 
-<h1>Add a <?php print $_GET['type']; ?></h1>
-<form method="post" action="./?action=add">
-    <input type="hidden" name="type" value="<?php print $_GET['type'] ?>" />
-    <table>
-        <tr>
-            <td>Type</td>
-            <td><input type="text" name="type" /></td>
-        </tr>
-        <tr>
-            <td>Username</td>
-            <td><input type="text" name="username" /></td>
-        </tr>
-        <tr>
-            <td>Date</td>
-			<td><input name="date" type="text" value="<?php echo $date;?>" /></td>
-        </tr>
-        <tr>
-            <td>Block</td>
-            <td>
-                <select name="block">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-            </td>
-        </tr>
-    </table>
-    <input type="submit" />
-    <input type="button" onclick="history.go(-1);" value="Cancel" />
-</form>
+          <div class="control-group">
+            <label class="control-label" for="rtype">Type</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" name="rtype">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="user">User</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" name="user">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="date">Date</label>
+            <div class="controls">
+            <input type="text" class="input-xlarge" name="date" value="<?php echo $date;?>">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="block">Block</label>
+            <div class="controls">
+              <label class="radio">
+                <input type="radio" name="optionsRadios" value="1" checked="checked" >
+                1
+                </label>
+              <label class="radio">
+                <input type="radio" name="optionsRadios" value="2" >
+                2
+              </label>
+              <label class="radio">
+                <input type="radio" name="optionsRadios" value="3" >
+                3
+              </label>
+              <label class="radio">
+                <input type="radio" name="optionsRadios" value="4" >
+                4
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+<div class="clear"></div>

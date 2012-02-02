@@ -6,6 +6,11 @@
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
 <link rel="stylesheet" type="text/css" href="resource.css"/>
 <script type="text/javascript" src="bootstrap/js/bootstrap-collapse.js"></script>
+
+<script>
+$(\".collapse\").collapse()
+</script>
+
 <style>
     #nav ul {
         display:none;
@@ -22,25 +27,27 @@ if (isset($_GET['selection'])) {
     $selection = $_GET['selection'];
 }
 if (isset($selection)) {
-    print "
-        <script>
-            $(\".collapse\").collapse()
+    $user = '0px';
+    $request = '0px';
+    $resource = '0px';
 
-            $('#myCollapsible').collapse({
-              toggle: false
-            })
-        </script>
-        ";
+    switch ($selection) {
+        case 'user':
+            $user = 'auto switching user';
+            break;
+
+        case 'request':
+            $request = 'auto';
+            break;
+
+        case 'resource':
+            $resource = 'auto';
+            break;
+    }
 }else{
-    print "
-        <script>
-            $(\".collapse\").collapse()
-
-            $('#myCollapsible').collapse({
-              toggle: false
-            })
-        </script>
-        ";
+    $user = 'auto';
+    $request = '0px';
+    $resource = '0px';
 }
 ?>
 <div class="span9 columns">
@@ -48,35 +55,37 @@ if (isset($selection)) {
           <div class="accordion" id="accordion2">
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#users">
                     Users
                 </a>
               </div>
-              <div id="collapseOne" class="accordion-body in collapse" style="height: auto; ">
+              <div id="users" class="accordion-body in collapse" style="height: <?php print $user; ?>; ">
                 <div class="accordion-inner">
                     <?php include('admin/users.php');?>
                 </div>
               </div>
             </div>
+
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#requests">
                     Requests
                 </a>
               </div>
-              <div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
+              <div id="requests" class="accordion-body collapse" style="height: <?php print $request; ?>; ">
                 <div class="accordion-inner">
                     <?php include('admin/requests.php');?>
                 </div>
               </div>
             </div>
+
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#resources">
                     Resources
                 </a>
               </div>
-              <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
+              <div id="resources" class="accordion-body collapse in" style="height: <?php print $resource; ?>; ">
                 <div class="accordion-inner">
                     <?php include('admin/resources.php');?>
                 </div>

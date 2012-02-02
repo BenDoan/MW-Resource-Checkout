@@ -32,7 +32,7 @@ while($row = $results->fetch_assoc()){
     ";
 }
 print "</tbody></table>";
-print "<a class=\"btn add\" href=\"./?p=add&type=user\">Add</a>";
+print "<a class=\"btn add\" href=\"./?p=add&type=user\">Add user</a>";
 
 $conn->close();
 ?>
