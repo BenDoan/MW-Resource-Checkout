@@ -4,7 +4,7 @@ $sql = "SELECT * FROM users WHERE user_username != 'admin'";
 $results = $conn->query($sql);
 
 
-print "<table class=\"full\">
+print "<table class=\"table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>First Name</th>
@@ -22,12 +22,17 @@ while($row = $results->fetch_assoc()){
             <td>$user_firstname</td>
             <td>$user_lastname</td>
             <td>$user_username</td>
-            <td><a style=\"color:blue;font-size:12px;\" href=\"./?action=delete&user=$user_id&type=user\">delete</a></td>
+            <td>
+            <a href=\"./?action=delete&user=$user_id&type=user\"class=\" btn btn-small btn-danger\">
+                <i class=\"icon-trash icon-white\"></i>
+                delete
+            </a>
+            </td>
         </tr>
     ";
 }
 print "</tbody></table>";
-print "<a class=\"add\" href=\"./?p=add&type=user\">Add</a>";
+print "<a class=\"btn add\" href=\"./?p=add&type=user\">Add</a>";
 
 $conn->close();
 ?>

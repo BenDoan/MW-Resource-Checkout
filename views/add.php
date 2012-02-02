@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="resource.css"/>
+
 <style>
     #nav ul {
         display:none;

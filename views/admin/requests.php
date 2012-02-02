@@ -7,7 +7,7 @@ $sql = "SELECT * FROM schedule";
 $results = $conn->query($sql);
 
 
-print "<table class=\"full\">
+print "<table class=\"table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>Type</th>
@@ -26,11 +26,15 @@ while($row = $results->fetch_assoc()){
             <td>$schedule_user_id</td>
             <td>$schedule_date</td>
             <td>$schedule_block</td>
-            <td><a style=\"color:blue;font-size:12px;\" href=\"./?action=delete&request=$schedule_id&type=request\">delete</a></td>
+            <td>
+            <a href=\"./?action=delete&user=$user_id&type=request\"class=\" btn btn-small btn-danger\">
+                <i class=\"icon-trash icon-white\"></i>
+                delete
+            </a>
         </tr>
     ";
 }
 print "</tbody></table>";
-print "<a class=\"add\" href=\"./?p=add&type=request\">Add</a>";
+print "<a class=\"btn add\" href=\"./?p=add&type=request\">Add</a>";
 $conn->close();
 ?>
