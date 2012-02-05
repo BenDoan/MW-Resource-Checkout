@@ -10,7 +10,7 @@ $results = $conn->query($sql);
 print "<table class=\"table table-striped table-condensed\">
        <thead>
             <tr>
-                <th>Type</th>
+                <th>Resource</th>
                 <th>User</th>
                 <th>Date</th>
                 <th>Block</th>
@@ -20,10 +20,12 @@ print "<table class=\"table table-striped table-condensed\">
     ";
 while($row = $results->fetch_assoc()){
     extract($row);
+    $schedule_resource = getResourceDesc($schedule_resource_id);
+    $user_id = getUsername($schedule_user_id);
     print "
         <tr>
-            <td>$schedule_resource_id</td>
-            <td>$schedule_user_id</td>
+            <td>$schedule_resource</td>
+            <td>$user_id</td>
             <td>$schedule_date</td>
             <td>$schedule_block</td>
             <td>
@@ -37,4 +39,5 @@ while($row = $results->fetch_assoc()){
 print "</tbody></table>";
 print "<a class=\"btn add\" href=\"./?p=add&type=request\">Add request</a>";
 $conn->close();
+
 ?>

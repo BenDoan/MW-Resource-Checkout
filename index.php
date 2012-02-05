@@ -5,6 +5,7 @@ session_start();
 // Load configuration files
 require_once('config/db.php');
 require_once('config/app.php');
+require_once('functions.php');
 
 // Set current page
 if(isLoggedIn() && $_SESSION['user']['user_username'] == 'admin'){
