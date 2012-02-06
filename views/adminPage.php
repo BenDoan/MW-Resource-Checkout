@@ -1,5 +1,4 @@
 <!--TODO:
-          'add user' page
           paginate pages
  -->
 
@@ -23,15 +22,12 @@ $(\".collapse\").collapse()
 
 
 <?php
-if (isset($_GET['selection'])) {
-    $selection = $_GET['selection'];
-}
-if (isset($selection)) {
+if (isset($_SESSION['type'])) {
     $user = '0px';
     $request = '0px';
     $resource = '0px';
 
-    switch ($selection) {
+    switch ($_SESSION['type']) {
         case 'user':
             $user = 'auto switching user';
             break;
@@ -44,12 +40,14 @@ if (isset($selection)) {
             $resource = 'auto';
             break;
     }
+    unset($_SESSION['type']);
 }else{
     $user = 'auto';
     $request = '0px';
     $resource = '0px';
 }
 ?>
+
 <div class="span9 columns">
           <h1>Admin Panel</h1>
           <div class="accordion" id="accordion2">

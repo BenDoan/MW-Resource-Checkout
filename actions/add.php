@@ -15,5 +15,6 @@ if ($type == 'user') {
     $results = $conn->query($sql);
 }
 $cap_type = ucfirst($type);
-redirect("./?selection=$type", "$cap_type successfully added");
+$_SESSION['type'] = $type;
+redirect("./", "$cap_type successfully added");
 ?>

@@ -25,5 +25,6 @@ if (isset($type)) {
         break;
     }
 }
-redirect("./?selection=$type", "Deletion successfull");
+$_SESSION['type'] = $type;
+redirect("./", "Deletion successfull");
 ?>
