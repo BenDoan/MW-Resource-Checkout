@@ -9,8 +9,8 @@ if (isset($type)) {
         $sql = "DELETE FROM users WHERE user_id={$user}";
         $results = $conn->query($sql);
         $selection = 0;
-        $username = getUsername($user);
-        writeLineToLog("$time - Deleted user $username $user");
+        $user_id = getUsername($user);
+        writeLineToLog("$time - Deleted user $username_id $user");
         break;
 
     case 'request':

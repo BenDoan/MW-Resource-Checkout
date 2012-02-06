@@ -16,12 +16,14 @@ function getResourceDesc($id){
 //returns the username matching the id param
 function getUsername($id){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_id={$id}";
+    $sql = "SELECT * FROM users WHERE user_id=$id";
     $results = $conn->query($sql);
 
-    $username = "No users matched";
+    $username = "";
     while($row = $results->fetch_assoc()){
-        $username = $row['user_username'];
+        foreach ($row as $x) {
+            $username .= $x;
+        }
     }
     return $username;
 }
