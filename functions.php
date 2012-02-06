@@ -21,9 +21,7 @@ function getUsername($id){
 
     $username = "";
     while($row = $results->fetch_assoc()){
-        foreach ($row as $x) {
-            $username .= $x;
-        }
+            $username = $row['user_username'];
     }
     return $username;
 }
