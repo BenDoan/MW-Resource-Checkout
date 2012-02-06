@@ -22,7 +22,7 @@ while($row = $results->fetch_assoc()){
     $schedule_resource = getResourceDesc($schedule_resource_id);
     $user_id = getUsername($schedule_user_id);
 
-    //if(time() <= strtotime($schedule_date)){
+    if(time() <= strtotime($schedule_date)){
         print "
             <tr>
                 <td>$schedule_resource</td>
@@ -36,7 +36,7 @@ while($row = $results->fetch_assoc()){
                 </a>
             </tr>
             ";
-    //}
+    }
 }
 print "</tbody></table>";
 print "<a class=\"btn add\" href=\"./?p=add&type=request\">Add request</a>";

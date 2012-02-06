@@ -48,7 +48,7 @@ if (isset($_SESSION['type'])) {
 }
 ?>
 
-<div class="span9 columns">
+<div class="span10 columns">
           <h1>Admin Panel</h1>
           <div class="accordion" id="accordion2">
             <div class="accordion-group">

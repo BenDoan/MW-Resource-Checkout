@@ -1,4 +1,5 @@
 <?php
+
 //returns the resource identifer matching the resource id param
 function getResourceDesc($id){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -18,10 +19,19 @@ function getUsername($id){
     $sql = "SELECT * FROM users WHERE user_id={$id}";
     $results = $conn->query($sql);
 
-    $username = null;
+    $username = "No users matched";
     while($row = $results->fetch_assoc()){
         $username = $row['user_username'];
     }
     return $username;
+}
+
+//writes $line to the log file
+function writeLineToLog($line){
+    $logFile = "logFile.txt";
+    $fh = fopen($logFile, 'a') or die("can't open file");
+    $line .= "\n";
+    fwrite($fh, $line);
+    fclose($fh);
 }
 ?>

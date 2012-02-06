@@ -1,4 +1,6 @@
 <?php
+$time = date('m/d/Y G:h');
+
 extract($_GET);
 if (isset($type)) {
     switch ($type) {
@@ -7,6 +9,8 @@ if (isset($type)) {
         $sql = "DELETE FROM users WHERE user_id={$user}";
         $results = $conn->query($sql);
         $selection = 0;
+        $username = getUsername($user);
+        writeLineToLog("$time - Deleted user $username $user");
         break;
 
     case 'request':
@@ -15,6 +19,7 @@ if (isset($type)) {
         $results = $conn->query($sql);
         $selection = 1;
         $message = $conn->error;
+        writeLineToLog("$time - Deleted request $request");
         break;
 
     case 'resource':
@@ -22,6 +27,8 @@ if (isset($type)) {
         $sql = "DELETE FROM resources WHERE resource_id={$resource}";
         $results = $conn->query($sql);
         $selection = 2;
+        $resourceDesc = getResourceDesc($resource);
+        writeLineToLog("$time - Deleted resource $resourceDesc");
         break;
     }
 }
