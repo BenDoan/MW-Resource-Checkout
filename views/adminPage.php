@@ -89,5 +89,18 @@ if (isset($_SESSION['type'])) {
                 </div>
               </div>
             </div>
+
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#resources">
+                    Log
+                </a>
+              </div>
+              <div id="resources" class="accordion-body collapse in" style="height: <?php print $resource; ?>; ">
+                <div class="accordion-inner">
+                    <?php include('admin/log.php');?>
+                </div>
+              </div>
+            </div>
           </div>
 

@@ -23,6 +23,7 @@ function getUsername($id){
     while($row = $results->fetch_assoc()){
             $username = $row['user_username'];
     }
+    $conn->close();
     return $username;
 }
 
@@ -33,5 +34,13 @@ function writeLineToLog($line){
     $line .= "\n";
     fwrite($fh, $line);
     fclose($fh);
+}
+
+function readLog(){
+    $myFile = "logFile.txt";
+    $fh = fopen($myFile, 'r');
+    $theData = fread($fh, filesize($myFile));
+    fclose($fh);
+    return $theData;
 }
 ?>

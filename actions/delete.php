@@ -8,6 +8,7 @@ if (isset($type)) {
         $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
         $sql = "DELETE FROM users WHERE user_id={$user}";
         $results = $conn->query($sql);
+        $conn->close();
         $selection = 0;
         $user_id = getUsername($user);
         writeLineToLog("$time - Deleted user $username_id $user");
