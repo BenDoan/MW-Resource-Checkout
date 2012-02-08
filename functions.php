@@ -43,4 +43,5 @@ function readLog(){
     fclose($fh);
     return $theData;
 }
+
 ?>

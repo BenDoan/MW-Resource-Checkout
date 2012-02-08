@@ -92,11 +92,11 @@ if (isset($_SESSION['type'])) {
 
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#resources">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#log">
                     Log
                 </a>
               </div>
-              <div id="resources" class="accordion-body collapse in" style="height: <?php print $resource; ?>; ">
+              <div id="log" class="accordion-body collapse in" style="height: <?php print $resource; ?>; ">
                 <div class="accordion-inner">
                     <?php include('admin/log.php');?>
                 </div>
