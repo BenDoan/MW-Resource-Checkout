@@ -39,12 +39,16 @@ if (isset($_SESSION['type'])) {
         case 'resource':
             $resource = 'auto';
             break;
+        case 'log':
+            $log = 'auto';
+            break;
     }
     unset($_SESSION['type']);
 }else{
     $user = 'auto';
     $request = '0px';
     $resource = '0px';
+    $log = '0px;';
 }
 ?>
 

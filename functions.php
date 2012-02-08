@@ -36,6 +36,7 @@ function writeLineToLog($line){
     fclose($fh);
 }
 
+//returns the whole log file
 function readLog(){
     $myFile = "logFile.txt";
     $fh = fopen($myFile, 'r');
