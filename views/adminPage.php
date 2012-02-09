@@ -6,10 +6,6 @@
 <link rel="stylesheet" type="text/css" href="resource.css"/>
 <script type="text/javascript" src="bootstrap/js/bootstrap-collapse.js"></script>
 
-<script>
-$(\".collapse\").collapse()
-</script>
-
 <style>
     #nav ul {
         display:none;

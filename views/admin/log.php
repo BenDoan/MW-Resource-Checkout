@@ -1,9 +1,8 @@
-<dl>
-    <?php
-        foreach(readLog() as $x){
-            print "<li>";
-            print $x;
-            print "</li>";
-        }
-    ?>
-</dl>
+<pre>
+<?php
+    foreach(readLog() as $x){
+        print $x;
+        print "<br />";
+    }
+?>
+</pre>
