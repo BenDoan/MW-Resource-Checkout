@@ -36,13 +36,14 @@ function writeLineToLog($line){
     fclose($fh);
 }
 
-//returns the whole log file
+//returns returns an array containing the whole log file
 function readLog(){
-    $myFile = "logFile.txt";
-    $fh = fopen($myFile, 'r');
-    $theData = fread($fh, filesize($myFile));
+    $file = "logFile.txt";
+    $fh = fopen($file, 'r');
+    $data = fread($fh, filesize($file));
     fclose($fh);
-    return $theData;
+    $data = explode("\n", $data);
+    return $data;
 }
 
 ?>
