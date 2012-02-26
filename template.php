@@ -3,6 +3,8 @@
 	<head>
 		<title>Resource Checkout</title>
 
+        <link rel="icon" type="image/ico" href="favicon.ico?v=3" />
+
 		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
 		<script type='text/javascript' src='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.min.js'></script>
