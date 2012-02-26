@@ -1,5 +1,7 @@
 <!--TODO:
-          paginate pages
+    add limits to carts
+    <= 3/week
+    <= 2 consecutive
  -->
 
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
@@ -25,7 +27,7 @@ if (isset($_SESSION['type'])) {
 
     switch ($_SESSION['type']) {
         case 'user':
-            $user = 'auto switching user';
+            $user = 'auto';
             break;
 
         case 'request':
