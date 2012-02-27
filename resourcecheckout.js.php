@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'config/db.php';
+$today=date('Y-m-d');
 
 $currentUser = $_SESSION['user']['user_id'];
 
@@ -8,15 +9,17 @@ $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 $sql="SELECT * FROM schedule
          LEFT JOIN resources ON schedule.schedule_resource_id=resources.resource_id
          LEFT JOIN users ON schedule.schedule_user_id=users.user_id
-         WHERE schedule_user_id='$currentUser' ORDER BY schedule_date";
+         WHERE schedule_user_id='$currentUser' AND schedule_date >= '$today'
+         ORDER BY schedule_date";
 $results = $conn->query($sql);
 
-if ($results == false){
-	echo "crap";
-}
+//if ($results == false){
+	//echo "crap";
+//}
 
 $numRows = $conn->affected_rows;
 
+//returns the next event from the sql query above
 function getNextEvent($results){
     $day = date('d');
     $month = date('m');
@@ -56,10 +59,10 @@ function initCalendar() {
 	$('#calendar').fullCalendar({
 		eventSources: [{
 			events:EVENTS,
-            color: '#91b496',
-            textColor: 'white'
+            color: '#204927',
+            textColor: 'white',
         }],
-		editable: true,
+		editable: false,
 		weekends: false,
 		dayClick: function(dateClicked, allDay, jsEvent, view) {
 			var date = new Date(dateClicked);

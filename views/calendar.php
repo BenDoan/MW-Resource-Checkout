@@ -1,2 +1,2 @@
-<h1>Please select a date</h1>
+<h1>Select a date to reserve a resource</h1>
 <div id='calendar'></div>
