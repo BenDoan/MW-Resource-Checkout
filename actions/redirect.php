@@ -1,4 +1,5 @@
 <?php
-    $_SESSION['type'] = $_GET['type'];
-    redirect('./');
+    $_SESSION['tab'] = $_GET['type'];
+    $cur_page = $_GET['currentpage'];
+    redirect("./?currentpage=$cur_page");
 ?>

@@ -66,9 +66,9 @@ print "</tbody></table>
     ";
 
 if($currentpage > 1){
-    print "<li><a href=\"./?currentpage=1\">«</a></li>";
+    print "<li><a href=\"./?action=redirect&currentpage=1&type=$type\">«</a></li>";
     $prev_page = $currentpage - 1;
-    print "<li><a href=\"./?currentpage=$prev_page\">‹</a></li>";
+    print "<li><a href=\"./?action=redirect&currentpage=$prev_page&type=$type\">‹</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">«</a></li>";
     print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
@@ -81,20 +81,20 @@ for($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++){
         if($x == $currentpage){
             print "<li class=\"active\"><a>$x</a></li>";
         }else{
-            print "<li><a href=\"./?currentpage=$x\">$x</a></li>";
+            print "<li><a href=\"./?action=redirect&currentpage=$x&type=$type\">$x</a></li>";
         }
     }
 }
 
 if($currentpage != $total_pages){
     $next_page = $currentpage + 1;
-    print "<li><a href=\"./?currentpage=$next_page\">›</a></li>";
-    print "<li><a href=\"./?currentpage=$total_pages\">»</a></li>";
+    print "<li><a href=\"./?action=redirect&currentpage=$next_page&type=$type\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentpage=$total_pages&type=$type\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";
 }
 print "</div><a class=\"btn add\" href=\"./?p=add&type=request\">Add request</a>";
 $conn->close();
-$_SESSION['type'] = 'request';
+
 ?>

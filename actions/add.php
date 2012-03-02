@@ -21,6 +21,6 @@ if ($type == 'user') {
     writeLineToLog("$time - Added request $rtype");
 }
 $cap_type = ucfirst($type);
-$_SESSION['type'] = $type;
+$_SESSION['tab'] = $type;
 redirect("./", "$cap_type successfully added");
 ?>

@@ -105,4 +105,10 @@ function readLog(){
     $data = explode("\n", $data);
     return $data;
 }
+
+function printArray($array){
+    print '<pre>';
+    print_r($array);
+    print '</pre>';
+}
 ?>

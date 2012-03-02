@@ -3,6 +3,8 @@
     <= 3/week
     <= 2 consecutive
     delete old requests
+    fix add
+    delete requests along with user -> foreign keys mysql
  -->
 
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
@@ -24,25 +26,26 @@ $('#myTab').tab('show')
 </script>
 
 <?php
-extract($_GET);
+extract($_SESSION);
+printArray($_SESSION);
 
-$users = "";
-$requests = "";
-$resources = "";
+$user = "";
+$request = "";
+$resource = "";
 $log = "";
 
 if (isset($tab)) {
     switch ($tab) {
-    case 'users':
-        $users = "active";
+    case 'user':
+        $user = "active";
         break;
 
-    case 'requests':
-        $requests = "active";
+    case 'request':
+        $request = "active";
         break;
 
-    case 'resources':
-        $resources = "active";
+    case 'resource':
+        $resource = "active";
         break;
 
     case 'log':
@@ -50,27 +53,31 @@ if (isset($tab)) {
         break;
 
     default:
-        $users = "active";
+        $user = "active";
         break;
     }
 }else{
-    $users = "active";
+    $user = "active";
+}
+
+if (isset($type)) {
+    $_SESSION['tab'] = $type;
 }
 ?>
 
 <div class="span10 columns">
     <h1>Admin Panel</h1>
     <ul class="nav nav-tabs">
-      <li class="<?php print $users ?>"><a href="#users" data-toggle="tab">Users</a></li>
-      <li class="<?php print $requests ?>"><a href="#requests" data-toggle="tab">Requests</a></li>
-      <li class="<?php print $resources ?>"><a href="#resources" data-toggle="tab">Resources</a></li>
+      <li class="<?php print $user ?>"><a href="#users" data-toggle="tab">Users</a></li>
+      <li class="<?php print $request ?>"><a href="#requests" data-toggle="tab">Requests</a></li>
+      <li class="<?php print $resource ?>"><a href="#resources" data-toggle="tab">Resources</a></li>
       <li class="<?php print $log ?>"><a href="#log" data-toggle="tab">Admin Log</a></li>
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane <?php print $users ?>" id="users"><?php include('admin/users.php');?></div>
-        <div class="tab-pane <?php print $requests ?>" id="requests"><?php include('admin/requests.php');?></div>
-        <div class="tab-pane <?php print $resources ?>" id="resources"><?php include('admin/resources.php');?></div>
+        <div class="tab-pane <?php print $user ?>" id="users"><?php include('admin/users.php');?></div>
+        <div class="tab-pane <?php print $request ?>" id="requests"><?php include('admin/requests.php');?></div>
+        <div class="tab-pane <?php print $resource ?>" id="resources"><?php include('admin/resources.php');?></div>
     <div class="tab-pane" <?php print $log ?> id="log"><?php include('admin/log.php');?></div>
 </div>
 </div>

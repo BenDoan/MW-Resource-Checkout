@@ -33,6 +33,6 @@ if (isset($type)) {
         break;
     }
 }
-$_SESSION['type'] = $type;
+$_SESSION['tab'] = $type;
 redirect("./", "Deletion successfull");
 ?>
