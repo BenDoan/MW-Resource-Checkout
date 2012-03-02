@@ -5,7 +5,7 @@ $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 $sql = "SELECT COUNT(*) FROM schedule";
 $results = $conn->query($sql);
 $row = $results->fetch_assoc();
-$num_rows = $row['COUNT(*)']; 
+$num_rows = $row['COUNT(*)'];
 
 $rows_per_page = 10;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
@@ -96,5 +96,5 @@ if($currentpage != $total_pages){
 }
 print "</div><a class=\"btn add\" href=\"./?p=add&type=request\">Add request</a>";
 $conn->close();
-
+$_SESSION['type'] = 'request';
 ?>
