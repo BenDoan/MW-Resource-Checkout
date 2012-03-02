@@ -48,7 +48,7 @@ while($row = $results->fetch_assoc()){
             <td>$resource_identifier</td>
             <td>$resource_blocktype</td>
             <td>
-            <a href=\"./?action=delete&user=$user_id&type=resource&resource=$resource_id\" class=\" btn btn-small btn-danger\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=resource&resource=$resource_id\" class=\" btn btn-small btn-danger\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>

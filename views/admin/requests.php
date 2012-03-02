@@ -53,7 +53,7 @@ while($row = $results->fetch_assoc()){
             <td>$schedule_date</td>
             <td>$schedule_block</td>
             <td>
-            <a href=\"./?action=delete&user=$user_id&type=request&request=$schedule_id\"class=\" btn btn-small btn-danger\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id\"class=\" btn btn-small btn-danger\">
             <i class=\"icon-trash icon-white\"></i>
             delete
             </a>

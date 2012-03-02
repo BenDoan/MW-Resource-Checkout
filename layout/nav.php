@@ -1,9 +1,9 @@
-<?php 
+<?php
 // Pages to display in nav, in format ('Name' => 'QS param value')
 $pages = array(
-	'Homepage'  =>	'calendar',
-	'Search'	=>	'formSearch',
-	'Manage'	=>	'currentRequests'
+	'Home'  =>	'calendar',
+	//'Search'	=>	'formSearch',
+	'My Reservations'	=>	'currentRequests'
 );
 
 // Display pages in <ul>
@@ -15,7 +15,7 @@ foreach($pages as $name => $p) {
 echo '</ul>';
 ?>
 <div id="userinfo">
-	<?php 
+	<?php
 	// Check to see if user has logged in
 	if(isLoggedIn()) {
 			// Display user status and logout option
