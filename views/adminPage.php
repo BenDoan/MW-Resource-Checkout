@@ -2,15 +2,16 @@
     add limits to carts
     <= 3/week
     <= 2 consecutive
+    delete old requests
  -->
 
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
 <link rel="stylesheet" type="text/css" href="resource.css"/>
-<script type="text/javascript" src="bootstrap/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap-tab.js"></script>
 
 <style>
-    #nav ul {
-        display:none;
+#nav ul {
+display:none;
     }
 
     #userinfo {
@@ -18,91 +19,59 @@
     }
 </style>
 
+    <script type="text/javascript">
+$('#myTab').tab('show')
+</script>
 
 <?php
-if (isset($_SESSION['type'])) {
-    $user = '0px';
-    $request = '0px';
-    $resource = '0px';
+extract($_GET);
 
-    switch ($_SESSION['type']) {
-        case 'user':
-            $user = 'auto';
-            break;
+$users = "";
+$requests = "";
+$resources = "";
+$log = "";
 
-        case 'request':
-            $request = 'auto';
-            break;
+if (isset($tab)) {
+    switch ($tab) {
+    case 'users':
+        $users = "active";
+        break;
 
-        case 'resource':
-            $resource = 'auto';
-            break;
-        case 'log':
-            $log = 'auto';
-            break;
+    case 'requests':
+        $requests = "active";
+        break;
+
+    case 'resources':
+        $resources = "active";
+        break;
+
+    case 'log':
+        $log = "active";
+        break;
+
+    default:
+        $users = "active";
+        break;
     }
-    unset($_SESSION['type']);
 }else{
-    $user = 'auto';
-    $request = '0px';
-    $resource = '0px';
-    $log = '0px;';
+    $users = "active";
 }
 ?>
 
 <div class="span10 columns">
-          <h1>Admin Panel</h1>
-          <div class="accordion" id="accordion2">
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#users">
-                    Users
-                </a>
-              </div>
-              <div id="users" class="accordion-body in collapse" style="height: <?php print $user; ?>; ">
-                <div class="accordion-inner">
-                    <?php include('admin/users.php');?>
-                </div>
-              </div>
-            </div>
+    <h1>Admin Panel</h1>
+    <ul class="nav nav-tabs">
+      <li class="<?php print $users ?>"><a href="#users" data-toggle="tab">Users</a></li>
+      <li class="<?php print $requests ?>"><a href="#requests" data-toggle="tab">Requests</a></li>
+      <li class="<?php print $resources ?>"><a href="#resources" data-toggle="tab">Resources</a></li>
+      <li class="<?php print $log ?>"><a href="#log" data-toggle="tab">Admin Log</a></li>
+    </ul>
 
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#requests">
-                    Requests
-                </a>
-              </div>
-              <div id="requests" class="accordion-body collapse" style="height: <?php print $request; ?>; ">
-                <div class="accordion-inner">
-                    <?php include('admin/requests.php');?>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#resources">
-                    Resources
-                </a>
-              </div>
-              <div id="resources" class="accordion-body collapse in" style="height: <?php print $resource; ?>; ">
-                <div class="accordion-inner">
-                    <?php include('admin/resources.php');?>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#log">
-                    Log
-                </a>
-              </div>
-              <div id="log" class="accordion-body collapse in" style="height: <?php print $resource; ?>; ">
-                <div class="accordion-inner">
-                    <?php include('admin/log.php');?>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="tab-content">
+        <div class="tab-pane <?php print $users ?>" id="users"><?php include('admin/users.php');?></div>
+        <div class="tab-pane <?php print $requests ?>" id="requests"><?php include('admin/requests.php');?></div>
+        <div class="tab-pane <?php print $resources ?>" id="resources"><?php include('admin/resources.php');?></div>
+    <div class="tab-pane" <?php print $log ?> id="log"><?php include('admin/log.php');?></div>
+</div>
+</div>
 
