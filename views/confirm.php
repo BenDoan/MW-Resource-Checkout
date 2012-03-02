@@ -62,7 +62,7 @@ if (isset($cancel)){
         break;
 
     default:
-        //$args = "./?p=adminPage";
+        $args = "./?p=adminPage";
         break;
     }
 ?>
