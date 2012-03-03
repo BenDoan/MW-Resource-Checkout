@@ -11,21 +11,21 @@ $num_rows = $row['COUNT(*)'];
 $rows_per_page = 10;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
 
-if(isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])){
-    $currentpage = (int) $_GET['currentpage'];
+if(isset($_GET['currentrequestepage']) && is_numeric($_GET['currentrequestepage'])){
+    $currentrequestpage = (int) $_GET['currentrequestepage'];
 }else{
-    $currentpage = 1;
+    $currentrequestpage = 1;
 }
 
-if($currentpage > $total_pages){
-    $currentpage = $total_pages;
+if($currentrequestpage > $total_pages){
+    $currentrequestpage = $total_pages;
 }
 
-if($currentpage < 1){
-    $currentpage = 1;
+if($currentrequestpage < 1){
+    $currentrequestpage = 1;
 }
 
-$offset = ($currentpage - 1) * $rows_per_page;
+$offset = ($currentrequestpage - 1) * $rows_per_page;
 
 $sql = "SELECT * FROM schedule WHERE schedule_date >= '$today' LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
@@ -66,10 +66,10 @@ print "</tbody></table>
         <div class=\"pagination\">
     ";
 
-if($currentpage > 1){
-    print "<li><a href=\"./?action=redirect&currentpage=1&type=$type\">«</a></li>";
-    $prev_page = $currentpage - 1;
-    print "<li><a href=\"./?action=redirect&currentpage=$prev_page&type=$type\">‹</a></li>";
+if($currentrequestpage > 1){
+    print "<li><a href=\"./?action=redirect&currentrequestepage=1&type=$type\">«</a></li>";
+    $prev_page = $currentrequestpage - 1;
+    print "<li><a href=\"./?action=redirect&currentrequestepage=$prev_page&type=$type\">‹</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">«</a></li>";
     print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
@@ -77,20 +77,20 @@ if($currentpage > 1){
 
 $range = 3;
 
-for($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++){
+for($x = ($currentrequestpage - $range); $x < (($currentrequestpage + $range) + 1); $x++){
     if(($x > 0) && ($x <= $total_pages)){
-        if($x == $currentpage){
+        if($x == $currentrequestpage){
             print "<li class=\"active\"><a>$x</a></li>";
         }else{
-            print "<li><a href=\"./?action=redirect&currentpage=$x&type=$type\">$x</a></li>";
+            print "<li><a href=\"./?action=redirect&currentrequestepage=$x&type=$type\">$x</a></li>";
         }
     }
 }
 
-if($currentpage != $total_pages){
-    $next_page = $currentpage + 1;
-    print "<li><a href=\"./?action=redirect&currentpage=$next_page&type=$type\">›</a></li>";
-    print "<li><a href=\"./?action=redirect&currentpage=$total_pages&type=$type\">»</a></li>";
+if($currentrequestpage != $total_pages){
+    $next_page = $currentrequestpage + 1;
+    print "<li><a href=\"./?action=redirect&currentrequestepage=$next_page&type=$type\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestepage=$total_pages&type=$type\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";
