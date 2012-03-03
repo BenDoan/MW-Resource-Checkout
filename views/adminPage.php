@@ -21,13 +21,21 @@ display:none;
     }
 </style>
 
-    <script type="text/javascript">
-$('#myTab').tab('show')
+<script type="text/javascript">
+    $('#myTab').tab('show')
+
+//$(document).ready(function(){
+    //$(".admintable").hover(function() {
+        //$(".admindelete").show("slide");
+            //}, function() {
+        //$(".admindelete").hide("slide");
+    //});
+//});
 </script>
 
 <?php
 extract($_SESSION);
-printArray($_SESSION);
+//printArray($_SESSION);
 
 $user = "";
 $request = "";
@@ -64,7 +72,6 @@ if (isset($type)) {
     $_SESSION['tab'] = $type;
 }
 ?>
-
 <div class="span10 columns">
     <h1>Admin Panel</h1>
     <ul class="nav nav-tabs">
@@ -81,4 +88,7 @@ if (isset($type)) {
     <div class="tab-pane" <?php print $log ?> id="log"><?php include('admin/log.php');?></div>
 </div>
 </div>
-
+<?php
+unset($_SESSION['type']);
+unset($_SESSION['tab']);
+?>

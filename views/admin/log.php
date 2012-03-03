@@ -1,5 +1,5 @@
-<pre>
 <?php
+$type = 'log';
 $log = readLog();
 
 $num_rows = sizeof($log);

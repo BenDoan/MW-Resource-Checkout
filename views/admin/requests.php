@@ -1,8 +1,9 @@
 <?php
-
+$type = 'request';
+$today=date('Y-m-d');
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
-$sql = "SELECT COUNT(*) FROM schedule";
+$sql = "SELECT COUNT(*) FROM schedule WHERE schedule_date >= '$today'" ;
 $results = $conn->query($sql);
 $row = $results->fetch_assoc();
 $num_rows = $row['COUNT(*)'];
@@ -26,10 +27,10 @@ if($currentpage < 1){
 
 $offset = ($currentpage - 1) * $rows_per_page;
 
-$sql = "SELECT * FROM schedule LIMIT $offset, $rows_per_page";
+$sql = "SELECT * FROM schedule WHERE schedule_date >= '$today' LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed\">
     <thead>
     <tr>
     <th>Resource</th>
@@ -53,7 +54,7 @@ while($row = $results->fetch_assoc()){
             <td>$schedule_date</td>
             <td>$schedule_block</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id\"class=\" btn btn-small btn-danger\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id\"class=\" btn btn-small btn-danger admindelete\">
             <i class=\"icon-trash icon-white\"></i>
             delete
             </a>

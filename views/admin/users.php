@@ -1,4 +1,5 @@
 <?php
+$type = 'user';
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
 $sql = "SELECT COUNT(*) FROM users";
@@ -28,13 +29,13 @@ $offset = ($currentpage - 1) * $rows_per_page;
 $sql = "SELECT * FROM users WHERE user_username != \"admin\" LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Username</th>
-                <th></th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +48,7 @@ while($row = $results->fetch_assoc()){
             <td>$user_lastname</td>
             <td>$user_username</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=user\"class=\" btn btn-small btn-danger\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=user\"class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
