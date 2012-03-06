@@ -2,7 +2,6 @@
     add limits to carts
     <= 3/week
     <= 2 consecutive
-    delete old requests
     fix add
     delete requests along with user -> foreign keys mysql
     github twitter hook
