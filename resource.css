@@ -175,3 +175,11 @@ a.admin {
 .add {
     margin:3px;
 }
+
+.admindelete {
+    visibility:hidden;
+}
+
+tr.hover .admindelete {
+    visibility:visible;
+}

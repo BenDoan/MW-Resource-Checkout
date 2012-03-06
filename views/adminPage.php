@@ -24,13 +24,19 @@ display:none;
 <script type="text/javascript">
     $('#myTab').tab('show')
 
-//$(document).ready(function(){
-    //$(".admintable").hover(function() {
-        //$(".admindelete").show("slide");
-            //}, function() {
-        //$(".admindelete").hide("slide");
-    //});
-//});
+$(document).ready(function(){
+    $(".admintable tr").hover(
+        function() {
+            console.log('Mouse over');
+            $(this).addClass("hover");
+            //$(this).children('.admindelete').show("slide");
+        }, 
+        function() {
+            console.log('Mouse out');
+            $(this).removeClass("hover");
+            //$(this).children(".admindelete").hide("slide");
+    });
+});
 </script>
 
 <?php
