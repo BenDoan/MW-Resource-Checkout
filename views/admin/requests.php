@@ -37,6 +37,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
     <th>User</th>
     <th>Date</th>
     <th>Block</th>
+    <th>Delete</th>
     </tr>
     </thead>
     <tbody>
