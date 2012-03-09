@@ -38,4 +38,11 @@
 03/02/2012 6:06 - Added user dasas
 03/02/2012 6:06 - Added resource 
 03/02/2012 6:06 - Added resource 
+<<<<<<< HEAD:_logFile.txt
 03/08/2012 16:04 - Deleted user  8
+=======
+03/06/2012 23:11 - Added user hjk
+03/06/2012 23:11 - Deleted user  55
+03/07/2012 0:12 - Deleted request 49
+03/07/2012 1:01 - Deleted request 43
+>>>>>>> 9766b64c3bc27080ad3e103a499e8b47f32d4a10:logFile.txt

@@ -11,8 +11,8 @@ $num_rows = $row['COUNT(*)'];
 $rows_per_page = 10;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
 
-if(isset($_GET['currentrequestepage']) && is_numeric($_GET['currentrequestepage'])){
-    $currentrequestpage = (int) $_GET['currentrequestepage'];
+if(isset($_GET['currentrequestpage']) && is_numeric($_GET['currentrequestpage'])){
+    $currentrequestpage = (int) $_GET['currentrequestpage'];
 }else{
     $currentrequestpage = 1;
 }
@@ -37,6 +37,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
     <th>User</th>
     <th>Date</th>
     <th>Block</th>
+    <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -67,9 +68,9 @@ print "</tbody></table>
     ";
 
 if($currentrequestpage > 1){
-    print "<li><a href=\"./?action=redirect&currentrequestepage=1&type=$type\">«</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=1&type=$type\">«</a></li>";
     $prev_page = $currentrequestpage - 1;
-    print "<li><a href=\"./?action=redirect&currentrequestepage=$prev_page&type=$type\">‹</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$prev_page&type=$type\">‹</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">«</a></li>";
     print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
@@ -82,15 +83,15 @@ for($x = ($currentrequestpage - $range); $x < (($currentrequestpage + $range) + 
         if($x == $currentrequestpage){
             print "<li class=\"active\"><a>$x</a></li>";
         }else{
-            print "<li><a href=\"./?action=redirect&currentrequestepage=$x&type=$type\">$x</a></li>";
+            print "<li><a href=\"./?action=redirect&currentrequestpage=$x&type=$type\">$x</a></li>";
         }
     }
 }
 
 if($currentrequestpage != $total_pages){
     $next_page = $currentrequestpage + 1;
-    print "<li><a href=\"./?action=redirect&currentrequestepage=$next_page&type=$type\">›</a></li>";
-    print "<li><a href=\"./?action=redirect&currentrequestepage=$total_pages&type=$type\">»</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$next_page&type=$type\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$total_pages&type=$type\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";
