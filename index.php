@@ -98,7 +98,7 @@ function writeLineToLog($line){
 
 //returns returns an array containing the whole log file
 function readLog(){
-    $file = "logFile.txt";
+    $file = "log.txt";
     $fh = fopen($file, 'r');
     $data = fread($fh, filesize($file));
     fclose($fh);
