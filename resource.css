@@ -177,40 +177,19 @@ a.admin {
 }
 
 .admindelete {
-    visibility:hidden;
+    opacity:0;
+}
+
+@-webkit-keyframes fade {
+   0% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
 }
 
 tr.hover .admindelete {
-    visibility:visible;
+   -webkit-animation-name: fade;
+   -webkit-animation-duration: 1s;
 }
-
-tr.hover .admindelete{
-      -moz-animation-duration: 3s;
-      -webkit-animation-duration: 3s;
-      -moz-animation-name: slidein;
-      -webkit-animation-name: slidein;
-    }
-
-    @-moz-keyframes slidein {
-      from {
-        margin-left:100%;
-        width:300%
-      }
-
-      to {
-        margin-left:0%;
-        width:100%;
-      }
-    }
-
-    @-webkit-keyframes slidein {
-      from {
-        margin-left:100%;
-        width:300%
-      }
-
-      to {
-        margin-left:0%;
-        width:100%;
-      }
-    }

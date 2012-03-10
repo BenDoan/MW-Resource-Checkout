@@ -89,7 +89,7 @@ function getUsername($id){
 
 //writes $line to the log file
 function writeLineToLog($line){
-    $logFile = "logFile.txt";
+    $logFile = "log.txt";
     $fh = fopen($logFile, 'a') or die("can't open file");
     $line .= "\n";
     fwrite($fh, $line);
