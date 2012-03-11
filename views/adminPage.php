@@ -8,7 +8,6 @@
     look into creating users
         stop duplicate users from being created
         stop admin user from being created
-    make the site look more visually consistant
  -->
 
 
