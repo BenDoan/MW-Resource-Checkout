@@ -53,8 +53,8 @@ for($x = ($currentlogpage - $range); $x < (($currentlogpage + $range) + 1); $x++
 
 if($currentlogpage != $total_pages){
     $next_page = $currentlogpage + 1;
-    print "<li><a href=\"./?action=redirect&currentlogpage=$next_page\">›</a></li>";
-    print "<li><a href=\"./?action=redirect&currentlogpage=$total_pages\">»</a></li>";
+    print "<li><a href=\"./?action=redirect&currentlogpage=$next_page&type=log\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentlogpage=$total_pages&type=log\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";
