@@ -48,17 +48,18 @@ if (isset($cancel)){
     }
 }elseif(isset($delete_db) && isset($type) && (isset($user) || isset($request) || isset($resource))){
     $args = "";
+    $page = $_GET['page'];
     switch ($type) {
     case 'user':
-        $args = "type=user&user=$user";
+        $args = "type=user&user=$user&page=$page";
         break;
 
     case 'request':
-        $args = "type=request&request=$request";
+        $args = "type=request&request=$request&page=$page";
         break;
 
     case 'resource':
-        $args = "type=resource&resource=$resource&user=$user";
+        $args = "type=resource&resource=$resource&user=$user&page=$page";
         break;
 
     default:

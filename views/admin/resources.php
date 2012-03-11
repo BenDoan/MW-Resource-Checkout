@@ -1,4 +1,9 @@
 <?php
+if (isset($_GET['currentresourcepage'])) {
+    $page = $_GET['currentresourcepage'];
+}else{
+    $page = 1;
+}
 $type = 'resource';
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
@@ -29,13 +34,14 @@ $offset = ($currentresourcepage - 1) * $rows_per_page;
 $sql = "SELECT * FROM resources LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"admindelete table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>Type</th>
                 <th>Details</th>
                 <th>Identifier</th>
                 <th>Block Type</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -49,7 +55,7 @@ while($row = $results->fetch_assoc()){
             <td>$resource_identifier</td>
             <td>$resource_blocktype</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=resource&resource=$resource_id\" class=\" btn btn-small btn-danger admindelete\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=resource&resource=$resource_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>

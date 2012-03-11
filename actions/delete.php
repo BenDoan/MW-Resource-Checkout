@@ -1,5 +1,11 @@
 <?php
+printArray($_SESSION);
+printArray($_GET);
+
 $time = date('m/d/Y G:h');
+$page_string = 'current' . $_GET['type'] . 'page';
+$page = $_GET['page'];
+
 
 extract($_GET);
 if (isset($type)) {
@@ -10,8 +16,8 @@ if (isset($type)) {
         $results = $conn->query($sql);
         $conn->close();
         $selection = 0;
-        $user_id = getUsername($user);
-        writeLineToLog("$time - Deleted user $username_id $user");
+        $user_name = getUsername($user);
+        writeLineToLog("$time - Deleted user $user_name $user");
         break;
 
     case 'request':
@@ -34,5 +40,5 @@ if (isset($type)) {
     }
 }
 $_SESSION['tab'] = $type;
-redirect("./", "Deletion successfull");
+redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successfull");
 ?>

@@ -7,7 +7,7 @@ require_once('config/db.php');
 require_once('config/app.php');
 
 // Set current page
-if(isLoggedIn() && $_SESSION['user']['user_firstname'] == 'Admin'){
+if(isLoggedIn() && $_SESSION['user']['user_username'] == 'admin'){
     $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : 'adminPage';
 }else{
     $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : DEFAULT_VIEW;
@@ -41,11 +41,11 @@ function isLoggedIn() {
  * @param String $file File to load
  */
 function loadFile($file) {
-	if(file_exists($file)) {
-		require_once($file);
-	} else {
-		redirect('Location:./?p=404', 'Error. Page does not exist.');
-	}
+    if(file_exists($file)) {
+        require_once($file);
+    } else {
+        redirect('Location:./?p=404', 'Error. Page does not exist.');
+    }
 }
 
 /**
@@ -106,6 +106,7 @@ function readLog(){
     return $data;
 }
 
+//prints the given array, surroundeed by pre tags
 function printArray($array){
     print '<pre>';
     print_r($array);

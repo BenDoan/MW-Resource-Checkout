@@ -1,10 +1,13 @@
 <!--TODO:
     add limits to carts
-    <= 3/week
-    <= 2 consecutive
-    fix add
+        <= 3/week
+        <= 2 consecutive
+    fix add for requests and resources
     delete requests along with user -> foreign keys mysql
-    github twitter hook
+    authentication on all admin pages
+    look into creating users
+        stop duplicate users from being created
+        stop admin user from being created
  -->
 
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
@@ -25,16 +28,13 @@ display:none;
     $('#myTab').tab('show')
 
 $(document).ready(function(){
+    //js for showing/hiding delete button in admin tables
     $(".admintable tr").hover(
         function() {
-            console.log('Mouse over');
             $(this).addClass("hover");
-            //$(this).children('.admindelete').show("slide");
-        }, 
+        },
         function() {
-            console.log('Mouse out');
             $(this).removeClass("hover");
-            //$(this).children(".admindelete").hide("slide");
     });
 });
 </script>
@@ -91,7 +91,7 @@ if (isset($type)) {
         <div class="tab-pane <?php print $user ?>" id="users"><?php include('admin/users.php');?></div>
         <div class="tab-pane <?php print $request ?>" id="requests"><?php include('admin/requests.php');?></div>
         <div class="tab-pane <?php print $resource ?>" id="resources"><?php include('admin/resources.php');?></div>
-    <div class="tab-pane" <?php print $log ?> id="log"><?php include('admin/log.php');?></div>
+        <div class="tab-pane <?php print $log ?>" id="log"><?php include('admin/log.php');?></div>
 </div>
 </div>
 <?php

@@ -1,4 +1,9 @@
 <?php
+if (isset($_GET['currentrequestpage'])) {
+    $page = $_GET['currentrequestpage'];
+}else{
+    $page = 1;
+}
 $type = 'request';
 $today=date('Y-m-d');
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -55,7 +60,7 @@ while($row = $results->fetch_assoc()){
             <td>$schedule_date</td>
             <td>$schedule_block</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id\"class=\" btn btn-small btn-danger admindelete\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id&page=$page\"class=\" btn btn-small btn-danger admindelete\">
             <i class=\"icon-trash icon-white\"></i>
             delete
             </a>
