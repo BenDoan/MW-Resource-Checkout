@@ -34,7 +34,7 @@ function getNextEvent($results){
 	$event = array(
 		'title'  =>	"$resource_type - $half of Block $block",
 		'start'	=>	$schedule_date,
-        'url' => './?p=resultList&date=' . substr($schedule_date, 5, 2). '/' . substr($schedule_date, 8, 9) . '/' . substr($schedule_date, 0, 4),
+        'url' => './?p=currentRequests',
 
 	);
 	return $event;

@@ -14,8 +14,8 @@ if (isset($cancel)){
             <p>Are you sure you want to permanently delete <strong>this request</strong>?</p>
             <form action="./?action=cancel" method="post">
                 <input type="hidden" name="schedule_id" value="<?php echo $schedule_id;?>" />
-                <input type="submit" value="Yes" />
-                <input type="button" onclick="history.go(-1);" value="No" />
+                <input type="submit" class="btn" value="Yes" />
+                <input type="button" class="btn" onclick="history.go(-1);" value="No" />
             </form>
         </div>
 <?php
@@ -40,8 +40,8 @@ if (isset($cancel)){
                     <input type="hidden" name="schedule_block" value="<?php echo $schedule_block;?>"/>
                     <input type="hidden" name="schedule_resource_id" value="<?php echo $schedule_resource_id;?>" />
                     <input type="hidden" name="schedule_date" value="<?php echo $schedule_date;?>" />
-                    <input type="submit" value="Yes" />
-                    <input type="button" onclick="history.go(-1);" value="No" />
+                    <input type="submit" class="btn" value="Yes" />
+                    <input type="button" class="btn" onclick="history.go(-1);" value="No" />
                 </form>
             </div>
 <?php
@@ -71,15 +71,11 @@ if (isset($cancel)){
                 <h3>Confirm Delete</h3>
                 <p>Are you sure you want to delete this <strong><?php print $type ?></strong></p>
                 <a class="btn" href="./?action=delete&<?php print $args?>">Yes</a>
-                <a class="btn" type="button" onclick="history.go(-1);" value="No" >No</a>
+                <a class="btn" type="button" class="btn" onclick="history.go(-1);" value="No" >No</a>
             </div>
 <?php
 
 } else {
-    redirect('./?p=404', 'You have reached this page due to an error. Please use the provided navigation.');
+    redirect('./?p=404', 'You have reached this page due to an error. Please use the provided navigation.', 'alert-error');
 }
-
-//}else{
-//redirect('./?p=404', 'You have reached this page due to an error. Please use the provided navigation.');
-//}
 ?>

@@ -8,11 +8,9 @@
     look into creating users
         stop duplicate users from being created
         stop admin user from being created
+    make the site look more visually consistant
  -->
 
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
-<link rel="stylesheet" type="text/css" href="resource.css"/>
-<script type="text/javascript" src="bootstrap/js/bootstrap-tab.js"></script>
 
 <style>
 #nav ul {

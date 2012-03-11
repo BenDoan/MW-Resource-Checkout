@@ -52,10 +52,13 @@ function loadFile($file) {
  * Helper function to send location headers, with an optional message
  * @param String $location Absolute or relative URL of destination
  * @param String $message Optional message to display upon redirection
+ * @param String $type type of alert to display, types = alert-error,
+ *                      alert-success, alert-info, alert-block
  */
-function redirect($location,$message=null) {
+function redirect($location,$message=null,$type="alert-success") {
 	if($message != null) {
 		$_SESSION['message'] = $message;
+        $_SESSION['messagetype'] = $type;
 	}
 	header("Location:$location");
 }
