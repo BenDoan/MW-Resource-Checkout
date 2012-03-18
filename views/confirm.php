@@ -69,7 +69,7 @@ if (isset($cancel)){
 ?>
             <div class="confirm">
                 <h3>Confirm Delete</h3>
-                <p>Are you sure you want to delete this <strong><?php print $type ?></strong></p>
+                <p>Are you sure you want to delete this <?php print $type ?></p>
                 <a class="btn" href="./?action=delete&<?php print $args?>">Yes</a>
                 <a class="btn" type="button" class="btn" onclick="history.go(-1);" value="No" >No</a>
             </div>

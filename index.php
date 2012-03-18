@@ -94,7 +94,7 @@ function getUsername($id){
 //returns the user_id matching the username param
 function getUserId($user_name){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_username='" . $user_name . "'"; // weird code, I know, but it wasn't working the usual way
+    $sql = "SELECT * FROM users WHERE user_username='$user_name'";
     $results = $conn->query($sql);
 
     $user_id= "";

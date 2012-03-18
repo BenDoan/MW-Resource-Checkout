@@ -5,16 +5,20 @@
           <legend>Add a resource</legend>
 
           <div class="control-group">
-            <label class="control-label" for="name">Name</label>
+            <label class="control-label" for="rType">Type</label>
             <div class="controls">
-              <input type="text" class="input-xlarge" name="name">
+                <select name="rType">
+                	<option value="Computer Lab">Computer Lab</option>
+                	<option value="Laptop Cart">Laptop Cart</option>
+                	<option value="Candy">Candy</option>
+                </select>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label" for="details">Details</label>
             <div class="controls">
-              <input type="text" class="input-xlarge" name="lastname">
+              <input type="text" class="input-xlarge" name="details">
               <p class="help-block">eg: 25 computers</p>
             </div>
           </div>
@@ -31,11 +35,11 @@
             <label class="control-label" for="blocktype">Block Type</label>
             <div class="controls">
               <label class="radio">
-                <input type="radio" name="optionsRadios" value="fullblock" checked="checked" >
+                <input type="radio" name="blocktype" value="Full" checked="checked" >
                 Full Block
               </label>
               <label class="radio">
-                <input type="radio" name="optionsRadios" value="halfblock" >
+                <input type="radio" name="blocktype" value="Half" >
                 Half Block
               </label>
             </div>

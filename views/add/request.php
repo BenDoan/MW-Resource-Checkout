@@ -29,7 +29,7 @@ $date = date('m-d-Y');
         <fieldset>
           <legend>Add a request</legend>
           <div class="control-group">
-            <label class="control-label" for="rtype">Resource type</label>
+            <label class="control-label" for="rtype">Resource</label>
             <div class="controls">
                 <select name="rtype">
 <?php
@@ -40,7 +40,7 @@ $results = $conn->query($sql);
 
 while($row = $results->fetch_assoc()){
     extract($row);
-    print "<option value=\"$resource_id\">$resource_type</option>";
+    print "<option value=\"$resource_id\">$resource_identifier</option>";
 }
 ?>
                 </select>
@@ -59,7 +59,7 @@ while($row = $results->fetch_assoc()){
           <div class="control-group">
             <label class="control-label" for="date">Date</label>
             <div class="controls">
-            <input type="text" class="input-xlarge" name="date" value="<?php echo $date;?>">
+                <input type="text" class="input-xlarge" name="date" value="<?php echo $date;?>">
             </div>
           </div>
 

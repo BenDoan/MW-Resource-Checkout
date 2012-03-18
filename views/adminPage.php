@@ -2,15 +2,24 @@
     add limits to carts
         <= 3/week
         <= 2 consecutive
-    fix add for requests and resources
-    delete requests along with user -> foreign keys mysql
     authentication on all admin pages
     look into creating users
         stop duplicate users from being created
         stop admin user from being created
+    look at resource types
+    mabye make edit pages
+
+
+question for tracy:
+    enum in resources -> resource type field
+    how to label resources
  -->
 
-
+<?php
+if ($_SESSION['user']['user_username'] != 'admin') {
+    redirect('./');
+}
+?>
 <style>
 #nav ul {
 display:none;
@@ -22,7 +31,7 @@ display:none;
 </style>
 
 <script type="text/javascript">
-    $('#myTab').tab('show')
+$('#myTab').tab('show')
 
 $(document).ready(function(){
     //js for showing/hiding delete button in admin tables

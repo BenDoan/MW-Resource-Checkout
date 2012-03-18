@@ -1,4 +1,4 @@
-<?php 
+<?php
 $date=(isset($_SESSION['GET']['date'])) ? $_SESSION['GET']['date'] : "";
 ?>
 
@@ -24,12 +24,12 @@ $date=(isset($_SESSION['GET']['date'])) ? $_SESSION['GET']['date'] : "";
 				<?php echo generateBlock('1');?> <?php echo generateBlock('2');?> <?php echo generateBlock('3');?> <?php echo generateBlock('4');?>
 			</td>
 			<th></th>
-			<td class="float"><input type="submit" value="Search" /></td>
+			<td class="float"><input type="submit" class="btn" value="Search" /></td>
 		</tr>
 	</table>
 </form>
 
-<?php 
+<?php
 function generateResource($value){
 	if (isset($_SESSION['GET']['type']) && $_SESSION['GET']['type'] == $value){
 		return '<option selected="selected" value="'.$value.'">'.$value.'</option>';
@@ -42,7 +42,7 @@ function generateBlock($number){
 	if (isset($_SESSION['GET']['block_'.$number]) && $_SESSION['GET']['block_'.$number] == $number){
 		return $number.'<input type="checkbox" checked="checked" name="block_'.$number.'" value="'.$number.'" />';
 	}else{
-		return $number.'<input type="checkbox" name="block_'.$number.'" value="'.$number.'" />';	
+		return $number.'<input type="checkbox" name="block_'.$number.'" value="'.$number.'" />';
 	}
 }
 
