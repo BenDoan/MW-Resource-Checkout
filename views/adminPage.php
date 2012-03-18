@@ -8,6 +8,9 @@
         stop admin user from being created
     look at resource types
     mabye make edit pages
+    add notes section for resources
+    mabye add easier method for testing
+    refine resources naming
 
 
 question for tracy:

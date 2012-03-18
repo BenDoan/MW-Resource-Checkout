@@ -8,7 +8,6 @@
     }
 </style>
 <?php
-printArray($_SESSION);
 if ($_SESSION['user']['user_username'] != 'admin') {
     redirect('./');
 }
