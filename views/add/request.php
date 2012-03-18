@@ -19,9 +19,6 @@ jQuery(document).ready(function() {
         });
 </script>
 <?php
-//TODO: deal with blocks and half blocks
-
-$date = date('m-d-Y');
 ?>
 <div class="span8">
       <form class="form-horizontal" method="post" action="./?action=add">
@@ -59,7 +56,7 @@ while($row = $results->fetch_assoc()){
           <div class="control-group">
             <label class="control-label" for="date">Date</label>
             <div class="controls">
-                <input type="text" class="input-xlarge" name="date" value="<?php echo $date;?>">
+                <input type="text" class="input-xlarge" name="date">
             </div>
           </div>
 

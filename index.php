@@ -85,7 +85,7 @@ function getUsername($id){
 
     $username = "";
     while($row = $results->fetch_assoc()){
-            $username = $row['user_username'];
+        $username = $row['user_username'];
     }
     $conn->close();
     return $username;

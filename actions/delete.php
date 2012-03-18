@@ -2,10 +2,6 @@
 if ($_SESSION['user']['user_username'] != 'admin') {
     redirect('./');
 }
-
-printArray($_SESSION);
-printArray($_GET);
-
 $time = date('m/d/Y G:h');
 $page_string = 'current' . $_GET['type'] . 'page';
 $page = $_GET['page'];
@@ -26,7 +22,6 @@ if (isset($type)) {
         $sql = "DELETE FROM schedule WHERE schedule_user_id={$user}";
         $results = $conn->query($sql);
         $conn->close();
-
         $user_name = getUsername($user);
         writeLineToLog("$time - Deleted user $user_name $user");
         break;

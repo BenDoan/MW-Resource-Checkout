@@ -2,20 +2,24 @@
     add limits to carts
         <= 3/week
         <= 2 consecutive
-    authentication on all admin pages
-    look into creating users
+    user creation:
         stop duplicate users from being created
-        stop admin user from being created
+        batch user creation?
+        email key to users
+        user info page
+        stats?
     look at resource types
     mabye make edit pages
     add notes section for resources
     mabye add easier method for testing
     refine resources naming
+    deal with full and half blocks for request add
 
 
 question for tracy:
     enum in resources -> resource type field
     how to label resources
+    how to deal with user creation
  -->
 
 <?php
