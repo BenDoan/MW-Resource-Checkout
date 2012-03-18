@@ -10,6 +10,7 @@
 		<script type='text/javascript' src='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.min.js'></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-tab.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-alert.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-typeahead.js"></script>
 		<script type="text/javascript" src="resourcecheckout.js.php"></script>
 
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>

@@ -2,6 +2,7 @@
 $time = date('m/d/Y G:h');
 
 extract($_POST);
+printArray($_POST);
 
 if ($type == 'user') {
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -15,6 +16,10 @@ if ($type == 'user') {
     $results = $conn->query($sql);
     writeLineToLog("$time - Added resource $resource_identifier");
 }elseif ($type == 'request'){
+	$timestamp = strtotime($date);
+	$date = ($date != "") ? date("Y-m-d", $timestamp) : date('Y-m-d');
+    $username = getUserId($username);
+
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
     $sql = "INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rtype','$username','$date','$block')";
     $results = $conn->query($sql);

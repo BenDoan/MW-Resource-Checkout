@@ -14,6 +14,7 @@ if(isLoggedIn() && $_SESSION['user']['user_username'] == 'admin'){
 }
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
+
 // If user is logged in, or is trying to login, let them
 if(isLoggedIn() || $action == 'authenticate' || $CURR_PAGE == 'login') {
 	// If no action is specified
@@ -88,6 +89,21 @@ function getUsername($id){
     }
     $conn->close();
     return $username;
+}
+
+//returns the user_id matching the username param
+function getUserId($user_name){
+    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+    $sql = "SELECT * FROM users WHERE user_username='" . $user_name . "'"; // weird code, I know, but it wasn't working the usual way
+    $results = $conn->query($sql);
+
+    $user_id= "";
+    print $conn->error;
+    while($row = $results->fetch_assoc()){
+            $user_id= $row['user_id'];
+    }
+    $conn->close();
+    return $user_id;
 }
 
 //writes $line to the log file

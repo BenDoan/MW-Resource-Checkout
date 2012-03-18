@@ -5,7 +5,7 @@ if (isset($_GET['currentrequestpage'])) {
     $page = 1;
 }
 $type = 'request';
-$today=date('Y-m-d');
+$today = date('Y-m-d');
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
 $sql = "SELECT COUNT(*) FROM schedule WHERE schedule_date >= '$today'" ;
