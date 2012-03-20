@@ -1,26 +1,26 @@
-<pre>
 <?php
+$type = 'log';
 $log = readLog();
 
 $num_rows = sizeof($log);
 $rows_per_page = 20;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
 
-if(isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])){
-    $currentpage = (int) $_GET['currentpage'];
+if(isset($_GET['currentlogpage']) && is_numeric($_GET['currentlogpage'])){
+    $currentlogpage = (int) $_GET['currentlogpage'];
 }else{
-    $currentpage = 1;
+    $currentlogpage = 1;
 }
 
-if($currentpage > $total_pages){
-    $currentpage = $total_pages;
+if($currentlogpage > $total_pages){
+    $currentlogpage = $total_pages;
 }
 
-if($currentpage < 1){
-    $currentpage = 1;
+if($currentlogpage < 1){
+    $currentlogpage = 1;
 }
 
-$offset = ($currentpage - 1) * $rows_per_page;
+$offset = ($currentlogpage - 1) * $rows_per_page;
 $sliced_log = array_slice($log, $offset, $rows_per_page);
 foreach($sliced_log as $x){
     print $x;
@@ -30,10 +30,10 @@ print "</pre>";
 
 print "<div class=\"pagination\">";
 
-if($currentpage > 1){
-    print "<li><a href=\"./?currentpage=1\">«</a></li>";
-    $prev_page = $currentpage - 1;
-    print "<li><a href=\"./?currentpage=$prev_page\">‹</a></li>";
+if($currentlogpage > 1){
+    print "<li><a href=\"./?action=redirect&currentlogpage=1&type=$type\">«</a></li>";
+    $prev_page = $currentlogpage - 1;
+    print "<li><a href=\"./?action=redirect&currentlogpage=$prev_page&type=$type\">‹</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">«</a></li>";
     print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
@@ -41,20 +41,20 @@ if($currentpage > 1){
 
 $range = 3;
 
-for($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++){
+for($x = ($currentlogpage - $range); $x < (($currentlogpage + $range) + 1); $x++){
     if(($x > 0) && ($x <= $total_pages)){
-        if($x == $currentpage){
+        if($x == $currentlogpage){
             print "<li class=\"active\"><a>$x</a></li>";
         }else{
-            print "<li><a href=\"./?currentpage=$x\">$x</a></li>";
+            print "<li><a href=\"./?action=redirect&currentlogpage=$x&type=$type\">$x</a></li>";
         }
     }
 }
 
-if($currentpage != $total_pages){
-    $next_page = $currentpage + 1;
-    print "<li><a href=\"./?currentpage=$next_page\">›</a></li>";
-    print "<li><a href=\"./?currentpage=$total_pages\">»</a></li>";
+if($currentlogpage != $total_pages){
+    $next_page = $currentlogpage + 1;
+    print "<li><a href=\"./?action=redirect&currentlogpage=$next_page&type=log\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentlogpage=$total_pages&type=log\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";

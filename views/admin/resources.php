@@ -1,4 +1,10 @@
 <?php
+if (isset($_GET['currentresourcepage'])) {
+    $page = $_GET['currentresourcepage'];
+}else{
+    $page = 1;
+}
+$type = 'resource';
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
 $sql = "SELECT COUNT(*) FROM resources";
@@ -9,32 +15,33 @@ $num_rows = $row['COUNT(*)'];
 $rows_per_page = 10;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
 
-if(isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])){
-    $currentpage = (int) $_GET['currentpage'];
+if(isset($_GET['currentresourcepage']) && is_numeric($_GET['currentresourcepage'])){
+    $currentresourcepage = (int) $_GET['currentresourcepage'];
 }else{
-    $currentpage = 1;
+    $currentresourcepage = 1;
 }
 
-if($currentpage > $total_pages){
-    $currentpage = $total_pages;
+if($currentresourcepage > $total_pages){
+    $currentresourcepage = $total_pages;
 }
 
-if($currentpage < 1){
-    $currentpage = 1;
+if($currentresourcepage < 1){
+    $currentresourcepage = 1;
 }
 
-$offset = ($currentpage - 1) * $rows_per_page;
+$offset = ($currentresourcepage - 1) * $rows_per_page;
 
 $sql = "SELECT * FROM resources LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>Type</th>
                 <th>Details</th>
                 <th>Identifier</th>
                 <th>Block Type</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -48,7 +55,7 @@ while($row = $results->fetch_assoc()){
             <td>$resource_identifier</td>
             <td>$resource_blocktype</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=resource&resource=$resource_id\" class=\" btn btn-small btn-danger\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=resource&resource=$resource_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
@@ -59,10 +66,10 @@ print "</tbody></table>
         <div class=\"pagination\">
     ";
 
-if($currentpage > 1){
-    print "<li><a href=\"./?currentpage=1\">«</a></li>";
-    $prev_page = $currentpage - 1;
-    print "<li><a href=\"./?currentpage=$prev_page\">‹</a></li>";
+if($currentresourcepage > 1){
+    print "<li><a href=\"./?action=redirect&currentresourcepage=1&type=$type\">«</a></li>";
+    $prev_page = $currentresourcepage - 1;
+    print "<li><a href=\"./?action=redirect&currentresourcepage=$prev_page&type=$type\">‹</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">«</a></li>";
     print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
@@ -70,20 +77,20 @@ if($currentpage > 1){
 
 $range = 3;
 
-for($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++){
+for($x = ($currentresourcepage - $range); $x < (($currentresourcepage + $range) + 1); $x++){
     if(($x > 0) && ($x <= $total_pages)){
-        if($x == $currentpage){
+        if($x == $currentresourcepage){
             print "<li class=\"active\"><a>$x</a></li>";
         }else{
-            print "<li><a href=\"./?currentpage=$x\">$x</a></li>";
+            print "<li><a href=\"./?action=redirect&currentresourcepage=$x&type=$type\">$x</a></li>";
         }
     }
 }
 
-if($currentpage != $total_pages){
-    $next_page = $currentpage + 1;
-    print "<li><a href=\"./?currentpage=$next_page\">›</a></li>";
-    print "<li><a href=\"./?currentpage=$total_pages\">»</a></li>";
+if($currentresourcepage != $total_pages){
+    $next_page = $currentresourcepage + 1;
+    print "<li><a href=\"./?action=redirect&currentresourcepage=$next_page&type=$type\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentresourcepage=$total_pages&type=$type\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";

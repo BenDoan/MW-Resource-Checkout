@@ -1,4 +1,10 @@
 <?php
+$type = 'user';
+if (isset($_GET['currentuserpage'])) {
+    $page = $_GET['currentuserpage'];
+}else{
+    $page = 1;
+}
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
 $sql = "SELECT COUNT(*) FROM users";
@@ -9,32 +15,32 @@ $num_rows = $row['COUNT(*)'] - 1; //'-1' to account for admin not being counted
 $rows_per_page = 10;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
 
-if(isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])){
-    $currentpage = (int) $_GET['currentpage'];
+if(isset($_GET['currentuserpage']) && is_numeric($_GET['currentuserpage'])){
+    $currentuserpage = (int) $_GET['currentuserpage'];
 }else{
-    $currentpage = 1;
+    $currentuserpage = 1;
 }
 
-if($currentpage > $total_pages){
-    $currentpage = $total_pages;
+if($currentuserpage > $total_pages){
+    $currentuserpage = $total_pages;
 }
 
-if($currentpage < 1){
-    $currentpage = 1;
+if($currentuserpage < 1){
+    $currentuserpage = 1;
 }
 
-$offset = ($currentpage - 1) * $rows_per_page;
+$offset = ($currentuserpage - 1) * $rows_per_page;
 
 $sql = "SELECT * FROM users WHERE user_username != \"admin\" LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Username</th>
-                <th></th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +53,7 @@ while($row = $results->fetch_assoc()){
             <td>$user_lastname</td>
             <td>$user_username</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=user\"class=\" btn btn-small btn-danger\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=user&page=$page\"class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
@@ -59,10 +65,10 @@ print "</tbody></table>
         <div class=\"pagination\">
     ";
 
-if($currentpage > 1){
-    print "<li><a href=\"./?currentpage=1\">«</a></li>";
-    $prev_page = $currentpage - 1;
-    print "<li><a href=\"./?currentpage=$prev_page\">‹</a></li>";
+if($currentuserpage > 1){
+    print "<li><a href=\"./?action=redirect&currentuserpage=1&type=$type\">«</a></li>";
+    $prev_page = $currentuserpage - 1;
+    print "<li><a href=\"./?action=redirect&currentuserpage=$prev_page&type=$type\">‹</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">«</a></li>";
     print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
@@ -70,20 +76,20 @@ if($currentpage > 1){
 
 $range = 3;
 
-for($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++){
+for($x = ($currentuserpage - $range); $x < (($currentuserpage + $range) + 1); $x++){
     if(($x > 0) && ($x <= $total_pages)){
-        if($x == $currentpage){
+        if($x == $currentuserpage){
             print "<li class=\"active\"><a>$x</a></li>";
         }else{
-            print "<li><a href=\"./?currentpage=$x\">$x</a></li>";
+            print "<li><a href=\"./?action=redirect&currentuserpage=$x&type=$type\">$x</a></li>";
         }
     }
 }
 
-if($currentpage != $total_pages){
-    $next_page = $currentpage + 1;
-    print "<li><a href=\"./?currentpage=$next_page\">›</a></li>";
-    print "<li><a href=\"./?currentpage=$total_pages\">»</a></li>";
+if($currentuserpage != $total_pages){
+    $next_page = $currentuserpage + 1;
+    print "<li><a href=\"./?action=redirect&currentuserpage=$next_page&type=$type\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentuserpage=$total_pages&type=$type\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";

@@ -45,7 +45,7 @@ for ($i = 0; $i < $numRows; $i++){
 var EVENTS = <?php echo json_encode($events) ?>;
 $(function() {
 	initCalendar();
-	$('input[name=date]').datepicker({dateFormat: 'mm/dd/yy'});
+	$('input[name=date]').datepicker({dateFormat: 'mm/dd/yy', beforeShowDay:$.datepicker.noWeekends});
 });
 
 function initCalendar() {

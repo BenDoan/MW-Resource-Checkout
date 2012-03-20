@@ -1,6 +1,3 @@
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
-<link rel="stylesheet" type="text/css" href="resource.css"/>
-
 <style>
     #nav ul {
         display:none;
@@ -11,6 +8,11 @@
     }
 </style>
 <?php
+printArray($_SESSION);
+if ($_SESSION['user']['user_username'] != 'admin') {
+    redirect('./');
+}
+
 if (isset($_GET['type'])) {
     if ($_GET['type'] == 'user') {
         include('add/user.php');

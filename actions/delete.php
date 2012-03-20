@@ -1,24 +1,40 @@
 <?php
+if ($_SESSION['user']['user_username'] != 'admin') {
+    redirect('./');
+}
+
+printArray($_SESSION);
+printArray($_GET);
+
 $time = date('m/d/Y G:h');
+$page_string = 'current' . $_GET['type'] . 'page';
+$page = $_GET['page'];
+
 
 extract($_GET);
 if (isset($type)) {
     switch ($type) {
     case 'user':
+        //delete user
         $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
         $sql = "DELETE FROM users WHERE user_id={$user}";
         $results = $conn->query($sql);
         $conn->close();
-        $selection = 0;
-        $user_id = getUsername($user);
-        writeLineToLog("$time - Deleted user $username_id $user");
+
+        //delete requests that match deleted user
+        $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+        $sql = "DELETE FROM schedule WHERE schedule_user_id={$user}";
+        $results = $conn->query($sql);
+        $conn->close();
+
+        $user_name = getUsername($user);
+        writeLineToLog("$time - Deleted user $user_name $user");
         break;
 
     case 'request':
         $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
         $sql = "DELETE FROM schedule WHERE schedule_id=$request";
         $results = $conn->query($sql);
-        $selection = 1;
         $message = $conn->error;
         writeLineToLog("$time - Deleted request $request");
         break;
@@ -27,12 +43,11 @@ if (isset($type)) {
         $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
         $sql = "DELETE FROM resources WHERE resource_id={$resource}";
         $results = $conn->query($sql);
-        $selection = 2;
         $resourceDesc = getResourceDesc($resource);
         writeLineToLog("$time - Deleted resource $resourceDesc");
         break;
     }
 }
-$_SESSION['type'] = $type;
-redirect("./", "Deletion successfull");
+$_SESSION['tab'] = $type;
+redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successfull");
 ?>

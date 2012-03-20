@@ -64,10 +64,36 @@
 	</form>
 </div>
 
+<?php 
+    }
+}elseif(isset($delete_db) && isset($type) && (isset($user) || isset($request) || isset($resource))){
+    $args = "";
+    $page = $_GET['page'];
+    switch ($type) {
+    case 'user':
+        $args = "type=user&user=$user&page=$page";
+        break;
 
+    case 'request':
+        $args = "type=request&request=$request&page=$page";
+        break;
 
+    case 'resource':
+        $args = "type=resource&resource=$resource&user=$user&page=$page";
+        break;
+
+    default:
+        $args = "./?p=adminPage";
+        break;
+    }
+?>
+            <div class="confirm">
+                <h3>Confirm Delete</h3>
+                <p>Are you sure you want to delete this <?php print $type ?></p>
+                <a class="btn" href="./?action=delete&<?php print $args?>">Yes</a>
+                <a class="btn" type="button" class="btn" onclick="history.go(-1);" value="No" >No</a>
+            </div>
 <?php
-		}
 	}elseif(isset($delete_db) && isset($type) && (isset($user) || isset($request) || isset($resource))){
 		$args = "";
 		switch ($type) {
@@ -163,12 +189,12 @@
 	}
 	
 	function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$daysInRow){
+		$j =0;
 		$timestamp = strtotime($schedule_date);
 		
 		$newDate = date('Y-m-d', $timestamp);
 		$dates[$j++]= "'".$newDate."'";
 		
-		$j =0;
 		for ($i = 1; $i <= $daysInRow; $i++) {
 			$newDate = date('Y-m-d', strtotime("+1 day", $timestamp));
 			$timestamp = strtotime($newDate);
@@ -187,17 +213,13 @@
 		$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 		$result=$conn->query($sql);
 		
-		echo $sql;
 		$counter = 0;
 		while(($row = $result->fetch_assoc()) != null){
-			echo "<pre>";
-			print_r($row);
-			echo "</pre>";
 			foreach ($row as $value) {
 				$counter =$value;
 			}
 		}
 		$conn->close();
-		echo $counter;
 		return $counter;
 	}
+

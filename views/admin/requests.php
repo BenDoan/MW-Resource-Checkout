@@ -1,8 +1,14 @@
 <?php
-
+if (isset($_GET['currentrequestpage'])) {
+    $page = $_GET['currentrequestpage'];
+}else{
+    $page = 1;
+}
+$type = 'request';
+$today = date('Y-m-d');
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
-$sql = "SELECT COUNT(*) FROM schedule";
+$sql = "SELECT COUNT(*) FROM schedule WHERE schedule_date >= '$today'" ;
 $results = $conn->query($sql);
 $row = $results->fetch_assoc();
 $num_rows = $row['COUNT(*)'];
@@ -10,32 +16,33 @@ $num_rows = $row['COUNT(*)'];
 $rows_per_page = 10;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
 
-if(isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])){
-    $currentpage = (int) $_GET['currentpage'];
+if(isset($_GET['currentrequestpage']) && is_numeric($_GET['currentrequestpage'])){
+    $currentrequestpage = (int) $_GET['currentrequestpage'];
 }else{
-    $currentpage = 1;
+    $currentrequestpage = 1;
 }
 
-if($currentpage > $total_pages){
-    $currentpage = $total_pages;
+if($currentrequestpage > $total_pages){
+    $currentrequestpage = $total_pages;
 }
 
-if($currentpage < 1){
-    $currentpage = 1;
+if($currentrequestpage < 1){
+    $currentrequestpage = 1;
 }
 
-$offset = ($currentpage - 1) * $rows_per_page;
+$offset = ($currentrequestpage - 1) * $rows_per_page;
 
-$sql = "SELECT * FROM schedule LIMIT $offset, $rows_per_page";
+$sql = "SELECT * FROM schedule WHERE schedule_date >= '$today' LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed\">
     <thead>
     <tr>
     <th>Resource</th>
     <th>User</th>
     <th>Date</th>
     <th>Block</th>
+    <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -53,7 +60,7 @@ while($row = $results->fetch_assoc()){
             <td>$schedule_date</td>
             <td>$schedule_block</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id\"class=\" btn btn-small btn-danger\">
+            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id&page=$page\"class=\" btn btn-small btn-danger admindelete\">
             <i class=\"icon-trash icon-white\"></i>
             delete
             </a>
@@ -65,10 +72,10 @@ print "</tbody></table>
         <div class=\"pagination\">
     ";
 
-if($currentpage > 1){
-    print "<li><a href=\"./?currentpage=1\">«</a></li>";
-    $prev_page = $currentpage - 1;
-    print "<li><a href=\"./?currentpage=$prev_page\">‹</a></li>";
+if($currentrequestpage > 1){
+    print "<li><a href=\"./?action=redirect&currentrequestpage=1&type=$type\">«</a></li>";
+    $prev_page = $currentrequestpage - 1;
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$prev_page&type=$type\">‹</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">«</a></li>";
     print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
@@ -76,25 +83,25 @@ if($currentpage > 1){
 
 $range = 3;
 
-for($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++){
+for($x = ($currentrequestpage - $range); $x < (($currentrequestpage + $range) + 1); $x++){
     if(($x > 0) && ($x <= $total_pages)){
-        if($x == $currentpage){
+        if($x == $currentrequestpage){
             print "<li class=\"active\"><a>$x</a></li>";
         }else{
-            print "<li><a href=\"./?currentpage=$x\">$x</a></li>";
+            print "<li><a href=\"./?action=redirect&currentrequestpage=$x&type=$type\">$x</a></li>";
         }
     }
 }
 
-if($currentpage != $total_pages){
-    $next_page = $currentpage + 1;
-    print "<li><a href=\"./?currentpage=$next_page\">›</a></li>";
-    print "<li><a href=\"./?currentpage=$total_pages\">»</a></li>";
+if($currentrequestpage != $total_pages){
+    $next_page = $currentrequestpage + 1;
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$next_page&type=$type\">›</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$total_pages&type=$type\">»</a></li>";
 }else{
     print "<li class=\"disabled\"><a href=\"\">›</a></li>";
     print "<li class=\"disabled\"><a href=\"\">»</a></li>";
 }
 print "</div><a class=\"btn add\" href=\"./?p=add&type=request\">Add request</a>";
 $conn->close();
-$_SESSION['type'] = 'request';
+
 ?>
