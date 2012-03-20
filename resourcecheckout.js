@@ -20,4 +20,5 @@ function initCalendar() {
             window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;
         }
     });
+
 }
