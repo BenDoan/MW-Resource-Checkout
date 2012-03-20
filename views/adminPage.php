@@ -8,19 +8,12 @@
         email key to users
         user info page
         stats?
-    look at resource types
-    mabye make edit pages
+    *look at resource types - enum
     add notes section for resources
-    mabye add easier method for testing
-    refine resources naming
     deal with full and half blocks for request add
-
-
-question for tracy:
-    enum in resources -> resource type field
-    how to label resources
-    how to deal with user creation
- -->
+    mabye make edit pages
+    mabye add easier method for testing
+-->
 
 <?php
 if ($_SESSION['user']['user_username'] != 'admin') {

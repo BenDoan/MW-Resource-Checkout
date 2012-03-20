@@ -2,6 +2,8 @@
 // Start the session
 session_start();
 
+$time = date('m/d/Y G:h');
+
 // Load configuration files
 require_once('config/db.php');
 require_once('config/app.php');
@@ -64,7 +66,7 @@ function redirect($location,$message=null,$type="alert-success") {
 	header("Location:$location");
 }
 
-//returns the resource identifer matching the resource id param
+//returns the resource identifier matching the resource id param
 function getResourceDesc($id){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
     $sql = "SELECT * FROM resources WHERE resource_id={$id}";
@@ -130,5 +132,39 @@ function printArray($array){
     print '<pre>';
     print_r($array);
     print '</pre>';
+}
+
+//adds a user to the database, and logs the action
+function makeUser($firstname, $lastname, $username, $password){
+    $time = date('m/d/Y G:h');
+
+    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+    $password = md5($password);
+    $sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password) VALUES ('$firstname','$lastname','$username','$password')";
+    $results = $conn->query($sql);
+    writeLineToLog("$time - Added user $username");
+}
+
+//adds a resource to the database, and logs the action
+function makeResource($rType, $details, $identifier, $blocktype){
+    $time = date('m/d/Y G:h');
+
+    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+    $sql = "INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_blocktype) VALUES ('$rType','$details','$identifier','$blocktype')";
+    $results = $conn->query($sql);
+    writeLineToLog("$time - Added resource $identifier");
+}
+
+//adds a request to the database, and logs the action
+function makeRequest($rType, $username, $date, $block){
+    $time = date('m/d/Y G:h');
+
+	$timestamp = strtotime($date);
+	$date = ($date != "") ? date("Y-m-d", $timestamp) : date('Y-m-d');
+    $username = getUserId($username);
+    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+    $sql = "INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')";
+    $results = $conn->query($sql);
+    writeLineToLog("$time - Added request $rType");
 }
 ?>

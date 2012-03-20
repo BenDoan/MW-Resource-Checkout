@@ -26,9 +26,9 @@ jQuery(document).ready(function() {
         <fieldset>
           <legend>Add a request</legend>
           <div class="control-group">
-            <label class="control-label" for="rtype">Resource</label>
+            <label class="control-label" for="rType">Resource</label>
             <div class="controls">
-                <select name="rtype">
+                <select name="rType">
 <?php
 //prints out resource types
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
