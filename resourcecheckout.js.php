@@ -13,10 +13,6 @@ $sql="SELECT * FROM schedule
          ORDER BY schedule_date";
 $results = $conn->query($sql);
 
-//if ($results == false){
-	//echo "crap";
-//}
-
 $numRows = $conn->affected_rows;
 
 //returns the next event from the sql query above
@@ -64,16 +60,18 @@ function initCalendar() {
         }],
 		editable: false,
 		weekends: false,
+	   	eventClick: function(calEvent, jsEvent, view) {
+        	window.location = './?p=currentRequests';
+        },
+
 		dayClick: function(dateClicked, allDay, jsEvent, view) {
 			var date = new Date(dateClicked);
 			var d = date.getDate();
 			var m = date.getMonth() + 1;
-			var y = date.getFullYear();
-
-
-	    	window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;
+			var y = date.getFullYear();			
+			
+			
+	    	window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;		
 	    }
-
-
 	});
 }
