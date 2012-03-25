@@ -14,9 +14,8 @@
     mabye add easier method for testing
     refine resources naming
     deal with full and half blocks for request add
-    email notifications?
+email notifications?
     use js to toggle tabs
-
 
 question for tracy:
     enum in resources -> resource type field
@@ -31,16 +30,15 @@ if ($_SESSION['user']['user_username'] != 'admin') {
 ?>
 <style>
 #nav ul {
-    display:none;
-}
+display:none;
+    }
 
-#userinfo {
-    padding-top:14px;
-}
+    #userinfo {
+        padding-top:14px;
+    }
 </style>
 
 <script type="text/javascript">
-//!!!!
 $('#myTab').tab('show')
 
 $(document).ready(function(){
