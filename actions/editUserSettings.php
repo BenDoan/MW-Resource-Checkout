@@ -12,13 +12,17 @@ if (md5($curpass) == $_SESSION['user']['user_password']) {
     $results = $conn->query($sql);
     updateSessionUser();
 
-    if ($newpass != '' && $newpass2 != '' && $newpass == $newpass2) {
-        $md5Pass = md5($newpass);
-        $sql = "UPDATE users SET user_password='$md5Pass' WHERE user_id='{$_SESSION['user']['user_id']}'";
-        $results = $conn->query($sql);
-        redirect('./', 'Settings saved');
+    if ($newpass != '' || $newpass2 != '') {
+        if ($newpass == $newpass2) {
+            $md5Pass = md5($newpass);
+            $sql = "UPDATE users SET user_password='$md5Pass' WHERE user_id='{$_SESSION['user']['user_id']}'";
+            $results = $conn->query($sql);
+            redirect('./', 'Settings saved');
+        }else{
+            redirect('./?p=userSettings', 'The two passwords you have entered do not match', 'alert-error');
+        }
     }else{
-        redirect('./?p=userSettings', 'The two passwords you have entered do not match', 'alert-error');
+        redirect('./', 'Settings saved');
     }
 }else{
     redirect('./?p=userSettings', 'You did not enter the correct password', 'alert-error');
