@@ -1,9 +1,9 @@
 <?php
 // Pages to display in nav, in format ('Name' => 'QS param value')
 $pages = array(
-	'Home'  =>	'calendar',
-	//'Search'	=>	'formSearch',
-	'My Reservations'	=>	'currentRequests'
+	'Home' => 'calendar',
+	'My Reservations' => 'currentRequests',
+    'Settings' => 'userSettings'
 );
 
 // Display pages in <ul>

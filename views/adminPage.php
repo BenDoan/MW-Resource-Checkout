@@ -14,13 +14,9 @@
     mabye add easier method for testing
     refine resources naming
     deal with full and half blocks for request add
-email notifications?
+    email notifications?
     use js to toggle tabs
-
-question for tracy:
-    enum in resources -> resource type field
-    how to label resources
-    how to deal with user creation
+    user page for editing info
  -->
 
 <?php
