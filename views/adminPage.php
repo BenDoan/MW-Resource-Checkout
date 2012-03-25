@@ -17,6 +17,8 @@
     email notifications?
     use js to toggle tabs
     user page for editing info
+    edit email in user settings
+    order log desc
  -->
 
 <?php
@@ -94,6 +96,7 @@ if (isset($type)) {
       <li class="<?php print $user ?>"><a href="#users" data-toggle="tab">Users</a></li>
       <li class="<?php print $request ?>"><a href="#requests" data-toggle="tab">Requests</a></li>
       <li class="<?php print $resource ?>"><a href="#resources" data-toggle="tab">Resources</a></li>
+      <li class="<?php print $settings ?>"><a href="#settings" data-toggle="tab">Settings</a></li>
       <li class="<?php print $log ?>"><a href="#log" data-toggle="tab">Admin Log</a></li>
     </ul>
 
@@ -101,6 +104,7 @@ if (isset($type)) {
         <div class="tab-pane <?php print $user ?>" id="users"><?php include('admin/users.php');?></div>
         <div class="tab-pane <?php print $request ?>" id="requests"><?php include('admin/requests.php');?></div>
         <div class="tab-pane <?php print $resource ?>" id="resources"><?php include('admin/resources.php');?></div>
+        <div class="tab-pane <?php print $settings ?>" id="settings"><?php include('admin/settings.php');?></div>
         <div class="tab-pane <?php print $log ?>" id="log"><?php include('admin/log.php');?></div>
 </div>
 </div>

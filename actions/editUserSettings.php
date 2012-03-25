@@ -5,16 +5,11 @@ extract($_SESSION['user']);
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
 if (md5($curpass) == $_SESSION['user']['user_password']) {
-    if ($firstname != $user_firstname) {
-        $sql = "UPDATE users SET user_firstname='$firstname' WHERE user_id={$_SESSION['user']['user_id']}";
-        $results = $conn->query($sql);
-    }
+    $sql = "UPDATE users SET user_firstname='$firstname' WHERE user_id={$_SESSION['user']['user_id']}";
+    $results = $conn->query($sql);
 
-    if ($lastname != $user_lastname) {
-        $sql = "UPDATE users SET user_lastname='$lastname' WHERE user_id={$_SESSION['user']['user_id']}";
-        $results = $conn->query($sql);
-    }
-    redirect('./', 'Settings saved');
+    $sql = "UPDATE users SET user_lastname='$lastname' WHERE user_id={$_SESSION['user']['user_id']}";
+    $results = $conn->query($sql);
     updateSessionUser();
 
     if ($newpass != '' && $newpass2 != '' && $newpass == $newpass2) {
