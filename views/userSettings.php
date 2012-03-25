@@ -26,6 +26,6 @@ while($row = $results->fetch_assoc()){
     Verify Password<br />
     <input type="password" class="span3" name="newpass2" value=""><br/>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 <div class="clear"></div>

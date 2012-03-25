@@ -1,4 +1,8 @@
 <?php
+if ($_SESSION['user']['user_username'] != 'admin') {
+    redirect('./');
+}
+
 printArray($_POST);
 
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);

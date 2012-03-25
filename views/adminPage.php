@@ -1,23 +1,17 @@
 <!--TODO:
-    add limits to carts
-        <= 3/week
-        <= 2 consecutive
     user creation:
         stop duplicate users from being created
         batch user creation?
         email key to users
         user info page
         stats?
-    look at resource types
-    mabye make edit pages
+    !!look at resource types
+    edit users
     add notes section for resources
-    mabye add easier method for testing
-    refine resources naming
     deal with full and half blocks for request add
     email notifications?
-    use js to toggle tabs
-    user page for editing info
     edit email in user settings
+        might need a confirmation email?
     order log desc
  -->
 
