@@ -13,6 +13,7 @@
     edit email in user settings
         might need a confirmation email?
     order log desc
+    change admin log to work for everything
  -->
 
 <?php
