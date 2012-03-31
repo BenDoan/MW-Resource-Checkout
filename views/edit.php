@@ -21,7 +21,5 @@ if (isset($_GET['type'])) {
         include('edit/request.php');
     }
 }
-
-
 ?>
 
