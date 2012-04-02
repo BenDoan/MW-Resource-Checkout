@@ -1,6 +1,6 @@
 <?php
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM users WHERE user_id={$_SESSION['user']['user_id']}";
+$sql = "SELECT * FROM users WHERE user_id={$_GET['user']}";
 $results = $conn->query($sql);
 
 while($row = $results->fetch_assoc()){
@@ -8,7 +8,9 @@ while($row = $results->fetch_assoc()){
     $lastname = $row['user_lastname'];
 }
 ?>
-<form class="well" method="post" action="./?action=editUserSettings">
+<form class="well" method="post" action="./?action=adminEditUserSettings">
+    <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">
+    <input type="hidden" name="urlstring" value="p=edit&user=<?php print $_GET['user']; ?>&type=user">
     First Name<br />
     <input type="text" class="span3" name="firstname" value="<?php print $firstname; ?>"><br/>
 
@@ -22,5 +24,6 @@ while($row = $results->fetch_assoc()){
     <input type="password" class="span3" name="newpass2" value=""><br/>
 
     <button type="submit" class="btn btn-success">Save</button>
+    <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>
 </form>
 <div class="clear"></div>

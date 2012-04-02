@@ -61,8 +61,12 @@ while($row = $results->fetch_assoc()){
             <td>$schedule_block</td>
             <td>
             <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=request&request=$schedule_id&page=$page\"class=\" btn btn-small btn-danger admindelete\">
-            <i class=\"icon-trash icon-white\"></i>
-            delete
+                <i class=\"icon-trash icon-white\"></i>
+                delete
+            </a>
+            <a href=\"./?p=edit&request=$schedule_id&type=request\" class=\" btn btn-small admindelete\">
+                <i class=\"icon-pencil icon-black\"></i>
+                edit
             </a>
             </tr>
             ";

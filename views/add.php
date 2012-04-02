@@ -8,7 +8,7 @@
     }
 </style>
 <?php
-if ($_SESSION['user']['user_username'] != 'admin') {
+if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
     redirect('./');
 }
 

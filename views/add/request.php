@@ -56,7 +56,7 @@ while($row = $results->fetch_assoc()){
           <div class="control-group">
             <label class="control-label" for="date">Date</label>
             <div class="controls">
-                <input type="text" class="input-xlarge" name="date">
+                <input type="text" name="date">
             </div>
           </div>
 
