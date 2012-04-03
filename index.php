@@ -16,7 +16,6 @@ if(isLoggedIn() && $_SESSION['user']['user_username'] == ADMIN_USERNAME){
 }
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
-
 // If user is logged in, or is trying to login, let them
 if(isLoggedIn() || $action == 'authenticate' || $CURR_PAGE == 'login') {
 	// If no action is specified
@@ -168,6 +167,7 @@ function makeRequest($rType, $username, $date, $block){
     writeLineToLog("$time - Added request $rType");
 }
 
+//updates the current user data in SESSION
 function updateSessionUser(){
 	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 	$sql = "SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'";

@@ -18,75 +18,46 @@ jQuery(document).ready(function() {
             $('#user').typeahead({source: alCities, items:5});
         });
 </script>
-<?php
-?>
-<div class="span8">
-      <form class="form-horizontal" method="post" action="./?action=add">
-        <input type="hidden" name="type" value="<?php print $_GET['type'] ?>" />
-        <fieldset>
-          <legend>Add a request</legend>
-          <div class="control-group">
-            <label class="control-label" for="rType">Resource</label>
-            <div class="controls">
-                <select name="rType">
-<?php
-//prints out resource types
-$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM resources";
-$results = $conn->query($sql);
 
-while($row = $results->fetch_assoc()){
-    extract($row);
-    print "<option value=\"$resource_id\">$resource_identifier</option>";
-}
-?>
-                </select>
-            </div>
-          </div>
+<form class="well" method="post" action="./?action=add">
+    <input type="hidden" name="type" value="<?php print $_GET['type'] ?>" />
+    Resource<br />
+    <select name="rType">
+        <?php
+            //prints out resource types
+            $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+            $sql = "SELECT * FROM resources";
+            $results = $conn->query($sql);
 
-          <div class="control-group">
-            <label class="control-label" for="user">User</label>
-            <div class="controls">
-            <input id="user" name="username" data-provide="typeahead" />
-              <p class="help-block">Start typing for suggestions</p>
+            while($row = $results->fetch_assoc()){
+                extract($row);
+                print "<option value=\"$resource_id\">$resource_identifier</option>";
+            }
+        ?>
+    </select><br />
+    User<br />
+    <input id="user" name="username" data-provide="typeahead" />
+    <p class="help-block">Start typing for suggestions</p>
+    Date<br />
+    <input type="text" name="date"><br />
+    Block<br />
+    <label class="radio">
+    <input type="radio" name="block" value="1" checked="checked" >
+    1
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="2" >
+    2
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="3" >
+    3
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="4" >
+    4
+    </label>
 
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" for="date">Date</label>
-            <div class="controls">
-                <input type="text" name="date">
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" for="block">Block</label>
-            <div class="controls">
-              <label class="radio">
-                <input type="radio" name="block" value="1" checked="checked" >
-                1
-                </label>
-              <label class="radio">
-                <input type="radio" name="block" value="2" >
-                2
-              </label>
-              <label class="radio">
-                <input type="radio" name="block" value="3" >
-                3
-              </label>
-              <label class="radio">
-                <input type="radio" name="block" value="4" >
-                4
-              </label>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-<div class="clear"></div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>
+</form>
