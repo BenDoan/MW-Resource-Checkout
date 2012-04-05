@@ -1,3 +1,4 @@
+<!-- currently disabled -->
 <?php
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 $sql = "SELECT * FROM users WHERE user_id={$_GET['request']}";

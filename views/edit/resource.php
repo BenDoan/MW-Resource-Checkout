@@ -1,26 +1,36 @@
 <?php
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM users WHERE user_id={$_GET['resource']}";
+$sql = "SELECT * FROM resources WHERE resource_id={$_GET['resource']}";
 $results = $conn->query($sql);
 
+$type = "";
+$details = "";
+$identifier = "";
+$blocktype = "";
 while($row = $results->fetch_assoc()){
-    $firstname = $row['user_firstname'];
-    $lastname = $row['user_lastname'];
+    $type = $row['resource_type'];
+    $details = $row['resource_details'];
+    $identifier = $row['resource_identifier'];
+    $blocktype = $row['resource_blocktype'];
 }
 ?>
 <form class="well" method="post" action="./?action=adminEditUserSettings">
-    <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">
-    <input type="hidden" name="urlstring" value="p=edit&user=<?php print $_GET['user']; ?>&type=user">
-    First Name<br />
-    <input type="text" class="span3" name="firstname" value="<?php print $firstname; ?>"><br/>
+    <input type="hidden" name="resource" value="<?php print $_GET['resource']; ?>">
+    <input type="hidden" name="urlstring" value="p=edit&resource=<?php print $_GET['resource']; ?>&type=resource">
+    Type<br />
+    <select>
+        <option value="Computer Lab">Computer Lab</option>
+        <option value="Laptop Cart">Laptop Cart</option>
+        <option value="Candy">Candy</option>
+    </select><br />
 
-    Last Name<br />
+    Details<br />
     <input type="text" class="span3" name="lastname" value="<?php print $lastname; ?>"><br/>
 
-    New Password<br />
+    Identifier<br />
     <input type="password" class="span3" name="newpass" name="newpass" value=""><br/>
 
-    Verify Password<br />
+    Block Type<br />
     <input type="password" class="span3" name="newpass2" value=""><br/>
 
     <button type="submit" class="btn btn-success">Save</button>
