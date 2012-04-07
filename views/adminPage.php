@@ -5,7 +5,6 @@
         email key to users
         user info page
         stats?
-    !!look at resource types
     edit users
     add notes section for resources
     deal with full and half blocks for request add

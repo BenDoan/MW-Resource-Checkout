@@ -12,26 +12,40 @@ while($row = $results->fetch_assoc()){
     $details = $row['resource_details'];
     $identifier = $row['resource_identifier'];
     $blocktype = $row['resource_blocktype'];
+
+    $fullBlock = "";
+    $halfBlock = "";
+    if ($blocktype == "Full") {
+        $fullBlock = 'selected="selected"';
+    }else{
+        $halfBlock = 'selected="selected"';
+    }
+
 }
 ?>
 <form class="well" method="post" action="./?action=adminEditUserSettings">
     <input type="hidden" name="resource" value="<?php print $_GET['resource']; ?>">
-    <input type="hidden" name="urlstring" value="p=edit&resource=<?php print $_GET['resource']; ?>&type=resource">
+    <input type="hidden" name="type" value="resource">
     Type<br />
-    <select>
+    <select name="resourcetype">
         <option value="Computer Lab">Computer Lab</option>
         <option value="Laptop Cart">Laptop Cart</option>
         <option value="Candy">Candy</option>
     </select><br />
 
     Details<br />
-    <input type="text" class="span3" name="lastname" value="<?php print $lastname; ?>"><br/>
+    <input type="text" class="span3" name="details" value="<?php print $details ?>"><br/>
 
     Identifier<br />
-    <input type="password" class="span3" name="newpass" name="newpass" value=""><br/>
+    <input type="text" class="span3" name="identifier" value="<?php print $identifier ?>"><br/>
 
     Block Type<br />
-    <input type="password" class="span3" name="newpass2" value=""><br/>
+
+
+    <select name="blocktype">
+        <option <?php print $fullBlock; ?> value="Full">Full Block</option>
+    	<option <?php print $halfBlock; ?> value="Half">Half Block</option>
+    </select><br />
 
     <button type="submit" class="btn btn-success">Save</button>
     <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>

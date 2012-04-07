@@ -8,8 +8,8 @@ while($row = $results->fetch_assoc()){
     print $row['setting_type'];
     print "<br />";
     print '<input type="text" class="span3" name="' . $row['setting_id'] .
-        '" value="'. $row['setting_value'] . '"><br/>';
+          '" value="'. $row['setting_value'] . '"><br/>';
 }
 ?>
-</form>
 <button type="submit" class="btn btn-success">Save</button>
+</form>
