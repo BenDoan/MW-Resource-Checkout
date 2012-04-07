@@ -41,7 +41,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
                 <th>Details</th>
                 <th>Identifier</th>
                 <th>Block Type</th>
-                <th>Delete</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
