@@ -6,16 +6,20 @@ $results = $conn->query($sql);
 while($row = $results->fetch_assoc()){
     $firstname = $row['user_firstname'];
     $lastname = $row['user_lastname'];
+    $username= $row['user_username'];
 }
 ?>
 <form class="well" method="post" action="./?action=adminEditUserSettings">
     <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">
-    <input type="hidden" name="urlstring" value="p=edit&user=<?php print $_GET['user']; ?>&type=user">
+    <input type="hidden" name="type" value="user">
     First Name<br />
     <input type="text" class="span3" name="firstname" value="<?php print $firstname; ?>"><br/>
 
     Last Name<br />
     <input type="text" class="span3" name="lastname" value="<?php print $lastname; ?>"><br/>
+
+    Username<br />
+    <input type="text" class="span3" name="username" value="<?php print $username; ?>"><br/>
 
     New Password<br />
     <input type="password" class="span3" name="newpass" name="newpass" value=""><br/>

@@ -31,7 +31,7 @@ if($currentuserpage < 1){
 
 $offset = ($currentuserpage - 1) * $rows_per_page;
 
-$sql = "SELECT * FROM users WHERE user_username != \"admin\" LIMIT $offset, $rows_per_page";
+$sql = "SELECT * FROM users WHERE user_username != \"admin\" ORDER BY user_lastname LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
 print "<table class=\"admintable table table-striped table-condensed\">

@@ -8,9 +8,15 @@ $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 if ("user" == $type) {
     $sql = "UPDATE users SET user_firstname='$firstname' WHERE user_id='$userid'";
     $results = $conn->query($sql);
+    print $sql;
 
-    $sql = "UPDATE users SET user_lastname='$lastname' WHERE user_id='$userid";
+    $sql = "UPDATE users SET user_lastname='$lastname' WHERE user_id='$userid'";
     $results = $conn->query($sql);
+    print $sql;
+
+    $sql = "UPDATE users SET user_username='$username' WHERE user_id='$userid'";
+    $results = $conn->query($sql);
+    print $sql;
 
     if ($newpass != '' || $newpass2 != '') {
         if ($newpass == $newpass2) {
@@ -19,7 +25,7 @@ if ("user" == $type) {
             $results = $conn->query($sql);
             redirect('./', 'Settings saved');
         }else{
-            redirect("./?$urlstring", 'The two passwords you have entered do not match', 'alert-error');
+            redirect("./?p=edit&user=$userid&type=user", 'The two passwords you have entered do not match', 'alert-error');
         }
     }else{
         redirect('./', 'Settings saved');
