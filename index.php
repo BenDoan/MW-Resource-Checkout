@@ -57,7 +57,7 @@ function loadFile($file) {
  * @param String $type type of alert to display, types = alert-error,
  *                      alert-success, alert-info, alert-block
  */
-function redirect($location,$message=null,$type="alert-success") {
+function redirect($location, $message=null, $type="alert-success") {
 	if($message != null) {
 		$_SESSION['message'] = $message;
         $_SESSION['messagetype'] = $type;

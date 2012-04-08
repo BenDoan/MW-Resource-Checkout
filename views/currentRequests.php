@@ -39,7 +39,7 @@ $results = $conn->query($sql);
 			echo '<td>'.$schedule_block.'</td>';
 			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$schedule_date.'">'.$resource_type.'</a></td>';
 			echo '<td>'.$resource_identifier.'</td>';
-			echo '<td><a href="./?p=confirm&cancel=&schedule_id='.$schedule_id.'">cancel</a></td>';
+			echo '<td><a href="./?p=confirm&confirmAction=cancel&cancel=&schedule_id='.$schedule_id.'">cancel</a></td>';
 		echo '</tr>';
 		// Switch the styling of the next row
 	}

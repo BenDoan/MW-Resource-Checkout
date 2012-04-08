@@ -1,5 +1,5 @@
 <?php
-	extract($_GET);	
+	extract($_GET);
 
 	if (isset($date)&& isset($id) && $date !="" && $id!=""){
 		// Get the resource who's id matches the id in the url
@@ -8,17 +8,17 @@
 		$result=$conn->query($sql);
 		$row=$result->fetch_assoc();
 		extract($row);
-		
+
 		// Get all scheduling events for that resource on the selected date, ordered by the block
-		$sql="SELECT * FROM schedule 
+		$sql="SELECT * FROM schedule
 		LEFT JOIN resources ON schedule.schedule_resource_id=resources.resource_id
-		LEFT JOIN users ON schedule.schedule_user_id=users.user_id 
+		LEFT JOIN users ON schedule.schedule_user_id=users.user_id
 		WHERE schedule_date='$date' AND resource_id='$id'
 		ORDER BY schedule_block";
-		
+
 		// Transform the date for display purposes
 	    $displayDate = date("m/d/Y", strtotime($date));
-	    
+
 	    // If the date fails and goes to default
 	    if ($displayDate == '01/01/1970'){
 	    	redirect('./?p=404');
@@ -49,7 +49,7 @@
 		<tr>
 			<th>Block</th>
 			<th>Availablity</th>
-			
+
 		</tr>
 	<?php
 	$class="";
@@ -66,10 +66,10 @@
 // Check for the availablity of a resource at a given time
 // Returns the the availibility as a td
 function getAvailability($id, $date, $block){
-	
-	$sql="SELECT * FROM schedule 
+
+	$sql="SELECT * FROM schedule
 	LEFT JOIN resources ON schedule.schedule_resource_id=resources.resource_id
-	LEFT JOIN users ON schedule.schedule_user_id=users.user_id 
+	LEFT JOIN users ON schedule.schedule_user_id=users.user_id
 	WHERE schedule_date='$date' AND schedule_block='$block' AND resource_id='$id'
 	ORDER BY schedule_block";
 	$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -81,13 +81,13 @@ function getAvailability($id, $date, $block){
 		extract($row);
 		return '<td>Reserved by '.$user_firstname.' '.$user_lastname.'</td>';
 	}else{ // Otherwise, display a link to make a reservation
-		return '<td><a href="./?p=confirm&reserve=&schedule_resource_id='.$id.'&schedule_block='.$block.'&schedule_date='.$date.'">reserve</a></td>';
-	}		
+		return '<td><a href="./?p=confirm&confirmAction=reserve&schedule_resource_id='.$id.'&schedule_block='.$block.'&schedule_date='.$date.'">reserve</a></td>';
+	}
 }
 
 // Display the row(s)
 // Changes the type of styling for the next row and returns this value
-function getRows($class, $resource_type, $resource_identifier, $resource_id, $date, $block, $resource_blocktype){	
+function getRows($class, $resource_type, $resource_identifier, $resource_id, $date, $block, $resource_blocktype){
 	// Display two rows per resource per block if the resource is only available for half blocks
 	if ($resource_blocktype == "Half"){
 		echo '<tr class="'.$class.'">';
@@ -99,13 +99,13 @@ function getRows($class, $resource_type, $resource_identifier, $resource_id, $da
 		echo '<tr class="'.$class.'">';
 			echo '<td>'.$block.' (Second Half)</td>';
 			echo getAvailability($resource_id, $date, ($block*10 + 2));
-		echo '</tr>';	
+		echo '</tr>';
 		return $class = ($class=="") ? "colored": "";
 	}else{ // Otherwise, show only one row
 		echo '<tr class="'.$class.'">';
 			echo '<td>'.$block.'</td>';
 			echo getAvailability($resource_id, $date, $block);
-		echo '</tr>';	
+		echo '</tr>';
 		return $class = ($class=="") ? "colored": "";
 	}
 }

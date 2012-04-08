@@ -55,7 +55,7 @@ while($row = $results->fetch_assoc()){
             <td>$resource_identifier</td>
             <td>$resource_blocktype</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=resource&resource=$resource_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
+            <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=resource&resource=$resource_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>

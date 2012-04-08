@@ -44,5 +44,5 @@ if (isset($type)) {
     }
 }
 $_SESSION['tab'] = $type;
-redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successfull");
+redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successful");
 ?>
