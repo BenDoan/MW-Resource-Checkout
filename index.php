@@ -81,7 +81,7 @@ function getResourceDesc($id){
 //returns the username matching the id param
 function getUsername($id){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_id=$id";
+    $sql = "SELECT * FROM users WHERE user_id={$id}";
     $results = $conn->query($sql);
 
     $username = "";

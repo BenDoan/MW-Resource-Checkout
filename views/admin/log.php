@@ -1,6 +1,6 @@
 <?php
 $type = 'log';
-$log = readLog();
+$log = array_reverse(readLog());
 
 $num_rows = sizeof($log);
 $rows_per_page = 20;

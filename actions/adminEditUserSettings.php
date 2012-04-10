@@ -2,6 +2,7 @@
 if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
     redirect('./');
 }
+$time = date('m/d/Y G:h');
 extract($_POST);
 printArray($_POST);
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -17,6 +18,9 @@ if ("user" == $type) {
     $sql = "UPDATE users SET user_username='$username' WHERE user_id='$userid'";
     $results = $conn->query($sql);
     print $sql;
+
+    $user_name = getUsername($userid);
+    writeLineToLog("$time - Admin - Edited user $user_name");
 
     if ($newpass != '' || $newpass2 != '') {
         if ($newpass == $newpass2) {
