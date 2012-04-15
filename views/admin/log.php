@@ -1,6 +1,12 @@
+<form class="form-search" method="post" action="./?action=searchLog">
+    <input type="text" name="pattern" class="input-medium search-query">
+    <button type="submit" class="btn">Search</button>
+    <p class="help-block">Uses <a href="http://en.wikipedia.org/wiki/Grep">grep</a></p>
+</form>
+<div class="well">
 <?php
 $type = 'log';
-$log = array_reverse(readLog());
+$log = array_slice(array_reverse(readLog()), 1);
 
 $num_rows = sizeof($log);
 $rows_per_page = 20;
@@ -62,3 +68,4 @@ if($currentlogpage != $total_pages){
 
 print "</div>";
 ?>
+</div>

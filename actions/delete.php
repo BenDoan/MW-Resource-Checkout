@@ -14,6 +14,7 @@ if (isset($type)) {
         //delete user
         $user_name = getUsername($user);
         writeLineToLog("$time - Admin - Deleted user $user_name");
+
         $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
         $sql = "DELETE FROM users WHERE user_id={$user}";
         $results = $conn->query($sql);
