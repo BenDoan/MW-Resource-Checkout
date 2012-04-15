@@ -1,8 +1,13 @@
 <?php
-    $log = implode('\n', array_slice(array_reverse(readLog()), 1));
-    //$results = preg_grep(preg_quote($_POST['pattern'], '*'), $log);
+    $log_array = array_slice(array_reverse(readLog()), 1);
     $pattern = $_POST['pattern'];
-    $results = exec("grep /$log/ $pattern");
+    $results = preg_grep("#" . $pattern . "#", $log_array);
 
-    print $results;
+    $resultsString = implode("\n", $results);
+    if (count($results) != 0) {
+        $_SESSION['matches'] = $resultsString;
+        redirect('./?p=searchResults');
+    }else {
+        redirect('./', 'No results');
+    }
 ?>

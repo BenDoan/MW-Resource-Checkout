@@ -175,4 +175,14 @@ function updateSessionUser(){
     $user = $user->fetch_assoc();
     $_SESSION['user'] = $user;
 }
+
+function getMatchingLines($pattern, $array){
+    $returnArray = Array();
+    foreach ($array as $x) {
+        if (preg_match($pattern, $x) == 1) {
+            $returnArray[] = $x;
+        }
+    }
+    return $returnArray;
+}
 ?>
