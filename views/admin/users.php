@@ -53,7 +53,7 @@ while($row = $results->fetch_assoc()){
             <td>$user_lastname</td>
             <td>$user_username</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&delete_db=1&type=user&page=$page\"class=\" btn btn-small btn-danger admindelete\">
+            <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=user&page=$page\"class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>

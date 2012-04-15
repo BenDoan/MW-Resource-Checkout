@@ -19,7 +19,7 @@ echo '</ul>';
 	// Check to see if user has logged in
 	if(isLoggedIn()) {
 			// Display user status and logout option
-			echo '<p>Logged in as '.$_SESSION['user']['user_firstname'].' '.$_SESSION['user']['user_lastname'].' <a class="logout" href="./?action=authenticate&logout">logout</a></p>';
+			echo '<p>Logged in as '.$_SESSION['user']['user_username'].' <a class="logout" href="./?action=authenticate&logout">logout</a></p>';
 	}
 	?>
 </div>

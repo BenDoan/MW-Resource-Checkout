@@ -89,7 +89,7 @@ function getAvailability($id, $date, $block){
 		extract($row);
 		return '<td>Reserved by '.$user_firstname.' '.$user_lastname.'</td>';
 	}else{	// Otherwise, display a link to make a reservation
-		return '<td><a href="./?p=confirm&reserve=&schedule_resource_id='.$id.'&schedule_block='.$block.'&schedule_date='.$date.'">reserve</a></td>';
+		return '<td><a href="./?p=confirm&confirmAction=reserve&schedule_resource_id='.$id.'&schedule_block='.$block.'&schedule_date='.$date.'">reserve</a></td>';
 	}
 }
 

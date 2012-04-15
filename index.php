@@ -57,7 +57,7 @@ function loadFile($file) {
  * @param String $type type of alert to display, types = alert-error,
  *                      alert-success, alert-info, alert-block
  */
-function redirect($location,$message=null,$type="alert-success") {
+function redirect($location, $message=null, $type="alert-success") {
 	if($message != null) {
 		$_SESSION['message'] = $message;
         $_SESSION['messagetype'] = $type;
@@ -81,7 +81,7 @@ function getResourceDesc($id){
 //returns the username matching the id param
 function getUsername($id){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_id=$id";
+    $sql = "SELECT * FROM users WHERE user_id={$id}";
     $results = $conn->query($sql);
 
     $username = "";
@@ -141,7 +141,7 @@ function makeUser($firstname, $lastname, $username, $password){
     $password = md5($password);
     $sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password) VALUES ('$firstname','$lastname','$username','$password')";
     $results = $conn->query($sql);
-    writeLineToLog("$time - Added user $username");
+    writeLineToLog("$time - Admin - Added user $username");
 }
 
 //adds a resource to the database, and logs the action
@@ -151,7 +151,7 @@ function makeResource($rType, $details, $identifier, $blocktype){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
     $sql = "INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_blocktype) VALUES ('$rType','$details','$identifier','$blocktype')";
     $results = $conn->query($sql);
-    writeLineToLog("$time - Added resource $identifier");
+    writeLineToLog("$time -Admin - Added resource $identifier");
 }
 
 //adds a request to the database, and logs the action
@@ -164,7 +164,7 @@ function makeRequest($rType, $username, $date, $block){
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
     $sql = "INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')";
     $results = $conn->query($sql);
-    writeLineToLog("$time - Added request $rType");
+    writeLineToLog("$time - Admin - Added request $rType");
 }
 
 //updates the current user data in SESSION
@@ -174,5 +174,15 @@ function updateSessionUser(){
 	$user = $conn->query($sql);
     $user = $user->fetch_assoc();
     $_SESSION['user'] = $user;
+}
+
+function getMatchingLines($pattern, $array){
+    $returnArray = Array();
+    foreach ($array as $x) {
+        if (preg_match($pattern, $x) == 1) {
+            $returnArray[] = $x;
+        }
+    }
+    return $returnArray;
 }
 ?>

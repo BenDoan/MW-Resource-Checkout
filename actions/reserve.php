@@ -1,4 +1,5 @@
 <?php
+$time = date('m/d/Y G:h');
 extract($_POST);
 $user_id=$_SESSION['user']['user_id'];
 
@@ -15,6 +16,9 @@ if ($row = $result->fetch_assoc()){
 }else{
 	$sql = "INSERT INTO schedule (schedule_date, schedule_block, schedule_resource_id, schedule_user_id)
 			VALUES ('$schedule_date', '$schedule_block', '$schedule_resource_id', '$user_id')";
+    $username = $_SESSION['user']['user_username'];
+    $rDesc = getResourceDesc($schedule_resource_id);
+    writeLineToLog("$time - $username - Reserved $rDesc for block $schedule_block");
 	$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 	$result = $conn->query($sql);
 
@@ -24,7 +28,7 @@ if ($row = $result->fetch_assoc()){
 		echo $conn->error.'<br/>'.$sql;
 		// Otherwise, redirect to the resource's page
 	}else{
-		redirect("./?p=resource&id=$schedule_resource_id&date=$schedule_date", 'New request added successfully!');
+        redirect("./?p=resource&id=$schedule_resource_id&date=$schedule_date", 'New request added successfully!');
 	}
 }
 // Close Connection
