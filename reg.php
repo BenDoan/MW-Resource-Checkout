@@ -5,10 +5,32 @@ require_once('User.php');
 if(isset($_GET['action'])){
 	if($_GET['action'] == "generate"){
 		$users = generateUsers();
-		
+		foreach($users as $user){
+			addUser($user);
+		}	
 	}
 }
+function addUser($user){
+	//get list of users from database
+	$conn = new mysqli('localhost', 'root', '', 'resourcecheckout');
+	$users = $conn->query("SELECT * FROM users");	
+	//check if current user already exists
+	$isNewUser = true;
+	while($currUser = $users->fetch_object()){
+		if($currUser->userName == $user->userName){
+			$isNewUser = false;
+		}
+	}
 
+	//add new user to database
+	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password) VALUES ('$user->firstName', '$suer->lastName', '$user->userName', '$user->password')";
+	if(!$conn->query($sql)){
+		echo 'Error #'.$conn->errorno. ': ', $conn->error;
+	}
+
+	//close database connection
+	$conn->close();
+}
 function generateUsers(){
 	//open the html table
 	$table = file_get_contents("table.php");
