@@ -7,6 +7,7 @@ if(isset($_GET['action'])){
 		$users = generateUsers();
 		foreach($users as $user){
 			addUser($user);
+			//TODO: Send out an email once the php mail deal is set up
 		}	
 	}
 }
@@ -17,13 +18,13 @@ function addUser($user){
 	//check if current user already exists
 	$isNewUser = true;
 	while($currUser = $users->fetch_object()){
-		if($currUser->userName == $user->userName){
+		if($currUser->user_userName == $user->userName){
 			$isNewUser = false;
 		}
 	}
 
 	//add new user to database
-	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password) VALUES ('$user->firstName', '$suer->lastName', '$user->userName', '$user->password')";
+	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password) VALUES ('$user->firstName', '$user->lastName', '$user->userName', 'md5($user->password')";
 	if(!$conn->query($sql)){
 		echo 'Error #'.$conn->errorno. ': ', $conn->error;
 	}
@@ -55,17 +56,19 @@ function generateUsers(){
 						$first = $lastAndFirst[1];
 						//create a username (first initial + lastname)
 						$username = strtolower($first[0] . $last);
-						//create a temporary password by taking the first 10 characters of the hash of the username
-						$password = substr(md5($username),0,10);
+						//create a temporary password by taking the lastname plus a few random numbers
+						$password = strtolower($last) . rand(0,9). rand(0,9). rand(0,9);
 						$currUser = new User($username, $first, $last, $password);
 						
 						$users[] = $currUser;
-						var_dump($currUser);
+						//for debugging purposes
+						echo "</br>username: ".$username.
+							"</br>password: ".$password."</br>";
+						
 				}
 			}
 		}
 	}
-	//i am making a change to this file
 	return $users;
 
 }
