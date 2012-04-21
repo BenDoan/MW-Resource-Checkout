@@ -4,12 +4,14 @@
 		public $firstName;
 		public $lastName;
 		public $password;
-		
-		public function User($userName, $firstName, $lastName, $password){
+        public $email;
+
+		public function User($userName, $firstName, $lastName, $password, $email){
 			$this->userName=		$userName;
 			$this->firstName=		$firstName;
 			$this->lastName=		$lastName;
 			$this->password=		$password;
+            $this->email=           $email;
 		}
 	}
 ?>
