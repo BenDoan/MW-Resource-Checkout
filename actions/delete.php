@@ -9,8 +9,8 @@ $page = $_GET['page'];
 
 extract($_GET);
 if (isset($type)) {
-    switch ($type) {
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+    switch ($type) {
     case 'user':
         //delete user
         $user_name = getUsername($user);

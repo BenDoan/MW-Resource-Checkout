@@ -39,4 +39,5 @@ if ("user" == $type) {
     $results = $conn->query($sql);
     redirect('./', 'Resource saved');
 }
+$conn->close();
 ?>

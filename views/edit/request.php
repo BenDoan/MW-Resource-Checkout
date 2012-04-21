@@ -8,6 +8,7 @@ while($row = $results->fetch_assoc()){
     $firstname = $row['user_firstname'];
     $lastname = $row['user_lastname'];
 }
+$conn->close();
 ?>
 <form class="well" method="post" action="./?action=adminEditUserSettings">
     <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">

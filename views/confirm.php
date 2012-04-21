@@ -1,5 +1,6 @@
 <?php
 extract($_GET);
+$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 
 switch ($confirmAction) {
@@ -117,7 +118,6 @@ function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $sche
             $daysInRow = $setting_value;
         }
     }
-    $conn->close();
     if (!(numReservations($schedule_date, $schedule_resource_id, $schedule_user_id) < $dayLimit)){
         redirect('./?p=calendar', 'You are not permitted to check out more than '.$dayLimit.' times per week.');
     }elseif(!(numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$daysInRow) == 0)){
@@ -147,7 +147,6 @@ function numReservations($schedule_date, $schedule_resource_id, $schedule_user_i
     $sql = "SELECT Count(*) FROM schedule WHERE schedule_date IN ($ids) AND schedule_user_id='$schedule_user_id'";
     // 						AND schedule_resource_id='$schedule_resource_id'";
 
-    $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $result=$conn->query($sql);
 
     $counter = 0;
@@ -156,7 +155,6 @@ function numReservations($schedule_date, $schedule_resource_id, $schedule_user_i
             $counter =$value;
         }
     }
-    $conn->close();
     return $counter;
 }
 
@@ -182,7 +180,6 @@ function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$
     $ids = join(',',$dates);
 
     $sql = "SELECT Count(*) FROM schedule WHERE schedule_date IN ($ids) AND schedule_user_id='$schedule_user_id'";
-    $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $result=$conn->query($sql);
 
     $counter = 0;
@@ -194,3 +191,4 @@ function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$
     $conn->close();
     return $counter;
 }
+$conn->close();

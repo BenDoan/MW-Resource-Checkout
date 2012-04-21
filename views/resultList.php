@@ -124,5 +124,6 @@ function getRows($class, $resource_type, $resource_identifier, $resource_id, $da
 	}
 }
 
+$conn->close();
 ?>
 
