@@ -1,20 +1,27 @@
 <?php
+//takes the table from the staff directory as input in table.php
+//registers all users in that table, and emails them a registration email
+
 require_once('xmlToArrayParser.php');
 require_once('User.php');
+
+define('EMAIL_SUBJECT', 'TODO:Needs subject');
+define('EMAIL_MESSAGE', 'TODO:Needs message');
 
 if(isset($_GET['action'])){
 	if($_GET['action'] == "generate"){
 		$users = generateUsers();
 		foreach($users as $user){
 			addUser($user);
-			//TODO: Send out an email once the php mail deal is set up
-		}	
+			//TODO: test this
+            //mail($user->email, EMAIL_SUBJECT, EMAIL_MESSAGE);
+		}
 	}
 }
 function addUser($user){
 	//get list of users from database
 	$conn = new mysqli('localhost', 'root', '', 'resourcecheckout');
-	$users = $conn->query("SELECT * FROM users");	
+	$users = $conn->query("SELECT * FROM users");
 	//check if current user already exists
 	$isNewUser = true;
 	while($currUser = $users->fetch_object()){
@@ -58,13 +65,13 @@ function generateUsers(){
 						$username = strtolower($first[0] . $last);
 						//create a temporary password by taking the lastname plus a few random numbers
 						$password = strtolower($last) . rand(0,9). rand(0,9). rand(0,9);
-						$currUser = new User($username, $first, $last, $password);
-						
+						$currUser = new User($username, $first, $last, $password, $email);
+
 						$users[] = $currUser;
 						//for debugging purposes
 						echo "</br>username: ".$username.
 							"</br>password: ".$password."</br>";
-						
+
 				}
 			}
 		}
