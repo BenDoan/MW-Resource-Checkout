@@ -22,6 +22,8 @@
         <script type="text/javascript">
             $(".alert").alert()
         </script>
+
+        <!-- Created by Tracy Moody, Destiny Osbourne and Ben Doan with assistance from the Omaha Bytes Club-->
 	</head>
 	<body>
 		<header>

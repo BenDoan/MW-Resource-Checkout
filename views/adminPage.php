@@ -1,17 +1,10 @@
 <!--TODO:
-    user creation:
-        stop duplicate users from being created
-        batch user creation?
-        email key to users
-        user info page
-        stats?
-    add notes section for resources
-    deal with full and half blocks for request add
-    email notifications?
-    edit email in user settings
-        might need a confirmation email?
-    order log desc
-    change admin log to work for everything
+add notes section for resources
+deal with full and half blocks for request add
+email notifications?
+edit email in user settings
+    might need a confirmation email?
+change admin request add type to the request_id
  -->
 
 <?php
