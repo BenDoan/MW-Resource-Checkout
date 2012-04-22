@@ -1,6 +1,6 @@
 <?php
 extract($_GET);
-$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
+$conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 
 switch ($confirmAction) {
@@ -127,6 +127,7 @@ function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $sche
 }
 
 function numReservations($schedule_date, $schedule_resource_id, $schedule_user_id){
+    $conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $timestamp = strtotime($schedule_date);
     $dayOfWeek = intval(date("N", $timestamp));
     $subDate=1-$dayOfWeek;
@@ -159,6 +160,7 @@ function numReservations($schedule_date, $schedule_resource_id, $schedule_user_i
 }
 
 function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$daysInRow){
+    $conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $j =0;
     $timestamp = strtotime($schedule_date);
 
@@ -188,7 +190,6 @@ function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$
             $counter =$value;
         }
     }
-    $conn->close();
     return $counter;
 }
 $conn->close();

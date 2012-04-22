@@ -2,11 +2,11 @@
 $time = date('m/d/Y G:h');
 extract($_POST);
 $user_id=$_SESSION['user']['user_id'];
+$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Get scheduling event that the user is attempting
 $sql = "SELECT * FROM schedule WHERE schedule_date='$schedule_date' AND schedule_block='$schedule_block' AND
 			schedule_resource_id='$schedule_resource_id'";
-$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 $result = $conn->query($sql);
 
 // If an event already exists, display apology
@@ -19,7 +19,6 @@ if ($row = $result->fetch_assoc()){
     $username = $_SESSION['user']['user_username'];
     $rDesc = getResourceDesc($schedule_resource_id);
     writeLineToLog("$time - $username - Reserved $rDesc for block $schedule_block");
-	$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 	$result = $conn->query($sql);
 
 	// If failed...
