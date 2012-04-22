@@ -58,7 +58,7 @@ function genCancelForm($schedule_id){
     $cancelForm = '
     <div class="confirm">
         <h3>Confirm Delete</h3>
-        <p>Are you sure you want to permanently delete <strong>this request</strong>?</p>
+        <p>Are you sure you want to permanently delete this request?</p>
         <form action="./?action=cancel" method="post">
             <input type="hidden" name="schedule_id" value="' . $schedule_id . '"/>
             <input class="btn" type="submit" value="Yes"/>
@@ -105,7 +105,6 @@ function genDeleteForm($args, $type){
 //checks to see if the user is allowed to make a reservation
 //uses the settings in the settings database table
 function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $schedule_user_id){
-
     $sql = "SELECT * FROM settings";
     $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $results = $conn->query($sql);
@@ -118,9 +117,9 @@ function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $sche
             $daysInRow = $setting_value;
         }
     }
-    if (!(numReservations($schedule_date, $schedule_resource_id, $schedule_user_id) < $dayLimit)){
+    if (numReservations($schedule_date, $schedule_resource_id, $schedule_user_id) > $dayLimit){
         redirect('./?p=calendar', 'You are not permitted to check out more than '.$dayLimit.' times per week.');
-    }elseif(!(numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$daysInRow) == 0)){
+    }elseif(numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$daysInRow) != 0){
         redirect('./?p=calendar', 'You may not check out more than one resource within '.($daysInRow +1).' days.');
     }
     return true;
