@@ -46,16 +46,48 @@ jQuery(document).ready(function() {
     1
     </label>
     <label class="radio">
+    <input type="radio" name="block" value="11" checked="checked" >
+    1 (first half)
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="12" checked="checked" >
+    1 (second half)
+    </label>
+    <label class="radio">
     <input type="radio" name="block" value="2" >
     2
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="21" >
+    2 (first half)
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="22" >
+    2 (second half)
     </label>
     <label class="radio">
     <input type="radio" name="block" value="3" >
     3
     </label>
     <label class="radio">
+    <input type="radio" name="block" value="31" >
+    3 (first half)
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="32" >
+    3 (second half)
+    </label>
+    <label class="radio">
     <input type="radio" name="block" value="4" >
     4
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="41" >
+    4 (first half)
+    </label>
+    <label class="radio">
+    <input type="radio" name="block" value="42" >
+    4 (second half)
     </label>
 
     <button type="submit" class="btn btn-success">Save</button>
