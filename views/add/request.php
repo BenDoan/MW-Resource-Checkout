@@ -10,6 +10,7 @@ while($row = $results->fetch_assoc()){
     $data_source .= "\"$user_username\",";
 }
 $data_source .= "\"asda\"]";
+$conn->close();
 ?>
 
 <script type="text/javascript">

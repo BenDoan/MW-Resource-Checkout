@@ -41,6 +41,7 @@ for ($i = 0; $i < $numRows; $i++){
     $events[] = getNextEvent($results);
 }
 
+$conn->close();
 ?>
 var EVENTS = <?php echo json_encode($events) ?>;
 $(function() {
@@ -68,10 +69,10 @@ function initCalendar() {
 			var date = new Date(dateClicked);
 			var d = date.getDate();
 			var m = date.getMonth() + 1;
-			var y = date.getFullYear();			
-			
-			
-	    	window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;		
+			var y = date.getFullYear();
+
+
+	    	window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;
 	    }
 	});
 }

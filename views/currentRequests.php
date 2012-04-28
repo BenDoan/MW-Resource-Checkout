@@ -13,6 +13,7 @@ $sql="SELECT * FROM schedule
 		WHERE schedule_user_id='$currentUser' AND schedule_date >= '$today'
 		ORDER BY schedule_date";
 $results = $conn->query($sql);
+$conn->close();
 	?>
 	<table class="table table-striped table-condensed">
 		<tr>
