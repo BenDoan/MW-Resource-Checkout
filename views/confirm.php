@@ -118,9 +118,9 @@ function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $sche
         }
     }
     if (numReservations($schedule_date, $schedule_resource_id, $schedule_user_id) > $dayLimit){
-        //redirect('./?p=calendar', 'You are not permitted to check out more than '.$dayLimit.' times per week.');
+        redirect('./?p=calendar', "You are not allowed to check out for more than $dayLimit consecutive days.");
     }elseif(!withinConsecDays($schedule_date, $schedule_resource_id, $schedule_user_id, $dayLimit)){
-        //redirect('./?p=calendar', 'You may not check out more than one resource within '.($daysInRow +1).' days.');
+        redirect('./?p=calendar', 'You may not check out more than one resource within '.($daysInRow +1).' days.');
     }
     return true;
 }
@@ -158,36 +158,33 @@ function numReservations($schedule_date, $schedule_resource_id, $schedule_user_i
     return $counter;
 }
 
+//returns true if the resource can be checked out
+//within the consecutive bounds
+//of the day limit
 function withinConsecDays($schedule_date, $schedule_resource_id, $schedule_user_id, $dayLimit){
     $conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
-    // look for days in the db to either side of the requested date
-    // if exists keep looking until you have found $dayLimit occurances
-    // then return false
-    // else return true
+    // original events time
     $timestamp = strtotime($schedule_date);
     $dateToCheck = date('Y-m-d', $timestamp);
-    print $dateToCheck . '<br/>';
-    $counter = 0;
+
+    $timestamp = strtotime($dateToCheck);
+    $dateToCheck = date('Y-m-d', strtotime("+1 day", $timestamp));
+    $counter = 1;
 
     $count = 1;
     while($count != 0){
-        //$sql = "SELECT Count(*) FROM schedule WHERE schedule_user_id='$schedule_user_id' AND schedule_date='$dateToCheck'";
         $sql = "SELECT COUNT(*) as 'num' FROM schedule WHERE schedule_user_id='$schedule_user_id' AND schedule_date='$dateToCheck'";
         $results = $conn->query($sql);
         $row = $results->fetch_assoc();
         $count = $row['num'];
-        $counter .= $count;
-        print $count . '<br />';
+        $counter += $count;
 
         $timestamp = strtotime($dateToCheck);
         $dateToCheck = date('Y-m-d', strtotime("+1 day", $timestamp));
-        print $dateToCheck . '<br/>';
     }
 
-    //look in the other direction
     $timestamp = strtotime($schedule_date);
     $dateToCheck = date('Y-m-d', strtotime("-1 day", $timestamp));
-    print $dateToCheck . '<br/>';
 
     $count = 1;
     while($count != 0){
@@ -195,21 +192,15 @@ function withinConsecDays($schedule_date, $schedule_resource_id, $schedule_user_
         $results = $conn->query($sql);
         $row = $results->fetch_assoc();
         $count = $row['num'];
-        $counter .= $count;
-        print $count . '<br />';
+        $counter += $count;
 
         $timestamp = strtotime($dateToCheck);
         $dateToCheck = date('Y-m-d', strtotime("-1 day", $timestamp));
-        print $dateToCheck . '<br/>';
     }
 
-    print $counter . '<br />';
-    print $dayLimit . '<br />';
     if ($counter > $dayLimit) {
-        print "returning false";
         return false;
     }
-    print "returning true";
     return true;
 }
 
