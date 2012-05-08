@@ -56,10 +56,6 @@ while($row = $results->fetch_assoc()){
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
-            <a href=\"./?p=edit&comment=$comment_id&type=comment\" class=\" btn btn-small admindelete\">
-                <i class=\"icon-pencil icon-black\"></i>
-                edit
-            </a>
         </tr>
     ";
 }
@@ -68,12 +64,12 @@ print "</tbody></table>
     ";
 
 if($currentcommentpage > 1){
-    print "<li><a href=\"./?action=redirect&currentcommentpage=1&type=$type\">«</a></li>";
+    print "<li><a href=\"./?action=redirect&currentcommentpage=1&type=$type\">&laquo;</a></li>";
     $prev_page = $currentcommentpage - 1;
-    print "<li><a href=\"./?action=redirect&currentcommentpage=$prev_page&type=$type\"></a></li>";
+    print "<li><a href=\"./?action=redirect&currentcommentpage=$prev_page&type=$type\">&lsaquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">«</a></li>";
-    print "<li class=\"disabled\"><a href=\"\"></a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&laquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&lsaquo;</a></li>";
 }
 
 $range = 3;
@@ -90,11 +86,11 @@ for($x = ($currentcommentpage - $range); $x < (($currentcommentpage + $range) + 
 
 if($currentcommentpage != $total_pages){
     $next_page = $currentcommentpage + 1;
-    print "<li><a href=\"./?action=redirect&currentcommentpage=$next_page&type=$type\"></a></li>";
-    print "<li><a href=\"./?action=redirect&currentcommentpage=$total_pages&type=$type\">»</a></li>";
+    print "<li><a href=\"./?action=redirect&currentcommentpage=$next_page&type=$type\">&rsaquo;</a></li>";
+    print "<li><a href=\"./?action=redirect&currentcommentpage=$total_pages&type=$type\">&raquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\"></a></li>";
-    print "<li class=\"disabled\"><a href=\"\">»</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
 print "</div><a class=\"btn add\" href=\"./?p=add&type=comment\">Add comment</a>";
 
