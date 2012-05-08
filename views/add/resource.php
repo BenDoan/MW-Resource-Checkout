@@ -8,9 +8,15 @@
             <label class="control-label" for="rType">Type</label>
             <div class="controls">
                 <select name="rType">
-                	<option value="Computer Lab">Computer Lab</option>
-                	<option value="Laptop Cart">Laptop Cart</option>
-                	<option value="Candy">Candy</option>
+                	<?php 		
+                	$sql = $sql = "SELECT * FROM types";
+					$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
+					$result = $conn->query($sql);
+					while($row = $result->fetch_assoc()){
+						extract($row);
+						echo '<option value="'.$type_name.'">'.$type_name.'</option>';
+					}
+					?>
                 </select>
             </div>
           </div>

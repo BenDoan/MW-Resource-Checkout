@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2012 at 10:34 PM
+-- Generation Time: May 04, 2012 at 06:54 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -25,12 +25,39 @@ USE `resourcecheckout`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment_resource_id` int(11) NOT NULL,
+  `comment_user_id` int(11) NOT NULL,
+  `comment_date` date NOT NULL,
+  `comment_message` text NOT NULL,
+  PRIMARY KEY (`comment_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `comment_resource_id`, `comment_user_id`, `comment_date`, `comment_message`) VALUES
+(1, 1, 1, '0000-00-00', 'Comments, really?'),
+(2, 1, 1, '0000-00-00', 'second comment'),
+(3, 1, 1, '2012-05-03', 'Comments yaya'),
+(4, 1, 1, '2012-05-03', 'There are damages on this laptop. Bad ones.'),
+(5, 1, 1, '2012-05-03', 'Commenting on stuff...'),
+(6, 1, 1, '2012-05-03', 'kafdlsfj');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `resources`
 --
 
 CREATE TABLE IF NOT EXISTS `resources` (
   `resource_id` int(11) NOT NULL AUTO_INCREMENT,
-  `resource_type` enum('Computer Lab','Laptop Cart','Candy') NOT NULL,
+  `resource_type` varchar(100) NOT NULL,
   `resource_details` varchar(50) NOT NULL,
   `resource_identifier` varchar(50) NOT NULL,
   `resource_blocktype` enum('Half','Full') NOT NULL,
@@ -61,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `schedule_date` date NOT NULL,
   `schedule_block` int(11) NOT NULL,
   PRIMARY KEY (`schedule_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `schedule`
@@ -84,7 +111,8 @@ INSERT INTO `schedule` (`schedule_id`, `schedule_resource_id`, `schedule_user_id
 (35, 1, 4, '2012-03-13', 11),
 (36, 1, 4, '2012-03-15', 11),
 (37, 1, 4, '2012-03-14', 11),
-(38, 1, 4, '2012-03-20', 11);
+(38, 1, 4, '2012-03-20', 11),
+(39, 1, 1, '2012-05-04', 11);
 
 -- --------------------------------------------------------
 
@@ -106,6 +134,27 @@ CREATE TABLE IF NOT EXISTS `settings` (
 INSERT INTO `settings` (`setting_id`, `setting_type`, `setting_value`) VALUES
 (1, 'Number of Days Per Week', 3),
 (2, 'Number of Days in a Row', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `types`
+--
+
+CREATE TABLE IF NOT EXISTS `types` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `types`
+--
+
+INSERT INTO `types` (`type_id`, `type_name`) VALUES
+(1, 'Computer Lab'),
+(2, 'Laptop Cart'),
+(3, 'Candy');
 
 -- --------------------------------------------------------
 
