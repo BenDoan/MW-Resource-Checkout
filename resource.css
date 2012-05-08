@@ -202,51 +202,39 @@ a.admin {
 	opacity: 0;
 }
 
-@
-keyframes fade { 0% {
-	opacity: 0.3;
+@keyframes fade {
+   0% {
+      opacity: 0.3;
+   }
+   100% {
+      opacity: 1;
+   }
 }
 
-100%
-{
-opacity
-:
- 
-1;
-}
-}
-@
--moz-keyframes fade { 0% {
-	opacity: 0.3;
+@-moz-keyframes fade {
+   0% {
+      opacity: 0.3;
+   }
+   100% {
+      opacity: 1;
+   }
 }
 
-100%
-{
-opacity
-:
- 
-1;
-}
-}
-@
--webkit-keyframes fade { 0% {
-	opacity: 0.4;
+@-webkit-keyframes fade {
+   0% {
+      opacity: 0.4;
+   }
+   100% {
+      opacity: 1;
+   }
 }
 
-100%
-{
-opacity
-:
- 
-1;
-}
-}
 tr.hover .admindelete {
-	-webkit-animation-name: fade;
-	-webkit-animation-duration: 1s;
-	-moz-animation-name: fade;
-	-moz-animation-duration: 1s;
-	animation-name: fade;
-	animation-duration: 1s;
-	opacity: 1;
+   -webkit-animation-name: fade;
+   -webkit-animation-duration: 1s;
+   -moz-animation-name: fade;
+   -moz-animation-duration: 1s;
+   animation-name: fade;
+   animation-duration: 1s;
+   opacity:1;
 }
