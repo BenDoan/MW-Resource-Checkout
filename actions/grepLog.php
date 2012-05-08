@@ -6,7 +6,7 @@
     $resultsString = implode("\n", $results);
     if (count($results) != 0) {
         $_SESSION['matches'] = $resultsString;
-        redirect('./?p=searchResults');
+        redirect('./?p=grepResults');
     }else {
         redirect('./', 'No results');
     }

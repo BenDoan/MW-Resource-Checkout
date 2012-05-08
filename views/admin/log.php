@@ -1,4 +1,4 @@
-<form class="form-search" method="post" action="./?action=searchLog">
+<form class="form-search" method="post" action="./?action=grepLog">
     <input type="text" name="pattern" class="input-medium search-query">
     <button type="submit" class="btn">Search</button>
     <p class="help-block">Uses <a href="http://en.wikipedia.org/wiki/Grep">grep</a></p>

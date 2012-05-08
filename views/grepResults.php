@@ -7,6 +7,7 @@ display:none;
         padding-top:14px;
     }
 </style>
+<h1>Results</h1>
 <div class="well">
 <?php
     if (!isset($_SESSION['matches'])) {
