@@ -27,4 +27,5 @@ if (md5($curpass) == $_SESSION['user']['user_password']) {
 }else{
     redirect('./?p=userSettings', 'You did not enter the correct password', 'alert-error');
 }
+$conn->close();
 ?>

@@ -1,5 +1,6 @@
 <?php
 extract($_GET);
+$conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 
 switch ($confirmAction) {
@@ -61,7 +62,7 @@ function genCancelForm($schedule_id){
     $cancelForm = '
     <div class="confirm">
         <h3>Confirm Delete</h3>
-        <p>Are you sure you want to permanently delete <strong>this request</strong>?</p>
+        <p>Are you sure you want to permanently delete this request?</p>
         <form action="./?action=cancel" method="post">
             <input type="hidden" name="schedule_id" value="' . $schedule_id . '"/>
             <input class="btn" type="submit" value="Yes"/>
@@ -108,7 +109,6 @@ function genDeleteForm($args, $type){
 //checks to see if the user is allowed to make a reservation
 //uses the settings in the settings database table
 function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $schedule_user_id){
-
     $sql = "SELECT * FROM settings";
     $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $results = $conn->query($sql);
@@ -121,16 +121,16 @@ function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $sche
             $daysInRow = $setting_value;
         }
     }
-    $conn->close();
-    if (!(numReservations($schedule_date, $schedule_resource_id, $schedule_user_id) < $dayLimit)){
-        redirect('./?p=calendar', 'You are not permitted to check out more than '.$dayLimit.' times per week.');
-    }elseif(!(numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$daysInRow) == 0)){
+    if (numReservations($schedule_date, $schedule_resource_id, $schedule_user_id) > $dayLimit){
+        redirect('./?p=calendar', "You are not allowed to check out for more than $dayLimit consecutive days.");
+    }elseif(!withinConsecDays($schedule_date, $schedule_resource_id, $schedule_user_id, $dayLimit)){
         redirect('./?p=calendar', 'You may not check out more than one resource within '.($daysInRow +1).' days.');
     }
     return true;
 }
 
 function numReservations($schedule_date, $schedule_resource_id, $schedule_user_id){
+    $conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $timestamp = strtotime($schedule_date);
     $dayOfWeek = intval(date("N", $timestamp));
     $subDate=1-$dayOfWeek;
@@ -151,7 +151,6 @@ function numReservations($schedule_date, $schedule_resource_id, $schedule_user_i
     $sql = "SELECT Count(*) FROM schedule WHERE schedule_date IN ($ids) AND schedule_user_id='$schedule_user_id'";
     // 						AND schedule_resource_id='$schedule_resource_id'";
 
-    $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $result=$conn->query($sql);
 
     $counter = 0;
@@ -160,11 +159,57 @@ function numReservations($schedule_date, $schedule_resource_id, $schedule_user_i
             $counter =$value;
         }
     }
-    $conn->close();
     return $counter;
 }
 
+//returns true if the resource can be checked out
+//within the consecutive bounds
+//of the day limit
+function withinConsecDays($schedule_date, $schedule_resource_id, $schedule_user_id, $dayLimit){
+    $conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
+    // original events time
+    $timestamp = strtotime($schedule_date);
+    $dateToCheck = date('Y-m-d', $timestamp);
+
+    $timestamp = strtotime($dateToCheck);
+    $dateToCheck = date('Y-m-d', strtotime("+1 day", $timestamp));
+    $counter = 1;
+
+    $count = 1;
+    while($count != 0){
+        $sql = "SELECT COUNT(*) as 'num' FROM schedule WHERE schedule_user_id='$schedule_user_id' AND schedule_date='$dateToCheck'";
+        $results = $conn->query($sql);
+        $row = $results->fetch_assoc();
+        $count = $row['num'];
+        $counter += $count;
+
+        $timestamp = strtotime($dateToCheck);
+        $dateToCheck = date('Y-m-d', strtotime("+1 day", $timestamp));
+    }
+
+    $timestamp = strtotime($schedule_date);
+    $dateToCheck = date('Y-m-d', strtotime("-1 day", $timestamp));
+
+    $count = 1;
+    while($count != 0){
+        $sql = "SELECT COUNT(*) as 'num' FROM schedule WHERE schedule_user_id='$schedule_user_id' AND schedule_date='$dateToCheck'";
+        $results = $conn->query($sql);
+        $row = $results->fetch_assoc();
+        $count = $row['num'];
+        $counter += $count;
+
+        $timestamp = strtotime($dateToCheck);
+        $dateToCheck = date('Y-m-d', strtotime("-1 day", $timestamp));
+    }
+
+    if ($counter > $dayLimit) {
+        return false;
+    }
+    return true;
+}
+
 function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$daysInRow){
+    $conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $j =0;
     $timestamp = strtotime($schedule_date);
 
@@ -186,7 +231,6 @@ function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$
     $ids = join(',',$dates);
 
     $sql = "SELECT Count(*) FROM schedule WHERE schedule_date IN ($ids) AND schedule_user_id='$schedule_user_id'";
-    $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
     $result=$conn->query($sql);
 
     $counter = 0;
@@ -195,6 +239,6 @@ function numDaysInRow($schedule_date, $schedule_resource_id, $schedule_user_id,$
             $counter =$value;
         }
     }
-    $conn->close();
     return $counter;
 }
+$conn->close();

@@ -1,11 +1,16 @@
 <?php
+    $time = date('m/d/Y G:h');
 	extract($_POST);
+
+    $username = $_SESSION['user']['user_username'];
+    $rDesc = getResourceDesc($schedule_id);
+    writeLineToLog("$time - $username - Canceled $rDesc");
 
 	// Delete scheduling event that matches the id from the form
 	$sql = "DELETE FROM schedule WHERE schedule_id='$schedule_id'";
 	$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 	$result = $conn->query($sql);
-	
+
 	// Check if query succeeded
 	if ($result == null){ // If query failed...
 		echo $conn->error.'<br/>'.$sql;
@@ -15,6 +20,6 @@
 		// Redirect back to current requests
 		redirect('./?p=currentRequests', 'Request deleted successfully!');
 	}
-	
+
 	// Close Connection
 	$conn->close();

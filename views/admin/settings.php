@@ -10,6 +10,7 @@ while($row = $results->fetch_assoc()){
     print '<input type="text" class="span3" name="' . $row['setting_id'] .
           '" value="'. $row['setting_value'] . '"><br/>';
 }
+$conn->close();
 ?>
 <button type="submit" class="btn btn-success">Save</button>
 </form>
