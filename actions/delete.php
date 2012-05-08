@@ -42,6 +42,14 @@ if (isset($type)) {
         $resourceDesc = getResourceDesc($resource);
         writeLineToLog("$time - Admin - Deleted resource $resourceDesc");
         break;
+
+    case 'comment':
+        $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+        $sql = "DELETE FROM comments WHERE comment_id={$comment_id}";
+        $results = $conn->query($sql);
+        writeLineToLog("$time - Admin - Deleted comment $comment_id");
+        break;
+
     }
 }
 $_SESSION['tab'] = $type;
