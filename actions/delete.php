@@ -49,9 +49,24 @@ if (isset($type)) {
         writeLineToLog("$time - Admin - Deleted comment $comment_id");
         break;
 
+    case 'Rtype':
+        $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+        $sql = "DELETE FROM types WHERE type_id={$type_id}";
+        $results = $conn->query($sql);
+        writeLineToLog("$time - Admin - Deleted type $comment_id");
+
+        $sql="DELETE types
+        FROM types
+        LEFT JOIN resources ON types.type_id=resources.resource_type_id
+        LEFT JOIN schedules ON resources.resource_id=schedules.schedule_resource_id
+        WHERE types.type_id='$type_id'
+        ";
+        $results = $conn->query($sql);
+        break;
+
     }
     $conn->close();
 }
 $_SESSION['tab'] = $type;
-redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successful");
+//redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successful");
 ?>
