@@ -1,10 +1,9 @@
 <!--TODO:
-add notes section for resources
-deal with full and half blocks for request add
-email notifications?
+email notifications
 edit email in user settings
     might need a confirmation email?
 change admin request add type to the request_id
+edit resources
  -->
 
 <?php

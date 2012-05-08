@@ -40,6 +40,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
                 <th>Resource</th>
                 <th>Date</th>
                 <th>Comment</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
