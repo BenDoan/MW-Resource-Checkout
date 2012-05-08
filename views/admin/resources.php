@@ -59,10 +59,6 @@ while($row = $results->fetch_assoc()){
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
-            <a href=\"./?p=edit&resource=$resource_id&type=resource\" class=\" btn btn-small admindelete\">
-                <i class=\"icon-pencil icon-black\"></i>
-                edit
-            </a>
         </tr>
     ";
 }

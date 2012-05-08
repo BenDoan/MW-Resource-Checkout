@@ -28,7 +28,7 @@ switch ($confirmAction) {
         break;
 
     case 'delete':
-        if (isset($type) && isset($page) && (isset($user) || isset($request) || isset($resource))) {
+        if (isset($type) && isset($page) && (isset($user) || isset($request) || isset($resource) || isset($comment))) {
             $args = "";
             $page = $_GET['page'];
             switch ($type) {
@@ -42,6 +42,10 @@ switch ($confirmAction) {
 
                 case 'resource':
                     $args = "type=resource&resource=$resource&user=$user&page=$page";
+                    break;
+
+                case 'comment':
+                    $args = "type=comment&comment_id=$comment&page=$page";
                     break;
             }
             print genDeleteForm($args, $type);
