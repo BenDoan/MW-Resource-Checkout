@@ -46,6 +46,7 @@ $request = "";
 $resource = "";
 $log = "";
 $comment = "";
+$info = "";
 
 if (isset($tab)) {
     switch ($tab) {
@@ -69,12 +70,16 @@ if (isset($tab)) {
         $comment= "active";
         break;
 
+    case 'info':
+        $info = "active";
+        break;
+
     default:
-        $user = "active";
+        $info = "active";
         break;
     }
 }else{
-    $user = "active";
+    $info = "active";
 }
 
 if (isset($type)) {
@@ -84,6 +89,7 @@ if (isset($type)) {
 <div class="span10 columns">
     <h1>Admin Panel</h1>
     <ul class="nav nav-tabs">
+      <li class="<?php print $info ?>"><a href="#info" data-toggle="tab">Info</a></li>
       <li class="<?php print $user ?>"><a href="#users" data-toggle="tab">Users</a></li>
       <li class="<?php print $request ?>"><a href="#requests" data-toggle="tab">Requests</a></li>
       <li class="<?php print $resource ?>"><a href="#resources" data-toggle="tab">Resources</a></li>
@@ -93,6 +99,7 @@ if (isset($type)) {
     </ul>
 
     <div class="tab-content">
+        <div class="tab-pane <?php print $info ?>" id="info"><?php include('admin/info.php');?></div>
         <div class="tab-pane <?php print $user ?>" id="users"><?php include('admin/users.php');?></div>
         <div class="tab-pane <?php print $request ?>" id="requests"><?php include('admin/requests.php');?></div>
         <div class="tab-pane <?php print $resource ?>" id="resources"><?php include('admin/resources.php');?></div>

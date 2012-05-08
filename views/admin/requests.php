@@ -73,9 +73,10 @@ while($row = $results->fetch_assoc()){
             ";
     }
 }
-print "</tbody></table>
-        <div class=\"pagination\">
-    ";
+print '</tbody></table>
+        <p class="help-block">1 mean block 1 - 11 means the first half of block 1 - 12 means the second half of block 1</p>
+        <div class="pagination">
+    ';
 
 if($currentrequestpage > 1){
     print "<li><a href=\"./?action=redirect&currentrequestpage=1&type=$type\">«</a></li>";
