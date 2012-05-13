@@ -70,12 +70,12 @@ print "</tbody></table>
     ";
 
 if($currentuserpage > 1){
-    print "<li><a href=\"./?action=redirect&currentuserpage=1&type=$type\">«</a></li>";
+    print "<li><a href=\"./?action=redirect&currentuserpage=1&type=$type\">&laquo;</a></li>";
     $prev_page = $currentuserpage - 1;
-    print "<li><a href=\"./?action=redirect&currentuserpage=$prev_page&type=$type\">‹</a></li>";
+    print "<li><a href=\"./?action=redirect&currentuserpage=$prev_page&type=$type\">&lsaquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">«</a></li>";
-    print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&laquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&lsaquo;</a></li>";
 }
 
 $range = 3;
@@ -92,11 +92,11 @@ for($x = ($currentuserpage - $range); $x < (($currentuserpage + $range) + 1); $x
 
 if($currentuserpage != $total_pages){
     $next_page = $currentuserpage + 1;
-    print "<li><a href=\"./?action=redirect&currentuserpage=$next_page&type=$type\">›</a></li>";
-    print "<li><a href=\"./?action=redirect&currentuserpage=$total_pages&type=$type\">»</a></li>";
+    print "<li><a href=\"./?action=redirect&currentuserpage=$next_page&type=$type\">&rsaquo;</a></li>";
+    print "<li><a href=\"./?action=redirect&currentuserpage=$total_pages&type=$type\">&raquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">›</a></li>";
-    print "<li class=\"disabled\"><a href=\"\">»</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
 
 

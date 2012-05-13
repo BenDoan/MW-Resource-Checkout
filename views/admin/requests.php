@@ -79,12 +79,12 @@ print '</tbody></table>
     ';
 
 if($currentrequestpage > 1){
-    print "<li><a href=\"./?action=redirect&currentrequestpage=1&type=$type\">«</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=1&type=$type\">&laquo;</a></li>";
     $prev_page = $currentrequestpage - 1;
-    print "<li><a href=\"./?action=redirect&currentrequestpage=$prev_page&type=$type\">‹</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$prev_page&type=$type\">&lsaquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">«</a></li>";
-    print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
 
 $range = 3;
@@ -101,11 +101,11 @@ for($x = ($currentrequestpage - $range); $x < (($currentrequestpage + $range) + 
 
 if($currentrequestpage != $total_pages){
     $next_page = $currentrequestpage + 1;
-    print "<li><a href=\"./?action=redirect&currentrequestpage=$next_page&type=$type\">›</a></li>";
-    print "<li><a href=\"./?action=redirect&currentrequestpage=$total_pages&type=$type\">»</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$next_page&type=$type\">&rsaquo;</a></li>";
+    print "<li><a href=\"./?action=redirect&currentrequestpage=$total_pages&type=$type\">&raquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">›</a></li>";
-    print "<li class=\"disabled\"><a href=\"\">»</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
 print "</div><a class=\"btn add\" href=\"./?p=add&type=request\">Add request</a>";
 $conn->close();

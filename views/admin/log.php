@@ -37,12 +37,12 @@ print "</pre>";
 print "<div class=\"pagination\">";
 
 if($currentlogpage > 1){
-    print "<li><a href=\"./?action=redirect&currentlogpage=1&type=$type\">«</a></li>";
+    print "<li><a href=\"./?action=redirect&currentlogpage=1&type=$type\">&laquo;</a></li>";
     $prev_page = $currentlogpage - 1;
-    print "<li><a href=\"./?action=redirect&currentlogpage=$prev_page&type=$type\">‹</a></li>";
+    print "<li><a href=\"./?action=redirect&currentlogpage=$prev_page&type=$type\">&lsaquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">«</a></li>";
-    print "<li class=\"disabled\"><a href=\"\">‹</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&laquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&lsaquo;</a></li>";
 }
 
 $range = 3;
@@ -59,11 +59,11 @@ for($x = ($currentlogpage - $range); $x < (($currentlogpage + $range) + 1); $x++
 
 if($currentlogpage != $total_pages){
     $next_page = $currentlogpage + 1;
-    print "<li><a href=\"./?action=redirect&currentlogpage=$next_page&type=log\">›</a></li>";
-    print "<li><a href=\"./?action=redirect&currentlogpage=$total_pages&type=log\">»</a></li>";
+    print "<li><a href=\"./?action=redirect&currentlogpage=$next_page&type=log\">&rsaquo;</a></li>";
+    print "<li><a href=\"./?action=redirect&currentlogpage=$total_pages&type=log\">&raquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">›</a></li>";
-    print "<li class=\"disabled\"><a href=\"\">»</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
 
 print "</div>";
