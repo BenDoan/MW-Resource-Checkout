@@ -49,7 +49,7 @@ while($row = $results->fetch_assoc()){
         <tr>
             <td>$type_name</td>
             <td>
-            <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=Rtype&Rtype=$type_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
+            <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=rType&rType=$type_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
@@ -89,7 +89,7 @@ if($currenttypepage != $total_pages){
     print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
     print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
-print "</div><a class=\"btn add\" href=\"./?p=add&type=type\">Add type</a>";
+print "</div><a class=\"btn add\" href=\"./?p=add&type=rType\">Add type</a>";
 
 $conn->close();
 ?>

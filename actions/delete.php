@@ -50,7 +50,7 @@ if (isset($type)) {
         writeLineToLog("$time - Admin - Deleted comment $comment_id");
         break;
 
-    case 'type':
+    case 'rType':
         $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
         $sql = "SELECT * FROM resources WHERE resource_type={$type_id}";
         $results = $conn->query($sql);

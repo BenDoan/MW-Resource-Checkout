@@ -99,7 +99,7 @@ function getRows($class, $resource_type, $resource_identifier, $resource_id, $da
 	// Display two rows per resource per block if the resource is only available for half blocks
 	if ($resource_blocktype == "Half"){
 		echo '<tr class="'.$class.'">';
-			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$date.'">'.$resource_type.'</a></td>';
+			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$date.'">'.getResourceTypeName($resource_type).'</a></td>';
 			echo '<td>'.$resource_identifier.'</td>';
 			echo '<td>First Half</td>';
 			echo getAvailability($resource_id, $date, ($block*10 + 1));
@@ -107,7 +107,7 @@ function getRows($class, $resource_type, $resource_identifier, $resource_id, $da
 		// Change styling of row
 		$class = ($class=="") ? "colored": "";
 		echo '<tr class="'.$class.'">';
-			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$date.'">'.$resource_type.'</a></td>';
+			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$date.'">'.getResourceTypeName($resource_type).'</a></td>';
 			echo '<td>'.$resource_identifier.'</td>';
 			echo '<td>Second Half</td>';
 			echo getAvailability($resource_id, $date, ($block*10 + 2));
@@ -115,7 +115,7 @@ function getRows($class, $resource_type, $resource_identifier, $resource_id, $da
 		return $class = ($class=="") ? "colored": "";
 	}else{	// Otherwise, show only one row
 		echo '<tr class="'.$class.'">';
-			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$date.'">'.$resource_type.'</a></td>';
+			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$date.'">'.getResourceTypeName($resource_type).'</a></td>';
 			echo '<td>'.$resource_identifier.'</td>';
 			echo '<td>Full Block</td>';
 			echo getAvailability($resource_id, $date, $block);

@@ -36,7 +36,6 @@ $(document).ready(function(){
 
 <?php
 extract($_SESSION);
-//printArray($_SESSION);
 
 $user = "";
 $request = "";
@@ -44,7 +43,8 @@ $resource = "";
 $log = "";
 $comment = "";
 $info = "";
-$type = "";
+$rType = "";
+$settings = "";
 
 if (isset($tab)) {
     switch ($tab) {
@@ -72,8 +72,12 @@ if (isset($tab)) {
         $info = "active";
         break;
 
-    case 'type':
-        $type = "active";
+    case 'settings':
+        $settings = "active";
+        break;
+
+    case 'rType':
+        $rType = "active";
         break;
 
     default:
@@ -95,7 +99,7 @@ if (isset($type)) {
       <li class="<?php print $user ?>"><a href="#users" data-toggle="tab">Users</a></li>
       <li class="<?php print $request ?>"><a href="#requests" data-toggle="tab">Requests</a></li>
       <li class="<?php print $resource ?>"><a href="#resources" data-toggle="tab">Resources</a></li>
-      <li class="<?php print $type ?>"><a href="#types" data-toggle="tab">Resources types</a></li>
+      <li class="<?php print $rType ?>"><a href="#rTypes" data-toggle="tab">Resources types</a></li>
       <li class="<?php print $comment?>"><a href="#comments" data-toggle="tab">Comments</a></li>
       <li class="<?php print $settings ?>"><a href="#settings" data-toggle="tab">Settings</a></li>
       <li class="<?php print $log ?>"><a href="#log" data-toggle="tab">Admin Log</a></li>
@@ -106,7 +110,7 @@ if (isset($type)) {
         <div class="tab-pane <?php print $user ?>" id="users"><?php include('admin/users.php');?></div>
         <div class="tab-pane <?php print $request ?>" id="requests"><?php include('admin/requests.php');?></div>
         <div class="tab-pane <?php print $resource ?>" id="resources"><?php include('admin/resources.php');?></div>
-        <div class="tab-pane <?php print $type?>" id="types"><?php include('admin/types.php');?></div>
+        <div class="tab-pane <?php print $rType ?>" id="rTypes"><?php include('admin/types.php');?></div>
         <div class="tab-pane <?php print $comment?>" id="comments"><?php include('admin/comments.php');?></div>
         <div class="tab-pane <?php print $settings ?>" id="settings"><?php include('admin/settings.php');?></div>
         <div class="tab-pane <?php print $log ?>" id="log"><?php include('admin/log.php');?></div>

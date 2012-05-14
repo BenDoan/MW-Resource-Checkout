@@ -29,7 +29,7 @@ if (isset($date)&& isset($id) && $date !="" && $id!=""){
 <table class="details">
 	<tr>
 		<th>Type</th>
-		<td><?php echo $resource_type;?></td>
+		<td><?php echo getResourceTypeName($resource_type);?></td>
 	</tr>
 </table>
 <table class="details">

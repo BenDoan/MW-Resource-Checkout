@@ -18,7 +18,7 @@ switch ($type) {
         makeRequest($rType, $username, $date, $block);
         break;
 
-    case 'type':
+    case 'rType':
         makeType($rType);
         break;
 
