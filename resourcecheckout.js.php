@@ -1,4 +1,15 @@
 <?php
+//returns the name of the resource type matching $id
+function getResourceTypeName($id){
+	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	$sql = "SELECT * FROM types WHERE type_id='$id'";
+    $results = $conn->query($sql);
+
+    while($row = $results->fetch_assoc()){
+        return $row['type_name'];
+    }
+}
+
 session_start();
 include 'config/db.php';
 $today=date('Y-m-d');
@@ -27,8 +38,9 @@ function getNextEvent($results){
 	$half = (fmod($schedule_block,10)==1) ? "First half": "Second half";
 	$block = ($schedule_block > 10) ? floor($schedule_block/10): $schedule_block;
 
+    $resource_name = getResourceTypeName($resource_type);
 	$event = array(
-		'title'  =>	"$resource_type - $half of Block $block",
+		'title'  =>	"$resource_name - $half of Block $block",
 		'start'	=>	$schedule_date,
         'url' => './?p=currentRequests',
 

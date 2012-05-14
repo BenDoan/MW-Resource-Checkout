@@ -102,7 +102,7 @@ if (isset($type)) {
       <li class="<?php print $rType ?>"><a href="#rTypes" data-toggle="tab">Resources types</a></li>
       <li class="<?php print $comment?>"><a href="#comments" data-toggle="tab">Comments</a></li>
       <li class="<?php print $settings ?>"><a href="#settings" data-toggle="tab">Settings</a></li>
-      <li class="<?php print $log ?>"><a href="#log" data-toggle="tab">Admin Log</a></li>
+      <li class="<?php print $log ?>"><a href="#log" data-toggle="tab">Log</a></li>
     </ul>
 
     <div class="tab-content">
