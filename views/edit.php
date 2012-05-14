@@ -13,12 +13,23 @@ if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
 }
 
 if (isset($_GET['type'])) {
-    if ($_GET['type'] == 'user') {
-        include('edit/user.php');
-    }elseif (($_GET['type'] == 'resource')){
-        include('edit/resource.php');
-    }elseif (($_GET['type'] == 'request')){
-        include('edit/request.php');
+    $type = $_GET['type'];
+    switch ($type) {
+        case 'user':
+            include('edit/user.php');
+            break;
+
+        case 'resource':
+            include('edit/resource.php');
+            break;
+
+        case 'request':
+            include('edit/request.php');
+            break;
+
+        default:
+            redirect("./p=404");
+            break;
     }
 }
 ?>

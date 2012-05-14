@@ -167,6 +167,16 @@ function makeRequest($rType, $username, $date, $block){
     writeLineToLog("$time - Admin - Added request $rType");
 }
 
+//adds a request to the database, and logs the action
+function makeType($rType){
+    $time = date('m/d/Y G:h');
+
+    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+    $sql = "INSERT INTO types (type_name) VALUES ('$rType')";
+    $results = $conn->query($sql);
+    writeLineToLog("$time - Admin - Added type $rType");
+}
+
 //updates the current user data in SESSION
 function updateSessionUser(){
 	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -176,6 +186,7 @@ function updateSessionUser(){
     $_SESSION['user'] = $user;
 }
 
+//returns a slice of $array containing all entries that match $pattern
 function getMatchingLines($pattern, $array){
     $returnArray = Array();
     foreach ($array as $x) {
@@ -184,5 +195,33 @@ function getMatchingLines($pattern, $array){
         }
     }
     return $returnArray;
+}
+
+//returns an double scripted array containing all resource types -> type_name
+//& type_id
+function getRTypesArray(){
+	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	$sql = "SELECT * FROM types";
+    $results = $conn->query($sql);
+
+    $returnArray = Array();
+    while($row = $results->fetch_assoc()){
+        $rtype = Array();
+        $rType['type_id'] = $row['type_id'];
+        $rType['type_name'] = $row['type_name'];
+        $returnArray[] = $rType;
+    }
+    return $returnArray;
+}
+
+//returns the name of the resource type matching $id
+function getResourceTypeName($id){
+	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	$sql = "SELECT * FROM types WHERE type_id='$id'";
+    $results = $conn->query($sql);
+
+    while($row = $results->fetch_assoc()){
+        return $row['type_name'];
+    }
 }
 ?>

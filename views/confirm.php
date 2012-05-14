@@ -32,7 +32,6 @@ switch ($confirmAction) {
         if (isset($type) && isset($page) && (isset($user) || isset($request) || isset($resource) || isset($comment) || isset($type) )) {
             $args = "";
             $page = $_GET['page'];
-            print $type;
             switch ($type) {
                 case 'user':
                     $args = "type=user&user=$user&page=$page";

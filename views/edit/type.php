@@ -1,17 +1,15 @@
 <?php
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM users WHERE user_id={$_GET['user']}";
+$sql = "SELECT * FROM types WHERE type_id={$_GET['type']}";
 $results = $conn->query($sql);
 
 while($row = $results->fetch_assoc()){
-    $firstname = $row['user_firstname'];
-    $lastname = $row['user_lastname'];
-    $username= $row['user_username'];
+    $type_name = $row['type_name'];
 }
 ?>
 <form class="well" method="post" action="./?action=adminEditSettings">
-    <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">
-    <input type="hidden" name="type" value="user">
+    <input type="hidden" name="userid" value="<?php print $_GET['type']; ?>">
+    <input type="hidden" name="type" value="type">
     First Name<br />
     <input type="text" class="span3" name="firstname" value="<?php print $firstname; ?>"><br/>
 

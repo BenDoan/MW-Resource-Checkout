@@ -45,7 +45,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
     ";
 while($row = $results->fetch_assoc()){
     extract($row);
-    $a = "
+    print "
         <tr>
             <td>$type_name</td>
             <td>

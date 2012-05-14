@@ -8,13 +8,13 @@
             <label class="control-label" for="rType">Type</label>
             <div class="controls">
                 <select name="rType">
-                	<?php 		
+                	<?php
                 	$sql = $sql = "SELECT * FROM types";
 					$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 					$result = $conn->query($sql);
 					while($row = $result->fetch_assoc()){
 						extract($row);
-						echo '<option value="'.$type_name.'">'.$type_name.'</option>';
+						echo '<option value="'.$type_id.'">'.$type_name.'</option>';
 					}
 					?>
                 </select>

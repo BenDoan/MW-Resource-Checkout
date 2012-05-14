@@ -79,11 +79,11 @@ if (isset($tab)) {
         break;
 
     default:
-        $info = "active";
+        $user = "active";
         break;
     }
 }else{
-    $info = "active";
+    $user = "active";
 }
 
 if (isset($type)) {

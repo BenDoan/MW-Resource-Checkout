@@ -4,14 +4,27 @@ if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
 }
 
 extract($_POST);
-printArray($_POST);
 
-if ($type == 'user') {
-    makeUser($firstname, $lastname, $username, $password);
-}elseif ($type == 'resource'){
-    makeResource($rType, $details, $identifier, $blocktype);
-}elseif ($type == 'request'){
-    makeRequest($rType, $username, $date, $block);
+switch ($type) {
+    case 'user':
+        makeUser($firstname, $lastname, $username, $password);
+        break;
+
+    case 'resource':
+        makeResource($rType, $details, $identifier, $blocktype);
+        break;
+
+    case 'request':
+        makeRequest($rType, $username, $date, $block);
+        break;
+
+    case 'type':
+        makeType($rType);
+        break;
+
+    default:
+        // code...
+        break;
 }
 $cap_type = ucfirst($type);
 $_SESSION['tab'] = $type;

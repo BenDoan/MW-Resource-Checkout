@@ -48,9 +48,10 @@ print "<table class=\"admintable table table-striped table-condensed\">
     ";
 while($row = $results->fetch_assoc()){
     extract($row);
+    $type_name = getResourceTypeName($resource_type);
     print "
         <tr>
-            <td>$resource_type</td>
+            <td>$type_name</td>
             <td>$resource_details</td>
             <td>$resource_identifier</td>
             <td>$resource_blocktype</td>
@@ -58,6 +59,10 @@ while($row = $results->fetch_assoc()){
             <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=resource&resource=$resource_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
                 delete
+            </a>
+            <a href=\"./?p=edit&resource=$resource_id&type=resource\" class=\" btn btn-small admindelete\">
+                <i class=\"icon-pencil icon-black\"></i>
+                edit
             </a>
         </tr>
     ";

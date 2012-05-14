@@ -11,15 +11,9 @@
 if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
     redirect('./');
 }
-
 if (isset($_GET['type'])) {
-    if ($_GET['type'] == 'user') {
-        include('add/user.php');
-    }elseif (($_GET['type'] == 'resource')){
-        include('add/resource.php');
-    }elseif (($_GET['type'] == 'request')){
-        include('add/request.php');
-    }
+    $type = $_GET['type'];
+    include("add/$type.php");
 }
 
 

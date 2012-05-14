@@ -10,7 +10,7 @@ while($row = $results->fetch_assoc()){
 }
 $conn->close();
 ?>
-<form class="well" method="post" action="./?action=adminEditUserSettings">
+<form class="well" method="post" action="./?action=adminEditSettings">
     <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">
     <input type="hidden" name="urlstring" value="p=edit&user=<?php print $_GET['user']; ?>&type=user">
     First Name<br />

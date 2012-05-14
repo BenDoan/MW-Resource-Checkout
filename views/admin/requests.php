@@ -74,7 +74,6 @@ while($row = $results->fetch_assoc()){
     }
 }
 print '</tbody></table>
-        <p class="help-block">1 mean block 1 - 11 means the first half of block 1 - 12 means the second half of block 1</p>
         <div class="pagination">
     ';
 

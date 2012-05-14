@@ -1,16 +1,9 @@
-<h1>General Info</h1>
-<p>This is the admin panel for the resource checkout app.  You can:</p>
+<p>This is the admin panel for the resource checkout app.  You can use it to:</p>
 <ul>
-	<li>add/edit/delete users, requests and resources</li>
-	<li>view and search the log</li>
-	<li>read comments</li>
-    <li>edit settings</li>
+	<li>add/edit/delete users/requests/resources
+	<li>view and search the log
+	<li>read comments
+    <li>edit settings
 </ul>
 
-
-<h1>Support</h1>
-<ul>
-	<li>Ben Doan - *email*</li>
-	<li>Tracy Moody - *email*</li>
-	<li>Chris Ramey - *email*</li>
-</ul>
+<h4>If you have a question, send an email to <a href="mailto:cjramey@mpsomaha.org?subject=MW-Resource-Checkout">Chris Ramey</a></h4>

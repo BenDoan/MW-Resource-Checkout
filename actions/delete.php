@@ -68,5 +68,5 @@ if (isset($type)) {
     $conn->close();
 }
 $_SESSION['tab'] = $type;
-//redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successful");
+redirect("./?action=redirect&type=$type&$page_string=$page", "Deletion successful");
 ?>

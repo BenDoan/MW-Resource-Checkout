@@ -23,14 +23,22 @@ while($row = $results->fetch_assoc()){
 
 }
 ?>
-<form class="well" method="post" action="./?action=adminEditUserSettings">
+<form class="well" method="post" action="./?action=adminEditSettings">
     <input type="hidden" name="resource" value="<?php print $_GET['resource']; ?>">
     <input type="hidden" name="type" value="resource">
     Type<br />
     <select name="resourcetype">
-        <option value="Computer Lab">Computer Lab</option>
-        <option value="Laptop Cart">Laptop Cart</option>
-        <option value="Candy">Candy</option>
+        <?php
+            $typesArray = getRTypesArray();
+            print $type;
+            foreach ($typesArray as $x) {
+                if ($type == $x['type_id']) {
+                    print '<option selected="selected" value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
+                }else{
+                    print '<option value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
+                }
+            }
+        ?>
     </select><br />
 
     Details<br />
