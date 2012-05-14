@@ -107,6 +107,20 @@ function getUserId($user_name){
     return $user_id;
 }
 
+//returns the name of the type with id $id
+function getTypeName($id){
+    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+    $sql = "SELECT * FROM types WHERE type_id={$id}";
+    $results = $conn->query($sql);
+
+    $name = "";
+    while($row = $results->fetch_assoc()){
+        $name = $row['type_name'];
+    }
+    $conn->close();
+    return $name;
+}
+
 //writes $line to the log file
 function writeLineToLog($line){
     $logFile = "log.txt";

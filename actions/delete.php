@@ -32,10 +32,11 @@ if (isset($type)) {
         break;
 
     case 'resource':
-        $sql = "DELETE FROM resources WHERE resource_id={$resource}";
-        $results = $conn->query($sql);
         $resourceDesc = getResourceDesc($resource);
         writeLineToLog("$time - Admin - Deleted resource $resourceDesc");
+
+        $sql = "DELETE FROM resources WHERE resource_id={$resource}";
+        $results = $conn->query($sql);
 
         //delete requests that match deleted resource
         $sql = "DELETE FROM schedule WHERE schedule_resource_id={$resource}";
@@ -49,19 +50,31 @@ if (isset($type)) {
         writeLineToLog("$time - Admin - Deleted comment $comment_id");
         break;
 
-    case 'Rtype':
+    case 'type':
+        $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+        $sql = "SELECT * FROM resources WHERE resource_type={$type_id}";
+        $results = $conn->query($sql);
+
+        while($row = $results->fetch_assoc()){
+            $resourceDesc = getResourceDesc($row['resource_id']);
+            writeLineToLog("$time - Admin - Deleted resource $resourceDesc");
+
+            $sql = "DELETE FROM resources WHERE resource_id={$row['resource_id']}";
+            $results = $conn->query($sql);
+
+            //delete requests that match deleted resource
+            $sql = "DELETE FROM schedule WHERE schedule_resource_id={$row['resource_id']}";
+            $results = $conn->query($sql);
+        }
+
+        $results = $conn->query($sql);
+
         $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
         $sql = "DELETE FROM types WHERE type_id={$type_id}";
         $results = $conn->query($sql);
-        writeLineToLog("$time - Admin - Deleted type $comment_id");
 
-        $sql="DELETE types
-        FROM types
-        LEFT JOIN resources ON types.type_id=resources.resource_type_id
-        LEFT JOIN schedules ON resources.resource_id=schedules.schedule_resource_id
-        WHERE types.type_id='$type_id'
-        ";
-        $results = $conn->query($sql);
+        $type_name = getTypeName($type_id);
+        writeLineToLog("$time - Admin - Deleted type $type_name");
         break;
 
     }

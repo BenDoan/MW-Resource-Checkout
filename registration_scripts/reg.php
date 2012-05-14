@@ -5,8 +5,8 @@
 require_once('xmlToArrayParser.php');
 require_once('User.php');
 
-define('EMAIL_SUBJECT', 'TODO:Needs subject');
-define('EMAIL_MESSAGE', 'TODO:Needs message');
+define('EMAIL_SUBJECT', 'MW Resource Checkout');
+define('EMAIL_MESSAGE', 'TODO: needs subject');
 
 if(isset($_GET['action'])){
 	if($_GET['action'] == "generate"){

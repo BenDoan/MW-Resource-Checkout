@@ -10,16 +10,13 @@ $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 switch ($type) {
     case 'user':
         $sql = "UPDATE users SET user_firstname='$firstname' WHERE user_id='$userid'";
-        $results = $conn->query($sql);
-        print $sql;
+        $conn->query($sql);
 
         $sql = "UPDATE users SET user_lastname='$lastname' WHERE user_id='$userid'";
-        $results = $conn->query($sql);
-        print $sql;
+        $conn->query($sql);
 
         $sql = "UPDATE users SET user_username='$username' WHERE user_id='$userid'";
-        $results = $conn->query($sql);
-        print $sql;
+        $conn->query($sql);
 
         $user_name = getUsername($userid);
         writeLineToLog("$time - Admin - Edited user $user_name");
@@ -43,6 +40,9 @@ switch ($type) {
         $sql = "UPDATE resources SET resource_type='$resourcetype', resource_details='$details', resource_identifier='$identifier', resource_blocktype='$blocktype' WHERE resource_id='$resource'";
         $results = $conn->query($sql);
 
+        $resource_name = getResourceDesc($resource);
+        writeLineToLog("$time - Admin - Edited resource $resource_name");
+
         $_SESSION['tab'] = $type;
         redirect('./', 'Resource saved');
         break;
@@ -50,10 +50,6 @@ switch ($type) {
     default:
         // code...
         break;
-}
-
-if ("user" == $type) {
-}elseif ("resource" == $type){
 }
 $conn->close();
 ?>

@@ -3,8 +3,7 @@
 	extract($_POST);
 
     $username = $_SESSION['user']['user_username'];
-    $rDesc = getResourceDesc($schedule_id);
-    writeLineToLog("$time - $username - Canceled $rDesc");
+    writeLineToLog("$time - $username - Canceled request $schedule_id");
 
 	// Delete scheduling event that matches the id from the form
 	$sql = "DELETE FROM schedule WHERE schedule_id='$schedule_id'";
