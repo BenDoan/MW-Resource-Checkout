@@ -31,7 +31,7 @@ if($currentcommentpage < 1){
 
 $offset = ($currentcommentpage - 1) * $rows_per_page;
 
-$sql = "SELECT * FROM comments LIMIT $offset, $rows_per_page";
+$sql = "SELECT * FROM comments ORDER BY comment_id DESC LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
 print "<table class=\"admintable table table-striped table-condensed\">
