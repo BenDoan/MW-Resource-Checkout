@@ -6,7 +6,7 @@ require_once('xmlToArrayParser.php');
 require_once('User.php');
 
 define('EMAIL_SUBJECT', 'MW Resource Checkout');
-define('EMAIL_MESSAGE', 'TODO: needs subject');
+define('EMAIL_MESSAGE', 'test message lalalalalalalalalalalalalaalalalaa');
 
 if(isset($_GET['action'])){
 	if($_GET['action'] == "generate"){
@@ -14,7 +14,7 @@ if(isset($_GET['action'])){
 		foreach($users as $user){
 			addUser($user);
 			//TODO: test email
-            //mail($user->email, EMAIL_SUBJECT, EMAIL_MESSAGE);
+            mail($user->email, EMAIL_SUBJECT, EMAIL_MESSAGE);
 		}
 	}
 }
@@ -41,7 +41,7 @@ function addUser($user){
 }
 function generateUsers(){
 	//open the html table
-	$table = file_get_contents("table.php");
+	$table = file_get_contents("table_test.php");
 	//parse the html into nice arrays
 	$parser = new xmlToArrayParser($table);
 	$domObj = $parser -> array;
@@ -51,7 +51,11 @@ function generateUsers(){
 		foreach($table as $table2){
 			foreach($table2 as $tbody){
 				foreach($tbody as $tr){
-					$td = $tr[0];
+					if($tr[1] != 'Administrative' && 
+					$tr[1] != 'Counseling' && 
+					$tr[1] !='Custodial' && 
+					$tr[1] != 'General'){
+						$td = $tr[0];
 						//var_dump( $td);
 						$a = $td['a'];
 						$attrib = $a['attrib'];
@@ -71,6 +75,7 @@ function generateUsers(){
 						//for debugging purposes
 						echo "</br>username: ".$username.
 							"</br>password: ".$password."</br>";
+					}
 
 				}
 			}
