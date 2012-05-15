@@ -4,7 +4,6 @@ if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
 }
 $time = date('m/d/Y G:h');
 extract($_POST);
-printArray($_POST);
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
 switch ($type) {
