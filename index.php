@@ -1,5 +1,6 @@
 <?php
 // Start the session
+ob_start();
 session_start();
 
 $time = date('m/d/Y G:h');
@@ -238,4 +239,5 @@ function getResourceTypeName($id){
         return $row['type_name'];
     }
 }
+ob_flush();
 ?>

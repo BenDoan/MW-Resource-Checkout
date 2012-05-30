@@ -4,6 +4,7 @@
 
 require_once('xmlToArrayParser.php');
 require_once('User.php');
+require_once('../config/db.php');
 
 define('EMAIL_SUBJECT', 'MW Resource Checkout');
 define('EMAIL_MESSAGE', 'test message lalalalalalalalalalalalalaalalalaa');
@@ -20,7 +21,7 @@ if(isset($_GET['action'])){
 }
 function addUser($user){
 	//get list of users from database
-	$conn = new mysqli('localhost', 'root', '', 'resourcecheckout');
+    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 	$users = $conn->query("SELECT * FROM users");
 	//check if current user already exists
 	$isNewUser = true;
@@ -44,16 +45,16 @@ function generateUsers(){
 	$table = file_get_contents("table_test.php");
 	//parse the html into nice arrays
 	$parser = new xmlToArrayParser($table);
-	$domObj = $parser -> array;
+	$domObj = $parser->array;
 	$users = array();
 	//drill down through the dom
 	foreach($domObj as $table){
 		foreach($table as $table2){
 			foreach($table2 as $tbody){
 				foreach($tbody as $tr){
-					if($tr[1] != 'Administrative' && 
-					$tr[1] != 'Counseling' && 
-					$tr[1] !='Custodial' && 
+					if($tr[1] != 'Administrative' &&
+					$tr[1] != 'Counseling' &&
+					$tr[1] !='Custodial' &&
 					$tr[1] != 'General'){
 						$td = $tr[0];
 						//var_dump( $td);
