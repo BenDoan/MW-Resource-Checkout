@@ -6,6 +6,8 @@
     <input type="text" class="input-xlarge" name="lastname"><br/>
     Username<br />
     <input type="text" class="input-xlarge" name="username"><br/>
+    Email<br />
+    <input type="text" class="input-xlarge" name="email"><br/>
     Password<br />
     <input type="password" class="input-xlarge" name="password"><br/>
 

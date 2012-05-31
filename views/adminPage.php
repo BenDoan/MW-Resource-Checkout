@@ -1,9 +1,3 @@
-<!--TODO:
-email notifications
-edit email in user settings
-    might need a confirmation email?
- -->
-
 <?php
 if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
     redirect('./');

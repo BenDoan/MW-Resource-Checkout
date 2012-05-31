@@ -5,9 +5,11 @@ $results = $conn->query($sql);
 
 $firstname = "";
 $lastname = "";
+$email = "";
 while($row = $results->fetch_assoc()){
     $firstname = $row['user_firstname'];
     $lastname = $row['user_lastname'];
+    $email = $row['user_email'];
 }
 $conn->close();
 ?>

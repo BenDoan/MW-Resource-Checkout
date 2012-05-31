@@ -1,0 +1,9 @@
+* write signup email
+* implement password reset feature
+    * creates a new password and emails it to user
+* change admin password and name
+* add email field
+    * user settings
+    * admin edit user
+    * admin add user
+
