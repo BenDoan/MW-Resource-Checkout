@@ -119,12 +119,12 @@ function printArray($array){
 }
 
 //adds a user to the database, and logs the action
-function makeUser($firstname, $lastname, $username, $password){
+function makeUser($firstname, $lastname, $username, $email, $password){
     $time = date('m/d/Y G:h');
 
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
     $password = md5($password);
-    $sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password) VALUES ('$firstname','$lastname','$username','$password')";
+    $sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$password')";
     $results = $conn->query($sql);
     writeLineToLog("$time - Admin - Added user $username");
 }

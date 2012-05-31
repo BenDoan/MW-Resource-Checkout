@@ -6,7 +6,8 @@ $results = $conn->query($sql);
 while($row = $results->fetch_assoc()){
     $firstname = $row['user_firstname'];
     $lastname = $row['user_lastname'];
-    $username= $row['user_username'];
+    $username = $row['user_username'];
+    $email = $row['user_email'];
 }
 ?>
 <form class="well" method="post" action="./?action=adminEditSettings">
@@ -20,6 +21,9 @@ while($row = $results->fetch_assoc()){
 
     Username<br />
     <input type="text" class="span3" name="username" value="<?php print $username; ?>"><br/>
+
+    Email<br />
+    <input type="text" class="span3" name="email" value="<?php print $email; ?>"><br/>
 
     New Password<br />
     <input type="password" class="span3" name="newpass" name="newpass" value=""><br/>

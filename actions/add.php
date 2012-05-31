@@ -7,7 +7,7 @@ extract($_POST);
 
 switch ($type) {
     case 'user':
-        makeUser($firstname, $lastname, $username, $password);
+        makeUser($firstname, $lastname, $username, $email, $password);
         break;
 
     case 'resource':

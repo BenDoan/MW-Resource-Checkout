@@ -8,13 +8,7 @@ $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
 switch ($type) {
     case 'user':
-        $sql = "UPDATE users SET user_firstname='$firstname' WHERE user_id='$userid'";
-        $conn->query($sql);
-
-        $sql = "UPDATE users SET user_lastname='$lastname' WHERE user_id='$userid'";
-        $conn->query($sql);
-
-        $sql = "UPDATE users SET user_username='$username' WHERE user_id='$userid'";
+        $sql = "UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email' WHERE user_id='$userid'";
         $conn->query($sql);
 
         $user_name = getUsername($userid);

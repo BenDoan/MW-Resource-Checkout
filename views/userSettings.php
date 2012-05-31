@@ -23,6 +23,9 @@ $conn->close();
     Last Name<br />
     <input type="text" class="span3" name="lastname" value="<?php print $lastname; ?>"><br/>
 
+    Email<br />
+    <input type="text" class="span3" name="email" value="<?php print $email; ?>"><br/>
+
     New Password<br />
     <input type="password" class="span3" name="newpass" name="newpass" value=""><br/>
 

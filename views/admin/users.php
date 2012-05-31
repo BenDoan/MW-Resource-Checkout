@@ -40,6 +40,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Username</th>
+                <th>Email</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -52,6 +53,7 @@ while($row = $results->fetch_assoc()){
             <td>$user_firstname</td>
             <td>$user_lastname</td>
             <td>$user_username</td>
+            <td>$user_email</td>
             <td>
             <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=user&page=$page\"class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>

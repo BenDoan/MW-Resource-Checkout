@@ -29,7 +29,5 @@ if(isLoggedIn() || $action == 'authenticate' || $CURR_PAGE == 'login') {
 } else { // Otherwise, force them to login
 	redirect('./?p=login','Please login.');
 }
-
-
 ob_flush(); // flushes the output buffer
 ?>
