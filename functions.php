@@ -210,3 +210,55 @@ function getResourceTypeName($id){
     }
 }
 
+//returns the email of the user matching $id
+function getUserEmail($id){
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $sql = "SELECT * FROM users WHERE user_id='$id'";
+    $results = $conn->query($sql);
+
+    while($row = $results->fetch_assoc()){
+        return $row['user_email'];
+    }
+}
+
+//returns true if the username matches a user
+function isUser($username){
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $sql = "SELECT * FROM users WHERE user_username='$username'";
+    $results = $conn->query($sql);
+    if ($results === null) {
+        return false;
+    }
+    return true;
+}
+
+// changes a user's password
+function changeUserPassword($user_id, $password){
+    $md5_password = md5($password);
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $sql = "UPDATE users SET user_password='$md5_password' WHERE user_id='$user_id'";
+    $results = $conn->query($sql);
+    if ($results === null) {
+        return 0;
+    }
+    return 1;
+}
+
+// generates and returns a password randomly composed
+// of uper and lower case letters and numbers
+// of length $length
+function genPassword($length){
+    $newPass = "";
+    for ($i = 0; $i < $length; $i++) {
+        if (rand(0,1)){
+            if (rand(0,1)){
+                $newPass .= chr(rand(97,122));
+            }else{
+                $newPass .= chr(rand(65,90));
+            }
+        }else{
+            $newPass .= chr(rand(48,57));
+        }
+    }
+    return $newPass;
+}

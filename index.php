@@ -18,7 +18,12 @@ if(isLoggedIn() && $_SESSION['user']['user_username'] == ADMIN_USERNAME){
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 // If user is logged in, or is trying to login, let them
-if(isLoggedIn() || $action == 'authenticate' || $CURR_PAGE == 'login') {
+if(isLoggedIn() ||
+    $action === 'authenticate' ||
+    $CURR_PAGE === 'login' ||
+    $CURR_PAGE === 'resetPassword' ||
+    $action === 'resetPassword') {
+
 	// If no action is specified
 	if($action == null) {
 		require_once('template.php');

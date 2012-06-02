@@ -5,6 +5,7 @@
 require_once('xmlToArrayParser.php');
 require_once('User.php');
 require_once('../config/db.php');
+require_once('../functions.php');
 
 define('EMAIL_SUBJECT', 'MW Resource Checkout');
 define('EMAIL_MESSAGE', 'test message lalalalalalalalalalalalalaalalalaa');
@@ -69,7 +70,7 @@ function generateUsers(){
 						//create a username (first initial + lastname)
 						$username = strtolower($first[0] . $last);
 						//create a temporary password by taking the lastname plus a few random numbers
-						$password = strtolower($last) . rand(0,9). rand(0,9). rand(0,9);
+						$password = genPassword();
 						$currUser = new User($username, $first, $last, $password, $email);
 
 						$users[] = $currUser;

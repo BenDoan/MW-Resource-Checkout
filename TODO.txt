@@ -2,8 +2,9 @@
 * implement password reset feature
     * creates a new password and emails it to user
 * change admin password and name
-* add email field
-    * user settings
-    * admin edit user
-    * admin add user
-
+    * mabye add a row to the users table for admin status
+* change schema on production site
+    * added user_email to users table as a 100 char varchar
+* talk about open sourcing this project
+    * issue: database info
+* check with Mr. Ramey about password reset security
