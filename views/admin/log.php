@@ -9,7 +9,7 @@ $type = 'log';
 $log = array_slice(array_reverse(readLog()), 1);
 
 $num_rows = sizeof($log);
-$rows_per_page = 20;
+$rows_per_page = 13;
 $total_pages = ceil($num_rows / $rows_per_page); //ceil rounds up
 
 if(isset($_GET['currentlogpage']) && is_numeric($_GET['currentlogpage'])){

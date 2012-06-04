@@ -82,8 +82,8 @@ if($currentrequestpage > 1){
     $prev_page = $currentrequestpage - 1;
     print "<li><a href=\"./?action=redirect&currentrequestpage=$prev_page&type=$type\">&lsaquo;</a></li>";
 }else{
-    print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
-    print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&lsaquo;</a></li>";
+    print "<li class=\"disabled\"><a href=\"\">&laquo;</a></li>";
 }
 
 $range = 3;

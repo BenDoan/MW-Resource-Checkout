@@ -1,7 +1,4 @@
 <?php
-if (!isAdmin()) {
-    redirect("./");
-}
 extract($_POST);
 
 switch ($type) {

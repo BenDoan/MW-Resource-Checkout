@@ -14,7 +14,7 @@ foreach($pages as $name => $p) {
 }
 if (isAdmin()) {
 	$class = ('adminPage' == $CURR_PAGE) ? 'current' : '';
-	echo "<li class=\"$class\"><a href=\"./?p=adminPage\">Control Panel</a></li>";
+	echo "<li class=\"$class\"><a href=\"./?p=adminPage\">Admin Panel</a></li>";
 }
 echo '</ul>';
 ?>

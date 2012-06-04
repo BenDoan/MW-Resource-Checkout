@@ -9,14 +9,14 @@ while($row = $results->fetch_assoc()){
     extract($row);
     $data_source .= "\"$user_username\",";
 }
-$data_source .= "\"asda\"]";
+$data_source .= "\"\"]";
 $conn->close();
 ?>
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
-    var alCities = <?php print $data_source?>.sort();
-            $('#user').typeahead({source: alCities, items:5});
+    var users = <?php print $data_source?>.sort();
+            $('#user').typeahead({source: users, items:5});
         });
 </script>
 

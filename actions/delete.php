@@ -28,7 +28,7 @@ if (isset($type)) {
         $sql = "DELETE FROM schedule WHERE schedule_id=$request";
         $results = $conn->query($sql);
         $message = $conn->error;
-        writeLineToLog("$time - Admin -Deleted request $request");
+        writeLineToLog("$time - Admin - Deleted request $request");
         break;
 
     case 'resource':

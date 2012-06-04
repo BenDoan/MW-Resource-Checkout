@@ -4,8 +4,6 @@ if (!isAdmin()) {
 }
 ?>
 <script type="text/javascript">
-$('#myTab').tab('show')
-
 $(document).ready(function(){
     //js for showing/hiding delete button in admin tables
     $(".admintable tr").hover(
@@ -19,86 +17,68 @@ $(document).ready(function(){
 </script>
 
 <?php
-extract($_SESSION);
 
-$user = "";
-$request = "";
-$resource = "";
-$log = "";
-$comment = "";
-$info = "";
-$rType = "";
-$settings = "";
+// to add a page to the admin panel, put the php file into
+// views/admin and put the name of the file in this array
+$pages = array(
+    "info",
+    "user",
+    "request",
+    "resource",
+    "resourceType",
+    "comment",
+    "settings",
+    "log");
 
-if (isset($tab)) {
-    switch ($tab) {
-    case 'user':
-        $user = "active";
-        break;
-
-    case 'request':
-        $request = "active";
-        break;
-
-    case 'resource':
-        $resource = "active";
-        break;
-
-    case 'log':
-        $log = "active";
-        break;
-
-    case 'comment':
-        $comment= "active";
-        break;
-
-    case 'info':
-        $info = "active";
-        break;
-
-    case 'settings':
-        $settings = "active";
-        break;
-
-    case 'rType':
-        $rType = "active";
-        break;
-
-    default:
-        $user = "active";
-        break;
-    }
-}else{
-    $user = "active";
-}
-
-if (isset($type)) {
-    $_SESSION['tab'] = $type;
-}
 ?>
-//replace this with a loop
 <div class="span10 columns">
     <h1>Admin Panel</h1>
     <ul class="nav nav-tabs">
-      <li class="<?php print $info ?>"><a href="#info" data-toggle="tab">Info</a></li>
-      <li class="<?php print $user ?>"><a href="#users" data-toggle="tab">Users</a></li>
-      <li class="<?php print $request ?>"><a href="#requests" data-toggle="tab">Requests</a></li>
-      <li class="<?php print $resource ?>"><a href="#resources" data-toggle="tab">Resources</a></li>
-      <li class="<?php print $rType ?>"><a href="#rTypes" data-toggle="tab">Resources types</a></li>
-      <li class="<?php print $comment?>"><a href="#comments" data-toggle="tab">Comments</a></li>
-      <li class="<?php print $settings ?>"><a href="#settings" data-toggle="tab">Settings</a></li>
-      <li class="<?php print $log ?>"><a href="#log" data-toggle="tab">Log</a></li>
+    <?php
+    foreach ($pages as $key) {
+        if (isset($_SESSION['tab'])) {
+            if ($_SESSION['tab'] == $key) {
+                print "<li class=\"active\"><a href=\"#rkey\" data-toggle=\"tab\">". ucfirst($key) . "</a></li>\n";
+            }else {
+                print "<li><a href=\"#$key\" data-toggle=\"tab\">" . ucfirst($key) . "</a></li>\n";
+            }
+        }else{
+            if (DEFAULT_ADMIN_PANEL_ITEM == $key) {
+                print "<li class=\"active\"><a href=\"#$key\" data-toggle=\"tab\">" . ucfirst($key) . "</a></li>\n";
+            }else {
+                print "<li><a href=\"#$key\" data-toggle=\"tab\">". ucfirst($key) . "</a></li>\n";
+            }
+        }
+    }
+    ?>
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane <?php print $info ?>" id="info"><?php include('admin/info.php');?></div>
-        <div class="tab-pane <?php print $user ?>" id="users"><?php include('admin/users.php');?></div>
-        <div class="tab-pane <?php print $request ?>" id="requests"><?php include('admin/requests.php');?></div>
-        <div class="tab-pane <?php print $resource ?>" id="resources"><?php include('admin/resources.php');?></div>
-        <div class="tab-pane <?php print $rType ?>" id="rTypes"><?php include('admin/types.php');?></div>
-        <div class="tab-pane <?php print $comment?>" id="comments"><?php include('admin/comments.php');?></div>
-        <div class="tab-pane <?php print $settings ?>" id="settings"><?php include('admin/settings.php');?></div>
-        <div class="tab-pane <?php print $log ?>" id="log"><?php include('admin/log.php');?></div>
+        <?php
+        foreach ($pages as $key) {
+            if (isset($_SESSION['tab'])) {
+                if ($_SESSION['tab'] == $key) {
+                    print "<div class=\"tab-pane active\" id=\"$key\">";
+                    require_once("admin/$key.php" );
+                    print "</div>";
+                }else{
+                    print "<div class=\"tab-pane\" id=\"$key\">";
+                    require_once("admin/$key.php" );
+                    print "</div>";
+                }
+            }else {
+                if ($key == DEFAULT_ADMIN_PANEL_ITEM) {
+                    print "<div class=\"tab-pane active\" id=\"$key\">";
+                    require_once("admin/$key.php" );
+                    print "</div>";
+                }else{
+                    print "<div class=\"tab-pane\" id=\"$key\">";
+                    require_once("admin/$key.php" );
+                    print "</div>";
+                }
+            }
+        }
+        ?>
 </div>
 </div>
 <?php

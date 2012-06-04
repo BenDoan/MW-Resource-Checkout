@@ -7,7 +7,7 @@ if (isset($_GET['currentuserpage'])) {
 }
 $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
 
-$sql = "SELECT COUNT(*) FROM users";
+$sql = "SELECT COUNT(*) FROM users WHERE user_isAdmin != '1'";
 $results = $conn->query($sql);
 $row = $results->fetch_assoc();
 $num_rows = $row['COUNT(*)'] - 1; //'-1' to account for admin not being counted
@@ -31,7 +31,7 @@ if($currentuserpage < 1){
 
 $offset = ($currentuserpage - 1) * $rows_per_page;
 
-$sql = "SELECT * FROM users WHERE user_username != \"admin\" ORDER BY user_lastname LIMIT $offset, $rows_per_page";
+$sql = "SELECT * FROM users WHERE user_isAdmin != '1' ORDER BY user_lastname LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
 print "<table class=\"admintable table table-striped table-condensed\">
