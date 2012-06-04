@@ -1,12 +1,8 @@
-<style>
-#nav ul {
-display:none;
-    }
-
-    #userinfo {
-        padding-top:14px;
-    }
-</style>
+<?php
+if (!isAdmin()) {
+    redirect('./');
+}
+?>
 <h1>Results</h1>
 <div class="well">
 <?php

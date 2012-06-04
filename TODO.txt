@@ -1,6 +1,4 @@
 * write signup email
-* implement password reset feature
-    * creates a new password and emails it to user
 * change admin password and name
     * mabye add a row to the users table for admin status
 * change schema on production site

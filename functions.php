@@ -262,3 +262,16 @@ function genPassword($length){
     }
     return $newPass;
 }
+
+function isAdmin(){
+	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	$sql = "SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'";
+    $results = $conn->query($sql);
+
+    while($row = $results->fetch_assoc()){
+        if (1 == $row['user_isadmin']) {
+            return true;
+        }
+        return false;
+    }
+}

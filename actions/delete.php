@@ -1,6 +1,6 @@
 <?php
-if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
-    redirect('./');
+if (!isAdmin()) {
+    redirect("./");
 }
 $time = date('m/d/Y G:h');
 $page_string = 'current' . $_GET['type'] . 'page';

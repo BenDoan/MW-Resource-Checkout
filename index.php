@@ -10,7 +10,7 @@ require_once('config/app.php');
 require_once('functions.php');
 
 // Set current page
-if(isLoggedIn() && $_SESSION['user']['user_username'] == ADMIN_USERNAME){
+if(isLoggedIn() && isAdmin()){
     $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : 'adminPage';
 }else{
     $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : DEFAULT_VIEW;

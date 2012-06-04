@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 31, 2012 at 06:16 AM
+-- Generation Time: Jun 04, 2012 at 05:51 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_username` varchar(50) NOT NULL,
   `user_password` varchar(50) NOT NULL,
   `user_email` varchar(100) NOT NULL,
+  `user_isadmin` tinyint(1) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
@@ -169,12 +170,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_username`, `user_password`, `user_email`) VALUES
-(1, 'Tracy', 'Moody', 'tmoody', '5f4dcc3b5aa765d61d8327deb882cf99', 'tmoody@example.com'),
-(2, 'Chris', 'Ramey', 'cramey', '02d8c4ac323c5df679077f020f170453', 'cramey@example.com'),
-(5, 'Ben', 'Doan', 'simcaster', '5f4dcc3b5aa765d61d8327deb882cf99', 'ben@simcaster.net'),
-(4, 'Ben', 'Doan', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'ben@simcaster.net'),
-(8, 'First', 'Last', 'username', 'b01abf84324066bdb4eed4d5bf20f887', 'email@email.com');
+INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_username`, `user_password`, `user_email`, `user_isadmin`) VALUES
+(1, 'Tracy', 'Moody', 'tmoody', '5f4dcc3b5aa765d61d8327deb882cf99', 'tmoody@example.com', 0),
+(2, 'Chris', 'Ramey', 'cramey', '02d8c4ac323c5df679077f020f170453', 'cramey@example.com', 0),
+(5, 'Ben', 'Doan', 'simcaster', '5f4dcc3b5aa765d61d8327deb882cf99', 'bendoan5@gmail.com', 0),
+(4, 'Admin', '', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'ben@simcaster.net', 1),
+(8, 'First', 'Last', 'username', 'b01abf84324066bdb4eed4d5bf20f887', 'email@email.com', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

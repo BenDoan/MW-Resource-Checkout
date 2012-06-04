@@ -1,18 +1,8 @@
 <?php
-if ($_SESSION['user']['user_username'] != ADMIN_USERNAME) {
+if (!isAdmin()) {
     redirect('./');
 }
 ?>
-<style>
-#nav ul {
-display:none;
-    }
-
-    #userinfo {
-        padding-top:14px;
-    }
-</style>
-
 <script type="text/javascript">
 $('#myTab').tab('show')
 
@@ -86,6 +76,7 @@ if (isset($type)) {
     $_SESSION['tab'] = $type;
 }
 ?>
+//replace this with a loop
 <div class="span10 columns">
     <h1>Admin Panel</h1>
     <ul class="nav nav-tabs">

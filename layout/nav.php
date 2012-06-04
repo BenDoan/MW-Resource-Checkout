@@ -12,6 +12,10 @@ foreach($pages as $name => $p) {
 	$class = ($p == $CURR_PAGE) ? 'current' : '';
 	echo "<li class=\"$class\"><a href=\"./?p=$p\">$name</a></li>";
 }
+if (isAdmin()) {
+	$class = ('adminPage' == $CURR_PAGE) ? 'current' : '';
+	echo "<li class=\"$class\"><a href=\"./?p=adminPage\">Control Panel</a></li>";
+}
 echo '</ul>';
 ?>
 <div id="userinfo">
