@@ -28,8 +28,7 @@ if(isLoggedIn() ||
 	if($action == null) {
 		require_once('template.php');
 	} else {
-		$file = "actions/$action.php";
-		loadFile($file);
+		loadFile("actions/$action.php");
 	}
 } else { // Otherwise, force them to login
 	redirect('./?p=login','Please login.');
