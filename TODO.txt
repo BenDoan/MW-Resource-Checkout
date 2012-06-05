@@ -1,8 +1,7 @@
-* write signup email
 * change admin password and name
-    * mabye add a row to the users table for admin status
 * change schema on production site
     * added user_email to users table as a 100 char varchar
+    * added user_isadmin to users table as tinyint
 * talk about open sourcing this project
-    * issue: database info
+    * issue: database info in repo
 * check with Mr. Ramey about password reset security

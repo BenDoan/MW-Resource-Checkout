@@ -6,9 +6,7 @@ require_once('xmlToArrayParser.php');
 require_once('User.php');
 require_once('../config/db.php');
 require_once('../functions.php');
-
 define('EMAIL_SUBJECT', 'MW Resource Checkout');
-define('EMAIL_MESSAGE', 'test message lalalalalalalalalalalalalaalalalaa');
 
 if(isset($_GET['action'])){
 	if($_GET['action'] == "generate"){
@@ -16,7 +14,7 @@ if(isset($_GET['action'])){
 		foreach($users as $user){
 			addUser($user);
 			//TODO: test email
-            mail($user->email, EMAIL_SUBJECT, EMAIL_MESSAGE);
+            mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password));
 		}
 	}
 }
@@ -85,6 +83,29 @@ function generateUsers(){
 	}
 	return $users;
 
+}
+
+// returns a signup email based on the username and password supplied
+function genSignupEmail($username, $password){
+    $reg_email = "
+    <h3>Welcome to Millard West Resource Checkout</h3>
+
+    <p>
+    Your new login information is:
+        Username: $username
+        Password: $password
+    </p>
+
+    <p>Please change your password the first time you login.</p>
+
+    <p>To do this:</p>
+    <ul>
+        <li>Go to the settings tab
+        <li>Type in your current password
+        <li>Enter your new password twice
+    </ul>
+    ";
+    return $reg_email;
 }
 ?>
 <a href = "reg.php?action=generate">Generate Users</a>

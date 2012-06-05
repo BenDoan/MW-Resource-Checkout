@@ -6,7 +6,7 @@ $conn = new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 switch ($confirmAction) {
     case 'cancel':
         if(isset($schedule_id) && $schedule_id!="") {
-            print genCancelForm($schedule_id);
+            print getCancelForm($schedule_id);
         }else{
             redirect('./?p=404');
         }
@@ -24,12 +24,18 @@ switch ($confirmAction) {
                 $half = (fmod($schedule_block,10)==1) ? "first half": "second half";
                 $block = ($schedule_block > 10) ? floor($schedule_block/10): $schedule_block;
                 $date = date("m/d/Y", strtotime($schedule_date));
-                print genReserveForm($half, $block, $date, $schedule_block,$schedule_resource_id, $schedule_date);
+                print getReserveForm($half, $block, $date, $schedule_block,$schedule_resource_id, $schedule_date);
         }// the isAllowed function redirects if it fails
         break;
 
     case 'delete':
-        if (isset($type) && isset($page) && (isset($user) || isset($request) || isset($resource) || isset($comment) || isset($rType) )) {
+        if (isset($type) &&
+            isset($page) &&
+                (isset($user) ||
+                isset($request) ||
+                isset($resource) ||
+                isset($comment) ||
+            isset($rType) )) {
             $args = "";
             $page = $_GET['page'];
             switch ($type) {
@@ -53,7 +59,7 @@ switch ($confirmAction) {
                     $args = "type=rType&type_id=$rType&page=$page";
                     break;
             }
-            print genDeleteForm($args, $type);
+            print getDeleteForm($args, $type);
         }
         break;
 
@@ -62,7 +68,7 @@ switch ($confirmAction) {
         break;
 }
 
-function genCancelForm($schedule_id){
+function getCancelForm($schedule_id){
     $cancelForm = '
     <div class="confirm">
         <h3>Confirm Delete</h3>
@@ -77,7 +83,7 @@ function genCancelForm($schedule_id){
     return $cancelForm;
 }
 
-function genReserveForm($half, $block, $date, $schedule_block,$schedule_resource_id, $schedule_date){
+function getReserveForm($half, $block, $date, $schedule_block,$schedule_resource_id, $schedule_date){
     $reserveForm = '
     <div class="confirm">
         <h3>Confirm Reserve</h3>
@@ -98,7 +104,7 @@ function genReserveForm($half, $block, $date, $schedule_block,$schedule_resource
     return $reserveForm;
 }
 
-function genDeleteForm($args, $type){
+function getDeleteForm($args, $type){
     $deleteForm = '
     <div class="confirm">
         <h3>Confirm Delete</h3>

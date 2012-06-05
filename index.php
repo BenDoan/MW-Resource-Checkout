@@ -15,7 +15,35 @@ if(isLoggedIn() && isAdmin()){
 }else{
     $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : DEFAULT_VIEW;
 }
-$action = isset($_GET['action']) ? $_GET['action'] : null;
+
+$userAllowedActions = Array(
+    'addComment',
+    'authenticate',
+    'cancel',
+    'editUserSettings',
+    'reserve',
+    'resetPassword');
+
+$action = null;
+if (isset($_SESSION['user'])) {
+    if (isAdmin()) {
+        if (isset($_GET['action'])) {
+            $action = $_GET['action'];
+        }
+    }else{
+        if (isset($_GET['action'])) {
+            if (in_array($_GET['action'], $userAllowedActions, true)) {
+                $action = $_GET['action'];
+            }
+        }
+    }
+}else{
+    if (isset($_GET['action'])) {
+        if (in_array($_GET['action'], $UnregisteredUserAllowedActions, true)) {
+            $action = $_GET['action'];
+        }
+    }
+}
 
 // If user is logged in, or is trying to login, let them
 if(isLoggedIn() ||
