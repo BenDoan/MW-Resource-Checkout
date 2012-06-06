@@ -1,8 +1,3 @@
-<style type="text/css">
-#nav ul {
-    display:none;
-}
-</style>
 <h1 style="text-align:left;">Login</h1>
 <form action="./?action=authenticate" method="post">
     <fieldset>

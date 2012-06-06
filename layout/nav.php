@@ -8,13 +8,16 @@ $pages = array(
 
 // Display pages in <ul>
 echo '<ul>';
-foreach($pages as $name => $p) {
-	$class = ($p == $CURR_PAGE) ? 'current' : '';
-	echo "<li class=\"$class\"><a href=\"./?p=$p\">$name</a></li>";
-}
-if (isAdmin()) {
-	$class = ('adminPage' == $CURR_PAGE) ? 'current' : '';
-	echo "<li class=\"$class\"><a href=\"./?p=adminPage\">Admin Panel</a></li>";
+if (isLoggedIn()) {
+    foreach($pages as $name => $p) {
+        $class = ($p == $CURR_PAGE) ? 'current' : '';
+        echo "<li class=\"$class\"><a href=\"./?p=$p\">$name</a></li>";
+    }
+
+    if (isAdmin()) {
+        $class = ('adminPage' == $CURR_PAGE) ? 'current' : '';
+        echo "<li class=\"$class\"><a href=\"./?p=adminPage\">Admin Panel</a></li>";
+    }
 }
 echo '</ul>';
 ?>

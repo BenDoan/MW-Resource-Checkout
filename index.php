@@ -24,6 +24,10 @@ $userAllowedActions = Array(
     'reserve',
     'resetPassword');
 
+$unregisteredUserAllowedActions = Array(
+    'resetPassword',
+    'authenticate');
+
 $action = null;
 if (isset($_SESSION['user'])) {
     if (isAdmin()) {
@@ -39,7 +43,7 @@ if (isset($_SESSION['user'])) {
     }
 }else{
     if (isset($_GET['action'])) {
-        if (in_array($_GET['action'], $UnregisteredUserAllowedActions, true)) {
+        if (in_array($_GET['action'], $unregisteredUserAllowedActions, true)) {
             $action = $_GET['action'];
         }
     }
