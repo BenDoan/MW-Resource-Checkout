@@ -1,0 +1,11 @@
+<files "log.txt">
+    DENY from all
+</files>
+
+<files "functions.php">
+    DENY from all
+</files>
+
+<files "template.php">
+    DENY from all
+</files>
