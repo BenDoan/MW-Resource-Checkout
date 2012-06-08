@@ -5,9 +5,9 @@ session_start();
 $time = date('m/d/Y G:h');
 
 // Load configuration files
+require_once('functions.php');
 require_once('config/db.php');
 require_once('config/app.php');
-require_once('functions.php');
 
 // Set current page
 if(isLoggedIn() && isAdmin()){

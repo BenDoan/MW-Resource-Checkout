@@ -18,9 +18,8 @@ if (isset($_GET['key'])) {
         redirect("./?p=login", "Your new password has been emailed to you");
     }
 }elseif (isUser($username)) {
-    $cur_url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
     $key = md5($salt . $username);
-    $resetLink = "$cur_url&key=$key&username=$username";
+    $resetLink = getUrl() . "&key=$key&username=$username";
     $message = "
 <html>
 <p>You, or somone who thinks they are you, have requested a password reset for the username: <strong>$username</strong>.</p>
