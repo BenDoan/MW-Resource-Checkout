@@ -263,7 +263,14 @@ function genPassword($length){
     return $newPass;
 }
 
+// returns true if the current user is an admin
+// returns false if the user is not, or if the user
+// is not logged in
 function isAdmin(){
+    if (!isset($_SESSION['user'])) {
+        return false;
+    }
+
 	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 	$sql = "SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'";
     $results = $conn->query($sql);
@@ -276,10 +283,13 @@ function isAdmin(){
     }
 }
 
+// returns the current url
 function getUrl(){
     return (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 }
 
+// returns the base url:
+// ex: localhost, google.com
 function getBaseUrl(){
     return $_SERVER['SERVER_NAME'];
 }

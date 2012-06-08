@@ -1,17 +1,12 @@
 <?php
-//returns the name of the resource type matching $id
-function getResourceTypeName($id){
-	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-	$sql = "SELECT * FROM types WHERE type_id='$id'";
-    $results = $conn->query($sql);
+session_start();
 
-    while($row = $results->fetch_assoc()){
-        return $row['type_name'];
-    }
+if (!isset($_SESSION['user'])) {
+    die();
 }
 
-session_start();
-include 'config/db.php';
+require_once('config/db.php');
+require_once('functions.php');
 $today=date('Y-m-d');
 
 $currentUser = $_SESSION['user']['user_id'];
