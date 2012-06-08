@@ -8,12 +8,12 @@
 		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
 		<script type='text/javascript' src='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.min.js'></script>
-        <script type="text/javascript" src="bootstrap/js/bootstrap-tab.js"></script>
-        <script type="text/javascript" src="bootstrap/js/bootstrap-alert.js"></script>
-        <script type="text/javascript" src="bootstrap/js/bootstrap-typeahead.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-tab.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-alert.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-typeahead.min.js"></script>
 		<script type="text/javascript" src="resourcecheckout.js.php"></script>
 
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 		<link rel='stylesheet' type='text/css' href='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.css' />
 		<link rel='stylesheet' type='text/css' href='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.print.css' media='print' />
 		<link rel="stylesheet" type="text/css" href="js/css/custom-theme/datepicker.css"/>
