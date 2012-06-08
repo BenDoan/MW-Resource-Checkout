@@ -1,8 +1,11 @@
 <?php
 extract($_POST);
+
+$salt = "9cd6ce28a6092be779a682f7ce38357c";
+
 $from = "MWCheckout@westwildcats.org";
 if (isset($_GET['key'])) {
-    if ($_GET['key'] ===  md5($_GET['username'])) {
+    if ($_GET['key'] ===  md5($salt . $_GET['username'])) {
         $newPass = genPassword(9);
         changeUserPassword(getUserId($_GET['username']), $newPass);
         $message = "
@@ -16,7 +19,7 @@ if (isset($_GET['key'])) {
     }
 }elseif (isUser($username)) {
     $cur_url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-    $key = md5($username);
+    $key = md5($salt . $username);
     $resetLink = "$cur_url&key=$key&username=$username";
     $message = "
 <html>
@@ -29,7 +32,7 @@ if (isset($_GET['key'])) {
     $headers  = "From: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     mail(getUserEmail(getUserId($username)), "[MW Checkout] Reset your password", $message, $headers);
-    redirect("./?p=login", "An email will be sent to your email address shortly");
+    redirect("./?p=login", "A confirmation email will be sent to your email address shortly");
 }else{
     redirect("./?p=login", "An error has occured");
 }
