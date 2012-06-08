@@ -51,10 +51,9 @@ if (isset($_SESSION['user'])) {
 
 // If user is logged in, or is trying to login, let them
 if(isLoggedIn() ||
-    $action === 'authenticate' ||
+    in_array($action, $unregisteredUserAllowedActions, true) ||
     $CURR_PAGE === 'login' ||
-    $CURR_PAGE === 'resetPassword' ||
-    $action === 'resetPassword') {
+    $CURR_PAGE === 'resetPassword') {
 
 	// If no action is specified
 	if($action == null) {
@@ -63,7 +62,7 @@ if(isLoggedIn() ||
 		loadFile("actions/$action.php");
 	}
 } else { // Otherwise, force them to login
-	redirect('./?p=login','Please login.');
+	redirect('./?p=login', $CURR_PAGE);
 }
 ob_flush(); // flushes the output buffer
 ?>

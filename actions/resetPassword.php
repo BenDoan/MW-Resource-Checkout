@@ -30,5 +30,6 @@ if (isset($_GET['key'])) {
     $headers .= "Content-type: text/html\r\n";
     mail(getUserEmail(getUserId($username)), "[MW Checkout] Reset your password", $message, $headers);
     redirect("./?p=login", "An email will be sent to your email address shortly");
+}else{
+    redirect("./?p=login", "An error has occured");
 }
-redirect("./", "An error has occured");
