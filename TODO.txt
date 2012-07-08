@@ -1,7 +1,7 @@
-* change admin password and name
-* change schema on production site
-    * added user_email to users table as a 100 char varchar
-    * added user_isadmin to users table as tinyint
-* talk about open sourcing this project
+* open source project
     * issue: database info in repo
-* check with Mr. Ramey about password reset security
+* change hashing algorithm to bcrypt or scrypt
+    * http://www.gregboggs.com/php-blowfish-random-salted-passwords/
+    * http://www.openwall.com/phpass/
+* Use PDO
+    *http://www.phptherightway.com/#databases-and-pdo

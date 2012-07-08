@@ -19,7 +19,7 @@ $(document).ready(function(){
 <?php
 
 // to add a page to the admin panel, put the php file into
-// views/admin and put the name of the file in this array
+// views/admin/ and put the name of the file into this array
 $pages = array(
     "info",
     "user",
