@@ -3,7 +3,7 @@ extract($_POST);
 
 $salt = "9cd6ce28a6092be779a682f7ce38357c";
 
-$from = "MWCheckout@westwildcats.org";
+$from = "noreply@westwildcats.org";
 if (isset($_GET['key'])) {
     if ($_GET['key'] ===  md5($salt . $_GET['username'])) {
         $newPass = genPassword(9);
