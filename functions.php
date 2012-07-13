@@ -37,59 +37,24 @@ function redirect($location, $message=null, $type="alert-success") {
 }
 
 //returns the resource identifier matching the resource id param
+//returns null if no matches are found
 function getResourceDesc($id){
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM resources WHERE resource_id={$id}";
-    $results = $conn->query($sql);
-
-    $resource_description = null;
-    while($row = $results->fetch_assoc()){
-        $resource_description = $row['resource_identifier'];
-    }
-    return $resource_description;
+    return sqlSelectOne("SELECT * FROM resources WHERE resource_id={$id}", 'resource_identifier');
 }
 
 //returns the username matching the id param
 function getUsername($id){
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_id={$id}";
-    $results = $conn->query($sql);
-
-    $username = "";
-    while($row = $results->fetch_assoc()){
-        $username = $row['user_username'];
-    }
-    $conn->close();
-    return $username;
+    return sqlSelectOne("SELECT * FROM users WHERE user_id={$id}", 'user_username');
 }
 
 //returns the user_id matching the username param
 function getUserId($user_name){
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_username='$user_name'";
-    $results = $conn->query($sql);
-
-    $user_id= "";
-    print $conn->error;
-    while($row = $results->fetch_assoc()){
-            $user_id= $row['user_id'];
-    }
-    $conn->close();
-    return $user_id;
+    return sqlSelectOne("SELECT * FROM users WHERE user_username='$user_name'", 'user_id');
 }
 
 //returns the name of the type with id $id
 function getTypeName($id){
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "SELECT * FROM types WHERE type_id={$id}";
-    $results = $conn->query($sql);
-
-    $name = "";
-    while($row = $results->fetch_assoc()){
-        $name = $row['type_name'];
-    }
-    $conn->close();
-    return $name;
+    return sqlSelectOne("SELECT * FROM types WHERE type_id={$id}", 'type_name');
 }
 
 //writes $line to the log file
@@ -232,7 +197,7 @@ function isUser($username){
     return true;
 }
 
-// changes a user's password
+//changes a user's password
 function changeUserPassword($user_id, $password){
     $md5_password = md5($password);
     $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -244,9 +209,9 @@ function changeUserPassword($user_id, $password){
     return 1;
 }
 
-// generates and returns a password randomly composed
-// of uper and lower case letters and numbers
-// of length $length
+//generates and returns a password randomly composed
+//of uper and lower case letters and numbers
+//of length $length
 function genPassword($length){
     $newPass = "";
     for ($i = 0; $i < $length; $i++) {
@@ -263,9 +228,9 @@ function genPassword($length){
     return $newPass;
 }
 
-// returns true if the current user is an admin
-// returns false if the user is not, or if the user
-// is not logged in
+//returns true if the current user is an admin
+//returns false if the user is not, or if the user
+//is not logged in
 function isAdmin(){
     if (!isset($_SESSION['user'])) {
         return false;
@@ -283,13 +248,13 @@ function isAdmin(){
     }
 }
 
-// returns the current url
+//returns the current url
 function getUrl(){
     return (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 }
 
-// returns the base url:
-// ex: localhost, google.com
+//returns the base url:
+//ex: localhost, google.com
 function getBaseUrl(){
     return $_SERVER['SERVER_NAME'];
 }
@@ -301,6 +266,33 @@ function sqlQuery($sql){
         $stmt = $DBH->prepare($sql);
         $stmt->bindParam(':id', filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT), PDO::PARAM_INT);
         $stmt->execute();
+    }catch(PDOException $e){
+        redirect('./', 'DB Error: ' . $e->getMessage());
+    }
+}
+
+function sqlSelect($sql){
+    try {
+        $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $STH = $DBH->query($sql);
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        return $STH;
+    }catch(PDOException $e){
+        redirect('./', 'DB Error: ' . $e->getMessage());
+    }
+}
+
+function sqlSelectOne($sql, $col){
+    try {
+        $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $STH = $DBH->query($sql);
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+
+        $result = null;
+        while($row = $STH->fetch()) {
+            $result = $row[$col];
+        }
+        return $result;
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }
