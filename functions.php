@@ -296,12 +296,12 @@ function getBaseUrl(){
 
 function sqlQuery($sql){
     try {
-        $DBH = new PDO("mysql:host=DB_HOST;dbname=$DB_NAME", $DB_USERNAME, $DB_PASSWORD);
+        $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
 
-        $stmt = $pdo->prepare($sql);
+        $stmt = $DBH->prepare($sql);
         $stmt->bindParam(':id', filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT), PDO::PARAM_INT);
         $stmt->execute();
     }catch(PDOException $e){
-        echo $e->getMessage();
+        redirect('./', 'DB Error: ' . $e->getMessage());
     }
 }
