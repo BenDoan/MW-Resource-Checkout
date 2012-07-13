@@ -293,3 +293,15 @@ function getUrl(){
 function getBaseUrl(){
     return $_SERVER['SERVER_NAME'];
 }
+
+function sqlQuery($sql){
+    try {
+        $DBH = new PDO("mysql:host=DB_HOST;dbname=$DB_NAME", $DB_USERNAME, $DB_PASSWORD);
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT), PDO::PARAM_INT);
+        $stmt->execute();
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}

@@ -13,15 +13,21 @@ if (isset($type)) {
     switch ($type) {
     case 'user':
         //delete user
-        $user_name = getUsername($user);
-        writeLineToLog("$time - Admin - Deleted user $user_name");
-        $sql = "DELETE FROM users WHERE user_id={$user}";
-        $results = $conn->query($sql);
+        //$user_name = getUsername($user);
+        //writeLineToLog("$time - Admin - Deleted user $user_name");
+        //$sql = "DELETE FROM users WHERE user_id={$user}";
+        //$results = $conn->query($sql);
 
-        //delete requests that match deleted user
-        $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-        $sql = "DELETE FROM schedule WHERE schedule_user_id={$user}";
-        $results = $conn->query($sql);
+        ////delete requests that match deleted user
+        //$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
+        //$sql = "DELETE FROM schedule WHERE schedule_user_id={$user}";
+        //$results = $conn->query($sql);
+        try{
+            sqlQuery("DELETE FROM users WHERE user_id=$user");
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
         break;
 
     case 'request':
