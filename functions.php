@@ -85,55 +85,35 @@ function printArray($array){
 
 //adds a user to the database, and logs the action
 function makeUser($firstname, $lastname, $username, $email, $password){
+    sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$password')");
     $time = date('m/d/Y G:h');
-
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $password = md5($password);
-    $sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$password')";
-    $results = $conn->query($sql);
     writeLineToLog("$time - Admin - Added user $username");
 }
 
 //adds a resource to the database, and logs the action
 function makeResource($rType, $details, $identifier, $blocktype){
+    sqlQuery("INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_blocktype) VALUES ('$rType','$details','$identifier','$blocktype')");
     $time = date('m/d/Y G:h');
-
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_blocktype) VALUES ('$rType','$details','$identifier','$blocktype')";
-    $results = $conn->query($sql);
     writeLineToLog("$time -Admin - Added resource $identifier");
 }
 
 //adds a request to the database, and logs the action
 function makeRequest($rType, $username, $date, $block){
+    sqlQuery("INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')");
     $time = date('m/d/Y G:h');
-
-	$timestamp = strtotime($date);
-	$date = ($date != "") ? date("Y-m-d", $timestamp) : date('Y-m-d');
-    $username = getUserId($username);
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')";
-    $results = $conn->query($sql);
     writeLineToLog("$time - Admin - Added request $rType");
 }
 
 //adds a request to the database, and logs the action
 function makeType($rType){
+    sqlQuery("INSERT INTO types (type_name) VALUES ('$rType')");
     $time = date('m/d/Y G:h');
-
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-    $sql = "INSERT INTO types (type_name) VALUES ('$rType')";
-    $results = $conn->query($sql);
     writeLineToLog("$time - Admin - Added type $rType");
 }
 
 //updates the current user data in SESSION
 function updateSessionUser(){
-	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-	$sql = "SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'";
-	$user = $conn->query($sql);
-    $user = $user->fetch_assoc();
-    $_SESSION['user'] = $user;
+    $_SESSION['user'] = sqlSelectOne("SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'", 'user');
 }
 
 //returns a slice of $array containing all entries that match $pattern
@@ -150,47 +130,31 @@ function getMatchingLines($pattern, $array){
 //returns an double scripted array containing all resource types -> type_name
 //& type_id
 function getRTypesArray(){
-	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-	$sql = "SELECT * FROM types";
-    $results = $conn->query($sql);
-
+    $STH = sqlSelect("SELECT * FROM types");
     $returnArray = Array();
-    while($row = $results->fetch_assoc()){
+    while($row = $STH->fetch()) {
         $rtype = Array();
         $rType['type_id'] = $row['type_id'];
         $rType['type_name'] = $row['type_name'];
         $returnArray[] = $rType;
     }
+
     return $returnArray;
 }
 
 //returns the name of the resource type matching $id
 function getResourceTypeName($id){
-	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-	$sql = "SELECT * FROM types WHERE type_id='$id'";
-    $results = $conn->query($sql);
-
-    while($row = $results->fetch_assoc()){
-        return $row['type_name'];
-    }
+    return sqlSelectOne("SELECT * FROM types WHERE type_id='$id'", 'type_name');
 }
 
 //returns the email of the user matching $id
 function getUserEmail($id){
-    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_id='$id'";
-    $results = $conn->query($sql);
-
-    while($row = $results->fetch_assoc()){
-        return $row['user_email'];
-    }
+    return sqlSelectOne("SELECT * FROM users WHERE user_id='$id'", 'user_email');
 }
 
 //returns true if the username matches a user
 function isUser($username){
-    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-    $sql = "SELECT * FROM users WHERE user_username='$username'";
-    $results = $conn->query($sql);
+    $results = sqlSelectOne("SELECT * FROM users WHERE user_username='$username'", 'user_username');
     if ($results === null) {
         return false;
     }
@@ -200,13 +164,7 @@ function isUser($username){
 //changes a user's password
 function changeUserPassword($user_id, $password){
     $md5_password = md5($password);
-    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-    $sql = "UPDATE users SET user_password='$md5_password' WHERE user_id='$user_id'";
-    $results = $conn->query($sql);
-    if ($results === null) {
-        return 0;
-    }
-    return 1;
+    sqlQuery("UPDATE users SET user_password='$md5_password' WHERE user_id='$user_id'");
 }
 
 //generates and returns a password randomly composed
@@ -234,16 +192,9 @@ function genPassword($length){
 function isAdmin(){
     if (!isset($_SESSION['user'])) {
         return false;
-    }
-
-	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-	$sql = "SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'";
-    $results = $conn->query($sql);
-
-    while($row = $results->fetch_assoc()){
-        if (1 == $row['user_isadmin']) {
-            return true;
-        }
+    }else if (sqlSelectOne("SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'", 'user_isadmin') == 1) {
+        return true;
+    }else{
         return false;
     }
 }
@@ -259,6 +210,8 @@ function getBaseUrl(){
     return $_SERVER['SERVER_NAME'];
 }
 
+//executes 1 sql statement
+//returns nothing
 function sqlQuery($sql){
     try {
         $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
@@ -271,6 +224,9 @@ function sqlQuery($sql){
     }
 }
 
+//executes an sql select statement and returns a
+//pdo object with the results
+//see the sqlSelectOne function for usage
 function sqlSelect($sql){
     try {
         $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
@@ -282,6 +238,8 @@ function sqlSelect($sql){
     }
 }
 
+//executes an sql select statement and returns
+//the [$col] of the first occurance
 function sqlSelectOne($sql, $col){
     try {
         $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);

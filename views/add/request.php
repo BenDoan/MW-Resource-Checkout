@@ -1,16 +1,12 @@
 <?php
 //adds users to typeahead user list
-$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM users";
-$results = $conn->query($sql);
-
 $data_source = "[";
-while($row = $results->fetch_assoc()){
+$STH = sqlSelect("SELECT * FROM users");
+while($row = $STH->fetch()) {
     extract($row);
     $data_source .= "\"$user_username\",";
 }
 $data_source .= "\"\"]";
-$conn->close();
 ?>
 
 <script type="text/javascript">
@@ -26,11 +22,9 @@ jQuery(document).ready(function() {
     <select name="rType">
         <?php
             //prints out resource types
-            $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-            $sql = "SELECT * FROM resources";
-            $results = $conn->query($sql);
+            $STH = sqlSelect("SELECT * FROM resources");
 
-            while($row = $results->fetch_assoc()){
+            while($row = $STH->fetch()) {
                 extract($row);
                 print "<option value=\"$resource_id\">$resource_identifier</option>";
             }

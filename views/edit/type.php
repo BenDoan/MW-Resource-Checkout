@@ -1,9 +1,6 @@
 <?php
-$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM types WHERE type_id={$_GET['type']}";
-$results = $conn->query($sql);
-
-while($row = $results->fetch_assoc()){
+$STH = sqlSelect("SELECT * FROM types WHERE type_id={$_GET['type']}");
+while($row = $STH->fetch()) {
     $type_name = $row['type_name'];
 }
 ?>

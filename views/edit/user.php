@@ -1,9 +1,6 @@
 <?php
-$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM users WHERE user_id={$_GET['user']}";
-$results = $conn->query($sql);
-
-while($row = $results->fetch_assoc()){
+$STH = sqlSelect("SELECT * FROM users WHERE user_id={$_GET['user']}");
+while($row = $STH->fetch()) {
     $firstname = $row['user_firstname'];
     $lastname = $row['user_lastname'];
     $username = $row['user_username'];

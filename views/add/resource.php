@@ -9,10 +9,8 @@
             <div class="controls">
                 <select name="rType">
                 	<?php
-                	$sql = $sql = "SELECT * FROM types";
-					$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
-					$result = $conn->query($sql);
-					while($row = $result->fetch_assoc()){
+                    $STH = sqlSelect("SELECT * FROM types");
+                    while($row = $STH->fetch()) {
 						extract($row);
 						echo '<option value="'.$type_id.'">'.$type_name.'</option>';
 					}

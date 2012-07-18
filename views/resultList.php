@@ -8,7 +8,6 @@ extract($_GET);
 
 // Make sure date exists in the url
 if (isset($date)){
-
 	$timestamp = strtotime($date);
 	// Use current date if no date was specified
 	$date = ($date != "") ? date("Y-m-d", $timestamp) : date('Y-m-d');
@@ -22,13 +21,11 @@ if (isset($date)){
 		if(isset($type) && $type!=""){
 			$sql= $sql." WHERE resource_type='$type'";
 		}
-		$conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
-		$results=$conn->query($sql);
 
-		// Put the resources into an array
-		while($row = $results->fetch_assoc()){
+        $STH = sqlSelect($sql);
+        while($row = $STH->fetch()) {
 			$resources[]=$row;
-		}
+        }
 
 		// If the date is valid and resources exist
 		if ($date != "0000-00-00" && isset($resources)){

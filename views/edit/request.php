@@ -1,14 +1,10 @@
 <!-- currently disabled -->
 <?php
-$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM users WHERE user_id={$_GET['request']}";
-$results = $conn->query($sql);
-
-while($row = $results->fetch_assoc()){
+$STH = sqlSelect("SELECT * FROM users WHERE user_id={$_GET['request']}");
+while($row = $STH->fetch()) {
     $firstname = $row['user_firstname'];
     $lastname = $row['user_lastname'];
 }
-$conn->close();
 ?>
 <form class="well" method="post" action="./?action=adminEditSettings">
     <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">

@@ -119,11 +119,8 @@ function getDeleteForm($args, $type){
 //checks to see if the user is allowed to make a reservation
 //uses the settings in the settings database table
 function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $schedule_user_id){
-    $sql = "SELECT * FROM settings";
-    $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
-    $results = $conn->query($sql);
-
-    while(($row = $results->fetch_assoc()) != null){
+    $STH = sqlSelect("SELECT * FROM settings");
+    while($row = $STH->fetch()) {
         extract($row);
         if($setting_type == "Number of Days Per Week"){
             $dayLimit = $setting_value;
@@ -157,14 +154,9 @@ function numReservations($schedule_date, $schedule_resource_id, $schedule_user_i
 
     $ids = join(',',$dates);
 
-
-    $sql = "SELECT Count(*) FROM schedule WHERE schedule_date IN ($ids) AND schedule_user_id='$schedule_user_id'";
-    // 						AND schedule_resource_id='$schedule_resource_id'";
-
-    $result=$conn->query($sql);
-
+    $STH = sqlSelect("SELECT Count(*) FROM schedule WHERE schedule_date IN ($ids) AND schedule_user_id='$schedule_user_id'");
     $counter = 0;
-    while(($row = $result->fetch_assoc()) != null){
+    while($row = $STH->fetch()) {
         foreach ($row as $value) {
             $counter =$value;
         }
@@ -188,9 +180,7 @@ function withinConsecDays($schedule_date, $schedule_resource_id, $schedule_user_
     $count = 1;
     while($count != 0){
         $sql = "SELECT COUNT(*) as 'num' FROM schedule WHERE schedule_user_id='$schedule_user_id' AND schedule_date='$dateToCheck'";
-        $results = $conn->query($sql);
-        $row = $results->fetch_assoc();
-        $count = $row['num'];
+        $count = sqlSelectOne("SELECT COUNT(*) as 'num' FROM schedule WHERE schedule_user_id='$schedule_user_id' AND schedule_date='$dateToCheck'", 'num');
         $counter += $count;
 
         $timestamp = strtotime($dateToCheck);

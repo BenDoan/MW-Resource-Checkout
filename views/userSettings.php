@@ -1,17 +1,13 @@
 <?php
-$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM users WHERE user_id={$_SESSION['user']['user_id']}";
-$results = $conn->query($sql);
-
+$STH = sqlSelect("SELECT * FROM users WHERE user_id={$_SESSION['user']['user_id']}");
 $firstname = "";
 $lastname = "";
 $email = "";
-while($row = $results->fetch_assoc()){
+while($row = $STH->fetch()) {
     $firstname = $row['user_firstname'];
     $lastname = $row['user_lastname'];
     $email = $row['user_email'];
 }
-$conn->close();
 ?>
 <form class="well" method="post" action="./?action=editUserSettings">
     Current Password (required)<br />

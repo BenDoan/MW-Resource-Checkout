@@ -1,13 +1,10 @@
 <?php
-$conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-$sql = "SELECT * FROM resources WHERE resource_id={$_GET['resource']}";
-$results = $conn->query($sql);
-
+$STH = sqlSelect("SELECT * FROM resources WHERE resource_id={$_GET['resource']}");
 $type = "";
 $details = "";
 $identifier = "";
 $blocktype = "";
-while($row = $results->fetch_assoc()){
+while($row = $STH->fetch()) {
     $type = $row['resource_type'];
     $details = $row['resource_details'];
     $identifier = $row['resource_identifier'];
