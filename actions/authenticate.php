@@ -35,4 +35,7 @@ function validateUser($username, $password){
 	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 	$sql="SELECT * FROM users WHERE user_username='$username' AND user_password='$password'";
 	return $conn->query($sql);
+
+	// Close Connection
+	$conn->close();
 }
