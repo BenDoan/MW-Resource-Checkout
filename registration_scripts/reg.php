@@ -99,11 +99,11 @@ function genSignupEmail($username, $password){
     <p>Please change your password the first time you login.</p>
 
     <p>To do this:</p>
-    <ul>
+    <ol>
         <li>Go to the settings tab
         <li>Type in your current password
         <li>Enter your new password twice
-    </ul>
+    </ol>
     ";
     return $reg_email;
 }

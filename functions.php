@@ -211,14 +211,14 @@ function getBaseUrl(){
 }
 
 //executes 1 sql statement
-//returns nothing
+//returns the number of affected rows
 function sqlQuery($sql){
     try {
         $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
 
         $stmt = $DBH->prepare($sql);
         $stmt->bindParam(':id', filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT), PDO::PARAM_INT);
-        $stmt->execute();
+        return $stmt->execute();
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }

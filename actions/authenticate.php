@@ -9,7 +9,7 @@ if(isset($_GET['logout'])) {
 // If the user is trying to logging in
 } elseif($username != '' && $password != '') {	// If a username AND password were entered
 	$user = validateUser($username, $password);
-	$user = $user->fetch_assoc();
+    $user = $user->fetch();
 	// User found
 	if($user != null) {
         $_SESSION['user'] = $user;
@@ -32,10 +32,5 @@ redirect($location,$message);
 // Return a result object
 function validateUser($username, $password){
 	$password = md5($password);
-	$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-	$sql="SELECT * FROM users WHERE user_username='$username' AND user_password='$password'";
-	return $conn->query($sql);
-
-	// Close Connection
-	$conn->close();
+	return sqlSelect("SELECT * FROM users WHERE user_username='$username' AND user_password='$password'");
 }

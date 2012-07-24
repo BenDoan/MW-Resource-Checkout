@@ -5,3 +5,6 @@
     * http://www.openwall.com/phpass/
 * Use PDO
     *http://www.phptherightway.com/#databases-and-pdo
+* delete type log
+* redirecting in admin panel
+* require email

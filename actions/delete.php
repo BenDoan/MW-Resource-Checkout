@@ -10,7 +10,6 @@ $deleted = '';
 
 extract($_GET);
 if (isset($type)) {
-    $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
     switch ($type) {
     case 'user':
         //delete user
@@ -47,34 +46,22 @@ if (isset($type)) {
 
     //TODO: this should be moved over to PDO
     case 'rType':
-        $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-        $sql = "SELECT * FROM resources WHERE resource_type={$type_id}";
-        $results = $conn->query($sql);
+        $STH = sqlSelect("SELECT * FROM resources WHERE resource_type={$type_id}");
 
-        while($row = $results->fetch_assoc()){
+        while($row = $STH->fetch()) {
             $resourceDesc = getResourceDesc($row['resource_id']);
             writeLineToLog("$time - Admin - Deleted resource $resourceDesc");
+            sqlQuery("DELETE FROM resources WHERE resource_id={$row['resource_id']}");
 
-            $sql = "DELETE FROM resources WHERE resource_id={$row['resource_id']}";
-            $results = $conn->query($sql);
-
-            //delete requests that match deleted resource
-            $sql = "DELETE FROM schedule WHERE schedule_resource_id={$row['resource_id']}";
-            $results = $conn->query($sql);
+            sqlQuery("DELETE FROM schedule WHERE schedule_resource_id={$row['resource_id']}");
         }
-
-        $results = $conn->query($sql);
-
-        $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-        $sql = "DELETE FROM types WHERE type_id={$type_id}";
-        $results = $conn->query($sql);
+        sqlQuery("DELETE FROM types WHERE type_id={$type_id}");
 
         $type_name = getTypeName($type_id);
         writeLineToLog("$time - Admin - Deleted type $type_name");
         $deleted = $type_name;
         break;
     }
-    $conn->close();
 }
 $_SESSION['tab'] = $type;
 $cap_type = ucfirst($type);
