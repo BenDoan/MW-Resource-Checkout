@@ -1,12 +1,3 @@
-<style>
-    #nav ul {
-        display:none;
-    }
-
-    #userinfo {
-        padding-top:14px;
-    }
-</style>
 <?php
 
 if (isset($_GET['type'])) {
@@ -30,4 +21,3 @@ if (isset($_GET['type'])) {
     }
 }
 ?>
-

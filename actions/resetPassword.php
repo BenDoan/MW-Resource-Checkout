@@ -33,5 +33,5 @@ if (isset($_GET['key'])) {
     mail(getUserEmail(getUserId($username)), "[MW Checkout] Reset your password", $message, $headers);
     redirect("./?p=login", "A confirmation email will be sent to your email address shortly");
 }else{
-    redirect("./?p=login", "An error has occured");
+    redirect("./?p=login", "The user: $username does not exist");
 }
