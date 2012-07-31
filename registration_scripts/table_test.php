@@ -25,6 +25,14 @@
 
 <tr>
 <td>
+<a href="mailto:kwclifford@mpsomaha.org" title="kwclifford@mpsomaha.org">Clifford, Cathy</a>
+</td>
+<td>Computer Science</td>
+<td>Computer Science Teacher</td>
+<td>715-6079</td></tr>
+
+<tr>
+<td>
 <a href="mailto:lrlukecart@mpsomaha.org" title="lrlukecart@mpsomaha.org">Lisa, Lukecart</a>
 </td>
 <td>English</td>

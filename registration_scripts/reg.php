@@ -31,7 +31,8 @@ function addUser($user){
 	}
 
 	//add new user to database
-	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password) VALUES ('$user->firstName', '$user->lastName', '$user->userName', 'md5($user->password')";
+    $md5_pass = md5($user->password);
+	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password, user_email) VALUES ('$user->firstName', '$user->lastName', '$user->userName', '$md5_password', '$user->email'";
 	if(!$conn->query($sql)){
 		echo 'Error #'.$conn->errorno. ': ', $conn->error;
 	}
