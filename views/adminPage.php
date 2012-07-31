@@ -25,7 +25,7 @@ $pages = array(
     "user",
     "request",
     "resource",
-    "resourceType",
+    "rType",
     "comment",
     "settings",
     "log");
@@ -38,7 +38,7 @@ $pages = array(
     foreach ($pages as $key) {
         if (isset($_SESSION['tab'])) {
             if ($_SESSION['tab'] == $key) {
-                print "<li class=\"active\"><a href=\"#rkey\" data-toggle=\"tab\">". ucfirst($key) . "</a></li>\n";
+                print "<li class=\"active\"><a href=\"#$key\" data-toggle=\"tab\">". ucfirst($key) . "</a></li>\n";
             }else {
                 print "<li><a href=\"#$key\" data-toggle=\"tab\">" . ucfirst($key) . "</a></li>\n";
             }

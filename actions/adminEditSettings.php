@@ -2,7 +2,6 @@
 if (!isAdmin()) {
     redirect("./");
 }
-$time = date('m/d/Y G:h');
 extract($_POST);
 switch ($type) {
     case 'user':
@@ -28,15 +27,23 @@ switch ($type) {
     case 'resource':
         sqlQuery("UPDATE resources SET resource_type='$resourcetype', resource_details='$details', resource_identifier='$identifier', resource_blocktype='$blocktype' WHERE resource_id='$resource'");
 
-        $resource_name = getResourceDesc($resource);
-        writeLineToLog("$time - Admin - Edited resource $resource_name");
+        writeLineToLog("$time - Admin - Edited resource $resource");
 
         $_SESSION['tab'] = $type;
         redirect('./', 'Resource saved');
         break;
 
+    case 'rType':
+        sqlQuery("UPDATE types SET type_name='$name' WHERE type_id='$typeid'");
+
+        writeLineToLog("$time - Admin - Edited type $typeid");
+
+        $_SESSION['tab'] = 'rType';
+        redirect('./', 'Type saved');
+        break;
+
     default:
-        // code...
+        redirect('./?p=404');
         break;
 }
 ?>

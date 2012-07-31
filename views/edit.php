@@ -1,23 +1,7 @@
 <?php
-
 if (isset($_GET['type'])) {
     $type = $_GET['type'];
-    switch ($type) {
-        case 'user':
-            include('edit/user.php');
-            break;
-
-        case 'resource':
-            include('edit/resource.php');
-            break;
-
-        case 'request':
-            include('edit/request.php');
-            break;
-
-        default:
-            redirect("./p=404");
-            break;
-    }
+    include("edit/$type.php");
+}else {
+    redirect("./p=404");
 }
-?>

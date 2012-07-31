@@ -53,6 +53,10 @@ while($row = $results->fetch_assoc()){
                 <i class=\"icon-trash icon-white\"></i>
                 delete
             </a>
+            <a href=\"./?p=edit&rType=$type_id&type=rType\" class=\" btn btn-small admindelete\">
+                <i class=\"icon-pencil icon-black\"></i>
+                edit
+            </a>
         </tr>
     ";
 }

@@ -2,7 +2,7 @@
 if (!isAdmin()) {
     redirect("./");
 }
-$time = date('m/d/Y G:h');
+$time = getTimestamp();
 $page_string = 'current' . $_GET['type'] . 'page';
 $page = $_GET['page'];
 $deleted = '';

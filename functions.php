@@ -86,28 +86,28 @@ function printArray($array){
 //adds a user to the database, and logs the action
 function makeUser($firstname, $lastname, $username, $email, $password){
     sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$password')");
-    $time = date('m/d/Y G:h');
+    $time = getTimestamp();
     writeLineToLog("$time - Admin - Added user $username");
 }
 
 //adds a resource to the database, and logs the action
 function makeResource($rType, $details, $identifier, $blocktype){
     sqlQuery("INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_blocktype) VALUES ('$rType','$details','$identifier','$blocktype')");
-    $time = date('m/d/Y G:h');
+    $time = getTimestamp();
     writeLineToLog("$time -Admin - Added resource $identifier");
 }
 
 //adds a request to the database, and logs the action
 function makeRequest($rType, $username, $date, $block){
     sqlQuery("INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')");
-    $time = date('m/d/Y G:h');
+    $time = getTimestamp();
     writeLineToLog("$time - Admin - Added request $rType");
 }
 
 //adds a request to the database, and logs the action
 function makeType($rType){
     sqlQuery("INSERT INTO types (type_name) VALUES ('$rType')");
-    $time = date('m/d/Y G:h');
+    $time = getTimestamp();
     writeLineToLog("$time - Admin - Added type $rType");
 }
 
@@ -254,4 +254,10 @@ function sqlSelectOne($sql, $col){
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }
+}
+
+//returns a time stamp suitable
+//for use in logs
+function getTimestamp(){
+    return date('m/d/Y G:h');
 }
