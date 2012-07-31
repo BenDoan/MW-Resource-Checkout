@@ -1,7 +1,6 @@
 <?php
 // Database constants needed to connect to DB
-require_once('functions.php');
-if (getBaseUrl() === "localhost") {
+if ($_SERVER['SERVER_NAME'] === "localhost") {
     define('DB_HOST','localhost');
     define('DB_NAME','resourcecheckout');
     define('DB_USERNAME','root');

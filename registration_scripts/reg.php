@@ -13,7 +13,6 @@ if(isset($_GET['action'])){
 		$users = generateUsers();
 		foreach($users as $user){
 			addUser($user);
-			//TODO: test email
             mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password));
 		}
 	}

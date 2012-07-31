@@ -17,7 +17,7 @@
 
 <tr>
 <td>
-<a href="mailto:cjramey@mpsomaha.org" title="cjramey@mpsomaha.org">Ramey, Chris</a>
+<a href="mailto:cjramey@gmail.com" title="cjramey@gmail.com">Ramey, Chris</a>
 </td>
 <td>Computer Science</td>
 <td>Computer Science Teacher</td>
