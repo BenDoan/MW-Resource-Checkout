@@ -16,7 +16,7 @@ if(isset($_GET['action'])){
 			addUser($user);
             $headers  = "From: $from\r\n";
             $headers .= "Content-type: text/html\r\n";
-            mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
+            //mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
 		}
 	}
 }
@@ -27,18 +27,14 @@ function addUser($user){
 	//check if current user already exists
 	$isNewUser = true;
 	while($currUser = $users->fetch_object()){
-		if($currUser->user_userName == $user->userName){
+		if($currUser->user_username == $user->username){
 			$isNewUser = false;
 		}
 	}
 
 	//add new user to database
     $md5_pass = md5($user->password);
-	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password, user_email) VALUES ('$user->firstName', '$user->lastName', '$user->userName', '$md5_password', '$user->email'";
-	if(!$conn->query($sql)){
-		echo 'Error #'.$conn->errorno. ': ', $conn->error;
-	}
-
+	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password, user_email) VALUES ('$user->firstName', '$user->lastName', '$user->username', '$md5_pass', '$user->email'";
 	//close database connection
 	$conn->close();
 }

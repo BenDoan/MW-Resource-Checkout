@@ -170,7 +170,7 @@ function changeUserPassword($user_id, $password){
 //generates and returns a password randomly composed
 //of uper and lower case letters and numbers
 //of length $length
-function genPassword($length){
+function genPassword($length=7){
     $newPass = "";
     for ($i = 0; $i < $length; $i++) {
         if (rand(0,1)){
