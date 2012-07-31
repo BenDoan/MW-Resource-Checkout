@@ -7,13 +7,16 @@ require_once('User.php');
 require_once('../config/db.php');
 require_once('../functions.php');
 define('EMAIL_SUBJECT', 'MW Resource Checkout');
+$from = "noreply@westwildcats.org";
 
 if(isset($_GET['action'])){
 	if($_GET['action'] == "generate"){
 		$users = generateUsers();
 		foreach($users as $user){
 			addUser($user);
-            mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password));
+            $headers  = "From: $from\r\n";
+            $headers .= "Content-type: text/html\r\n";
+            mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
 		}
 	}
 }
