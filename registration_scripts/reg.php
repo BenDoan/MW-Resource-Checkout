@@ -70,8 +70,8 @@ function generateUsers(){
 						$first = $lastAndFirst[1];
 						//create a username (first initial + lastname)
 						$username = strtolower($first[0] . $last);
-						//create a temporary password by taking the lastname plus a few random numbers
-						$password = genPassword();
+
+						$password = genPassword(7);
 						$currUser = new User($username, $first, $last, $password, $email);
 
 						$users[] = $currUser;
