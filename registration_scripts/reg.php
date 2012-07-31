@@ -16,7 +16,7 @@ if(isset($_GET['action'])){
 			addUser($user);
             $headers  = "From: $from\r\n";
             $headers .= "Content-type: text/html\r\n";
-            //mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
+            mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
 		}
 	}
 }
@@ -33,8 +33,12 @@ function addUser($user){
 	}
 
 	//add new user to database
-    $md5_pass = md5($user->password);
-	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password, user_email) VALUES ('$user->firstName', '$user->lastName', '$user->username', '$md5_pass', '$user->email'";
+    if ($isNewUser) {
+        $md5_pass = md5($user->password);
+        $sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password, user_email) VALUES ('$user->firstName', '$user->lastName', '$user->username', '$md5_pass', '$user->email')";
+        sqlQuery($sql);
+        print "made new user:" . $user->username . "<br />";
+    }
 	//close database connection
 	$conn->close();
 }
