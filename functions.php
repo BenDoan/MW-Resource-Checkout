@@ -99,6 +99,9 @@ function makeResource($rType, $details, $identifier, $blocktype){
 
 //adds a request to the database, and logs the action
 function makeRequest($rType, $username, $date, $block){
+	$date = date("Y-m-d", strtotime($date));
+    $username = getUserId($username);
+
     sqlQuery("INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')");
     $time = getTimestamp();
     writeLineToLog("$time - Admin - Added request $rType");
