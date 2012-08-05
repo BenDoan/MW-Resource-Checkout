@@ -19,7 +19,7 @@ switch ($type) {
         break;
 
     default:
-        // code...
+        redirect("./?p=404");
         break;
 }
 $cap_type = ucfirst($type);

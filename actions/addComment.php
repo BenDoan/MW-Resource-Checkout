@@ -1,6 +1,6 @@
 <?php
 $date = date('m/d/Y');
-$time = getTimestamp();
+$time = date('m/d/Y G:h');
 extract($_POST);
 $user_id=$_SESSION['user']['user_id'];
 

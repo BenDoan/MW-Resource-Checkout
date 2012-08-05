@@ -55,9 +55,9 @@ if (isset($type)) {
 
             sqlQuery("DELETE FROM schedule WHERE schedule_resource_id={$row['resource_id']}");
         }
+        $type_name = getTypeName($type_id);
         sqlQuery("DELETE FROM types WHERE type_id={$type_id}");
 
-        $type_name = getTypeName($type_id);
         writeLineToLog("$time - Admin - Deleted type $type_name");
         $deleted = $type_name;
         break;

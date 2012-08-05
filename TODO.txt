@@ -3,8 +3,3 @@
 * change hashing algorithm to bcrypt or scrypt
     * http://www.gregboggs.com/php-blowfish-random-salted-passwords/
     * http://www.openwall.com/phpass/
-* Use PDO
-    *http://www.phptherightway.com/#databases-and-pdo
-* delete type log
-* redirecting in admin panel
-* require email

@@ -38,6 +38,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>Resource</th>
+                <th>User</th>
                 <th>Date</th>
                 <th>Comment</th>
                 <th>Delete</th>
@@ -47,9 +48,11 @@ print "<table class=\"admintable table table-striped table-condensed\">
     ";
 while($row = $results->fetch_assoc()){
     extract($row);
+    $user = getUsername($comment_user_id);
     print "
         <tr>
             <td>" . getResourceDesc($comment_resource_id) . "</td>
+            <td>$user</td>
             <td>$comment_date</td>
             <td>$comment_message</td>
             <td>
