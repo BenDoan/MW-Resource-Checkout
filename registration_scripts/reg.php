@@ -92,7 +92,11 @@ function generateUsers(){
 function genSignupEmail($username, $password){
     $reg_email = "
     <h3>Welcome to Millard West Resource Checkout</h3>
-    <p>You can use this web app to checkout school resources such as computer labs and laptop carts.</p>
+    <ul>
+        <li>You can use this web app to checkout school resources
+        <li>This is the sole method for checking out laptop carts and computer labs
+        <li>The Media Center computers are <em>not</em> managed by this system
+    </ul>
 
     <p>
     Your new login information is:
