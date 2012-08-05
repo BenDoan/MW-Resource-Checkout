@@ -14,9 +14,6 @@ if(isset($_GET['action'])){
 		$users = generateUsers();
 		foreach($users as $user){
 			addUser($user);
-            $headers  = "From: $from\r\n";
-            $headers .= "Content-type: text/html\r\n";
-            //mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
 		}
 	}
 }
@@ -33,8 +30,15 @@ function addUser($user){
 	}
 
 	//add new user to database
-    $md5_pass = md5($user->password);
-	$sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password, user_email) VALUES ('$user->firstName', '$user->lastName', '$user->username', '$md5_pass', '$user->email'";
+    if ($isNewUser) {
+        $md5_pass = md5($user->password);
+        $sql = "INSERT INTO users (user_firstname, user_lastname, user_username, user_password, user_email) VALUES ('$user->firstName', '$user->lastName', '$user->username', '$md5_pass', '$user->email')";
+        sqlQuery($sql);
+        print "made new user:" . $user->username . "<br />";
+        $headers  = "From: $from\r\n";
+        $headers .= "Content-type: text/html\r\n";
+        mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
+    }
 	//close database connection
 	$conn->close();
 }
@@ -88,11 +92,14 @@ function generateUsers(){
 function genSignupEmail($username, $password){
     $reg_email = "
     <h3>Welcome to Millard West Resource Checkout</h3>
+    <p>You can use this web app to checkout school resources such as computer labs and laptop carts.</p>
 
     <p>
     Your new login information is:
-        Username: $username
-        Password: $password
+    <ul style=\"list-style-type:none;\">
+        <li>Username: $username
+        <li>Password: $password
+    </ul>
     </p>
 
     <p>Please change your password the first time you login.</p>
@@ -103,6 +110,8 @@ function genSignupEmail($username, $password){
         <li>Type in your current password
         <li>Enter your new password twice
     </ol>
+
+    <a href=\"http://i.westwildcats.org/checkout/\">MW Checkout</a>
     ";
     return $reg_email;
 }

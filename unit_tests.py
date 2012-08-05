@@ -12,9 +12,7 @@ def main():
     b.find_element_by_name("password").send_keys("password" + Keys.RETURN)
     time.sleep(0.2)
 
-    for x in range(10):
-        time.sleep(2)
-        makeTestUser()
+    makeTestUser()
 
     time.sleep(0.2)
 
