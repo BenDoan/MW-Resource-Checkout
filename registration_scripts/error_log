@@ -1,0 +1,1 @@
+[12-Jun-2012 13:48:05] PHP Fatal error:  Call to a member function fetch_assoc() on a non-object in /home/cjramey/public_html/westwildcats/live/intranet/checkout/functions.php on line 74
