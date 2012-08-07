@@ -69,7 +69,8 @@ function generateUsers(){
 						$last = $lastAndFirst[0];
 						$first = $lastAndFirst[1];
 						//create a username (first initial + lastname)
-						$username = strtolower($first[0] . $last);
+                        $user_exploded = explode("@", $email);
+						$username = $user_exploded[0];
 
 						$password = genPassword(7);
 						$currUser = new User($username, $first, $last, $password, $email);
