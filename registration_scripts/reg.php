@@ -37,14 +37,14 @@ function addUser($user){
         print "made new user:" . $user->username . "<br />";
         $headers  = "From: $from\r\n";
         $headers .= "Content-type: text/html\r\n";
-        mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
+        //mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
     }
 	//close database connection
 	$conn->close();
 }
 function generateUsers(){
 	//open the html table
-	$table = file_get_contents("table_test.php");
+	$table = file_get_contents("final_table.php");
 	//parse the html into nice arrays
 	$parser = new xmlToArrayParser($table);
 	$domObj = $parser->array;
