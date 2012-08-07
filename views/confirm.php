@@ -21,7 +21,17 @@ switch ($confirmAction) {
             isset($schedule_resource_id) &&
             $schedule_resource_id!="" &&
             isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $user_id)){
-                $half = (fmod($schedule_block,10)==1) ? "first half": "second half";
+                $half = Array();
+                $half[0] = 'full';
+                $schedule_block .= '';
+                if ($schedule_block.'length' == 2) {
+                    $half[0] = 'half';
+                    if ($schedule_block[0] == '1') {
+                        $half[1] = 'first half';
+                    }else{
+                        $half[1] = 'second half';
+                    }
+                }
                 $block = ($schedule_block > 10) ? floor($schedule_block/10): $schedule_block;
                 $date = date("m/d/Y", strtotime($schedule_date));
                 print getReserveForm($half, $block, $date, $schedule_block,$schedule_resource_id, $schedule_date);
@@ -87,10 +97,18 @@ function getReserveForm($half, $block, $date, $schedule_block,$schedule_resource
     $reserveForm = '
     <div class="confirm">
         <h3>Confirm Reserve</h3>
-        <p>
-            Are you sure you want to reserve this resource for the <strong>' . $half .
-                ' of block ' . $block . ' on ' . $date . '</strong>?
-        </p>
+        <p>';
+
+    if ($half[0] == 'half') {
+        $reserveForm .=
+            'Are you sure you want to reserve this resource for the <strong>' . $half[1] .
+                ' of block ' . $block . ' on ' . $date . '</strong>?';
+    }else {
+        $reserveForm .=
+            'Are you sure you want to reserve this resource for <strong>block '
+                . $block . ' on ' . $date . '</strong>?';
+    }
+        $reserveForm .= '</p>
         <form action="./?action=reserve" method="post">
             <input type="hidden" name="schedule_block" value="' . $schedule_block . '" />
             <input type="hidden" name="schedule_resource_id" value="' . $schedule_resource_id . '" />

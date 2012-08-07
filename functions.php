@@ -318,7 +318,6 @@ function blockToHuman($block){
         case 42:
             return "Block 4 second half";
             break;
-
         default:
             return "Error";
             break;
