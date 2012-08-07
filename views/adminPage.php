@@ -21,14 +21,14 @@ $(document).ready(function(){
 // to add a page to the admin panel, put the php file into
 // views/admin/ and put the name of the file into this array
 $pages = array(
-    "info",
-    "user",
-    "request",
-    "resource",
-    "rType",
-    "comment",
-    "settings",
-    "log");
+    array("info", "info"),
+    array("user", "user"),
+    array("request", "request"),
+    array("resource", "resource"),
+    array("rType", "Resource Type"),
+    array("comment", "comment"),
+    array("settings", "settings"),
+    array("log", "log"));
 
 ?>
 <div class="span10 columns">
@@ -37,16 +37,16 @@ $pages = array(
     <?php
     foreach ($pages as $key) {
         if (isset($_SESSION['tab'])) {
-            if ($_SESSION['tab'] == $key) {
-                print "<li class=\"active\"><a href=\"#$key\" data-toggle=\"tab\">". ucfirst($key) . "</a></li>\n";
+            if ($_SESSION['tab'] == $key[0]) {
+                print "<li class=\"active\"><a href=\"#$key[0]\" data-toggle=\"tab\">". ucfirst($key[1]) . "</a></li>\n";
             }else {
-                print "<li><a href=\"#$key\" data-toggle=\"tab\">" . ucfirst($key) . "</a></li>\n";
+                print "<li><a href=\"#$key[0]\" data-toggle=\"tab\">" . ucfirst($key[0]) . "</a></li>\n";
             }
         }else{
-            if (DEFAULT_ADMIN_PANEL_ITEM == $key) {
-                print "<li class=\"active\"><a href=\"#$key\" data-toggle=\"tab\">" . ucfirst($key) . "</a></li>\n";
+            if (DEFAULT_ADMIN_PANEL_ITEM == $key[0]) {
+                print "<li class=\"active\"><a href=\"#$key[0]\" data-toggle=\"tab\">" . ucfirst($key[1]) . "</a></li>\n";
             }else {
-                print "<li><a href=\"#$key\" data-toggle=\"tab\">". ucfirst($key) . "</a></li>\n";
+                print "<li><a href=\"#$key[0]\" data-toggle=\"tab\">". ucfirst($key[1]) . "</a></li>\n";
             }
         }
     }
@@ -57,23 +57,23 @@ $pages = array(
         <?php
         foreach ($pages as $key) {
             if (isset($_SESSION['tab'])) {
-                if ($_SESSION['tab'] == $key) {
-                    print "<div class=\"tab-pane active\" id=\"$key\">";
-                    require_once("admin/$key.php" );
+                if ($_SESSION['tab'] == $key[0]) {
+                    print "<div class=\"tab-pane active\" id=\"$key[0]\">";
+                    require_once("admin/$key[0].php" );
                     print "</div>";
                 }else{
-                    print "<div class=\"tab-pane\" id=\"$key\">";
-                    require_once("admin/$key.php" );
+                    print "<div class=\"tab-pane\" id=\"$key[0]\">";
+                    require_once("admin/$key[0].php" );
                     print "</div>";
                 }
             }else {
-                if ($key == DEFAULT_ADMIN_PANEL_ITEM) {
-                    print "<div class=\"tab-pane active\" id=\"$key\">";
-                    require_once("admin/$key.php" );
+                if ($key[0] == DEFAULT_ADMIN_PANEL_ITEM) {
+                    print "<div class=\"tab-pane active\" id=\"$key[0]\">";
+                    require_once("admin/$key[0].php" );
                     print "</div>";
                 }else{
-                    print "<div class=\"tab-pane\" id=\"$key\">";
-                    require_once("admin/$key.php" );
+                    print "<div class=\"tab-pane\" id=\"$key[0]\">";
+                    require_once("admin/$key[0].php" );
                     print "</div>";
                 }
             }
