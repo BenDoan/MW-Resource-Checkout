@@ -147,9 +147,9 @@ function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $sche
         }
     }
     if (numReservations($schedule_date, $schedule_resource_id, $schedule_user_id) > $dayLimit){
-        redirect('./?p=calendar', "You are not allowed to check out for more than $dayLimit consecutive days.");
+        redirect('./?p=calendar', "You are not allowed to check out resources for more than $dayLimit days in a week.");
     }elseif(!withinConsecDays($schedule_date, $schedule_resource_id, $schedule_user_id, $dayLimit)){
-        redirect('./?p=calendar', 'You may not check out more than one resource within '.($daysInRow +1).' days.');
+        redirect('./?p=calendar', 'You may not check out resources more than '.($daysInRow +1).' days in a row.');
     }
     return true;
 }
