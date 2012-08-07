@@ -277,3 +277,50 @@ function getRequestBlockType($request_id){
 function getResourceBlockType($resource_id){
     return sqlSelectOne("SELECT * FROM resources WHERE 'resource_id=$resource_id'",'resource_blocktype');
 }
+
+//changes the database notation for blocks
+//to human readable text
+function blockToHuman($block){
+    switch ($block) {
+        case 1:
+            return "Block 1";
+            break;
+        case 2:
+            return "Block 2";
+            break;
+        case 3:
+            return "Block 3";
+            break;
+        case 4:
+            return "Block 4";
+            break;
+        case 11:
+            return "Block 1 first half";
+            break;
+        case 12:
+            return "Block 1 second half";
+            break;
+        case 21:
+            return "Block 2 first half";
+            break;
+        case 22:
+            return "Block 2 second half";
+            break;
+        case 31:
+            return "Block 3 first half";
+            break;
+        case 32:
+            return "Block 3 second half";
+            break;
+        case 41:
+            return "Block 4 first half";
+            break;
+        case 42:
+            return "Block 4 second half";
+            break;
+
+        default:
+            return "Error";
+            break;
+    }
+}

@@ -53,12 +53,13 @@ while($row = $results->fetch_assoc()){
     $user_id = getUsername($schedule_user_id);
 
     if(time() <= strtotime($schedule_date)){
+        $human_block = blockToHuman($schedule_block);
         print "
             <tr>
             <td>$schedule_resource</td>
             <td>$user_id</td>
             <td>$schedule_date</td>
-            <td>$schedule_block</td>
+            <td>$human_block</td>
             <td>
             <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=request&request=$schedule_id&page=$page\"class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>
