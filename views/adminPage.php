@@ -18,8 +18,9 @@ $(document).ready(function(){
 
 <?php
 
-// to add a page to the admin panel, put the php file into
-// views/admin/ and put the name of the file into this array
+//to add a page to the admin panel, put the php file into
+//views/admin/ and put the name of the file into this array
+//filname then display name
 $pages = array(
     array("info", "info"),
     array("user", "user"),
@@ -29,7 +30,6 @@ $pages = array(
     array("comment", "comment"),
     array("settings", "settings"),
     array("log", "log"));
-
 ?>
 <div class="span10 columns">
     <h1>Admin Panel</h1>
