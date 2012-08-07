@@ -19,6 +19,7 @@ if (isset($date)){
 		// Search for resources of specified type, or all if type was not specified
 		$sql="SELECT * FROM resources";
 		if(isset($type) && $type!=""){
+            $type = getResourceTypeId($type);
 			$sql= $sql." WHERE resource_type='$type'";
 		}
 
@@ -56,7 +57,7 @@ if (isset($date)){
 			}
 			echo '</table>';
 		}else{
-			redirect('./?p=formSearch', 'You have entered invalid search parameter(s). Please try again.', 'alert-error');
+			//redirect('./?p=formSearch', 'You have entered invalid search parameter(s). Please try again.', 'alert-error');
 		}
 	}else{
 		redirect('./?p=formSearch', 'You have selected an invalid date. Please select a valid date no earlier than '.date('Y-m-d').'.', 'alert-error');

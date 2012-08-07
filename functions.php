@@ -150,6 +150,11 @@ function getResourceTypeName($id){
     return sqlSelectOne("SELECT * FROM types WHERE type_id='$id'", 'type_name');
 }
 
+//returns the id of the resource type matching $name
+function getResourceTypeId($name){
+    return sqlSelectOne("SELECT * FROM types WHERE type_name='$name'", 'type_id');
+}
+
 //returns the email of the user matching $id
 function getUserEmail($id){
     return sqlSelectOne("SELECT * FROM users WHERE user_id='$id'", 'user_email');
