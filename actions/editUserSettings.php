@@ -14,6 +14,7 @@ if (isAdmin()) {
             if ($newpass == $newpass2) {
                 $md5Pass = md5($newpass);
                 sqlQuery("UPDATE users SET user_password='$md5Pass' WHERE user_id='$user_id'");
+                updateSessionUser();
                 redirect('./?p=userSettings', 'Settings saved');
             }else{
                 redirect('./?p=userSettings', 'The two passwords you have entered do not match', 'alert-error');
