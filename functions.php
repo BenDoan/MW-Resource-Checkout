@@ -264,3 +264,16 @@ function sqlSelectOne($sql, $col){
 function getTimestamp(){
     return date('m/d/Y G:h');
 }
+
+//returns the blocktype of the resource
+//associated with the specified request
+function getRequestBlockType($request_id){
+    $resource_id = sqlSelectOne("SELECT * FROM schedule WHERE 'schedule_id=$request_id", 'schedule_resource_id');
+    return sqlSelectOne("SELECT * FROM resources WHERE 'resource_id=$resource_id'",'resource_blocktype');
+}
+
+//returns the blocktype of the resource
+//specified
+function getResourceBlockType($resource_id){
+    return sqlSelectOne("SELECT * FROM resources WHERE 'resource_id=$resource_id'",'resource_blocktype');
+}
