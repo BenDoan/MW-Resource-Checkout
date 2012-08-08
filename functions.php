@@ -116,7 +116,11 @@ function makeType($rType){
 
 //updates the current user data in SESSION
 function updateSessionUser(){
-    $_SESSION['user'] = sqlSelectOne("SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'", 'user');
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $sql = "SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'";
+    $user = $conn->query($sql);
+    $user = $user->fetch_assoc();
+    $_SESSION['user'] = $user;
 }
 
 //returns a slice of $array containing all entries that match $pattern
