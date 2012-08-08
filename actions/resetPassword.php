@@ -1,11 +1,13 @@
 <?php
 extract($_POST);
+$time = getTimestamp();
 
 $salt = "9cd6ce28a6092be779a682f7ce38357c";
 
 $from = "noreply@westwildcats.org";
 if (isset($_GET['key'])) {
     if ($_GET['key'] ===  md5($salt . $_GET['username'])) {
+        writeLineToLog("$time - $username - Reset password");
         $newPass = genPassword(9);
         changeUserPassword(getUserId($_GET['username']), $newPass);
         $message = "
