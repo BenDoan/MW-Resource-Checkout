@@ -34,12 +34,21 @@ function getNextEvent($results){
 	$block = ($schedule_block > 10) ? floor($schedule_block/10): $schedule_block;
 
     $resource_name = getResourceTypeName($resource_type);
-	$event = array(
-		'title'  =>	"$resource_name - $half of Block $block",
-		'start'	=>	$schedule_date,
-        'url' => './?p=currentRequests',
+    if ($resource_blocktype == 'Full') {
+        $event = array(
+            'title'  =>	"$resource_name - Block $block",
+            'start'	=>	$schedule_date,
+            'url' => './?p=currentRequests',
 
-	);
+        );
+    }else{
+        $event = array(
+            'title'  =>	"$resource_name - $half of Block $block",
+            'start'	=>	$schedule_date,
+            'url' => './?p=currentRequests',
+
+        );
+    }
 	return $event;
 }
 //
