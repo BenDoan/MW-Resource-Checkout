@@ -84,9 +84,12 @@ function printArray($array){
 }
 
 //adds a user to the database, and logs the action
-function makeUser($firstname, $lastname, $username, $email, $password){
-    sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$password')");
+function makeUser($firstname, $lastname, $username, $email){
+    $password = genPassword(7);
+    $md5_password = md5($password);
+    sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$md5_password')");
     $time = getTimestamp();
+    sendSignupEmail(getUserId($username), $password);
     writeLineToLog("$time - Admin - Added user $username");
 }
 
@@ -365,10 +368,11 @@ function genSignupEmail($username, $password){
     return $reg_email;
 }
 
-function sendSignupEmail(){
+function sendSignupEmail($user_id, $password){
+    define('EMAIL_SUBJECT', 'MW Resource Checkout');
     $from = "noreply@westwildcats.org";
     $headers  = "From: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
-    mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
-
+    //mail(getUserEmail($user_id), EMAIL_SUBJECT, genSignupEmail(getUsername($user_id), $password), $headers);
+    print genSignupEmail(getUsername($user_id), $password);
 }
