@@ -6,7 +6,6 @@ $time = getTimestamp();
 
 if (md5($curpass) == $_SESSION['user']['user_password']) {
     sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_email='$email' WHERE user_id='$user_id'");
-    writeLineToLog("$time - $user_username - Updated user information");
     updateSessionUser();
 
     if ($newpass != '' || $newpass2 != '') {
@@ -17,6 +16,7 @@ if (md5($curpass) == $_SESSION['user']['user_password']) {
             updateSessionUser();
             redirect('./?p=userSettings', 'Settings saved');
         }else{
+            writeLineToLog("$time - $user_username - Updated user information");
             redirect('./?p=userSettings', 'The two passwords you have entered do not match', 'alert-error');
         }
     }else{
