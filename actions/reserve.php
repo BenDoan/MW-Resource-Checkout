@@ -18,7 +18,7 @@ if ($row = $result->fetch_assoc()){
 			VALUES ('$schedule_date', '$schedule_block', '$schedule_resource_id', '$user_id')";
     $username = $_SESSION['user']['user_username'];
     $rDesc = getResourceDesc($schedule_resource_id);
-    writeLineToLog("$time - $username - Reserved $rDesc for block $schedule_block");
+    writeLineToLog("$time - $username - Reserved $rDesc for block $schedule_block on $schedule_date");
 	$result = $conn->query($sql);
 
 	// If failed...
