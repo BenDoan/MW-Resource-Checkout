@@ -2,6 +2,7 @@
 if (!isAdmin()) {
     redirect("./");
 }
+$time = getTimestamp();
 extract($_POST);
 switch ($type) {
     case 'user':

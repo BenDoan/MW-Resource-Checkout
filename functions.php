@@ -332,3 +332,43 @@ function blockToHuman($block){
             break;
     }
 }
+
+// returns a signup email based on the username and password supplied
+function genSignupEmail($username, $password){
+    $reg_email = "
+    <h3>Welcome to Millard West Resource Checkout</h3>
+    <ul>
+        <li>You can use this web app to checkout school resources
+        <li>This is the sole method for checking out laptop carts and computer labs
+        <li>The Media Center computers are <em>not</em> managed by this system
+    </ul>
+
+    <p>
+    Your new login information is:
+    <ul style=\"list-style-type:none;\">
+        <li>Username: $username
+        <li>Password: $password
+    </ul>
+    </p>
+
+    <p>Please change your password the first time you login.</p>
+
+    <p>To do this:</p>
+    <ol>
+        <li>Go to the settings tab
+        <li>Type in your current password
+        <li>Enter your new password twice
+    </ol>
+
+    <a href=\"http://i.westwildcats.org/checkout/\">MW Checkout</a>
+    ";
+    return $reg_email;
+}
+
+function sendSignupEmail(){
+    $from = "noreply@westwildcats.org";
+    $headers  = "From: $from\r\n";
+    $headers .= "Content-type: text/html\r\n";
+    mail($user->email, EMAIL_SUBJECT, genSignupEmail($user->username, $user->password), $headers);
+
+}
