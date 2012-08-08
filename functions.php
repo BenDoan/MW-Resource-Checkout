@@ -374,5 +374,4 @@ function sendSignupEmail($user_id, $password){
     $headers  = "From: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     mail(getUserEmail($user_id), EMAIL_SUBJECT, genSignupEmail(getUsername($user_id), $password), $headers);
-    print genSignupEmail(getUsername($user_id), $password);
 }

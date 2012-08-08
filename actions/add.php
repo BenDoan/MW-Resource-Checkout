@@ -24,5 +24,5 @@ switch ($type) {
 }
 $cap_type = ucfirst($type);
 $_SESSION['tab'] = $type;
-//redirect("./", "$cap_type successfully added");
+redirect("./", "$cap_type successfully added");
 ?>

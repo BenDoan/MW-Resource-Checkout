@@ -137,6 +137,9 @@ function getDeleteForm($args, $type){
 //checks to see if the user is allowed to make a reservation
 //uses the settings in the settings database table
 function isAllowed($schedule_resource_id, $schedule_block, $schedule_date, $schedule_user_id){
+    if (isAdmin()) {
+        return true;
+    }
     $STH = sqlSelect("SELECT * FROM settings");
     while($row = $STH->fetch()) {
         extract($row);
