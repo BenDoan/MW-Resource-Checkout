@@ -16,10 +16,10 @@ if (md5($curpass) == $_SESSION['user']['user_password']) {
             updateSessionUser();
             redirect('./?p=userSettings', 'Settings saved');
         }else{
-            writeLineToLog("$time - $user_username - Updated user information");
             redirect('./?p=userSettings', 'The two passwords you have entered do not match', 'alert-error');
         }
     }else{
+        writeLineToLog("$time - $user_username - Updated user information");
         redirect('./?p=userSettings', 'Settings saved');
     }
 }else{
