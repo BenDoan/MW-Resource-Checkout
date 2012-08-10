@@ -7,9 +7,10 @@ $salt = "9cd6ce28a6092be779a682f7ce38357c";
 $from = "noreply@westwildcats.org";
 if (isset($_GET['key'])) {
     if ($_GET['key'] ===  md5($salt . $_GET['username'])) {
+        $username = $_GET['username'];
         writeLineToLog("$time - $username - Reset password");
         $newPass = genPassword(9);
-        changeUserPassword(getUserId($_GET['username']), $newPass);
+        changeUserPassword(getUserId($username), $newPass);
         $message = "
 <p>Your new password for MW Checkout is: $newPass</p>
 <p>Please change it next time you log in.</p>
