@@ -14,6 +14,8 @@ if (isset($_GET['key'])) {
         $message = "
 <p>Your new password for MW Checkout is: $newPass</p>
 <p>Please change it next time you log in.</p>
+
+<a href=\"http://i.westwildcats.org/checkout/\">MW Checkout</a>
             ";
         $headers  = "From: $from\r\n";
         $headers .= "Content-type: text/html\r\n";
@@ -25,7 +27,7 @@ if (isset($_GET['key'])) {
     $resetLink = getUrl() . "&key=$key&username=$username";
     $message = "
 <html>
-<p>You, or somone who thinks they are you, have requested a password reset for the username: <strong>$username</strong>.</p>
+<p>You have requested a password reset for the username: <strong>$username</strong>.</p>
 <p>If you did not make this request, you may ignore this email.</p>
 <p>Visit this link to reset your password:</p>
 <p><a href=\"$resetLink\">$resetLink</a></p>
