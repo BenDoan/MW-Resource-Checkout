@@ -42,6 +42,7 @@ function addUser($user){
 	//close database connection
 	$conn->close();
 }
+
 function generateUsers(){
 	//open the html table
 	$table = file_get_contents("final_table.php");

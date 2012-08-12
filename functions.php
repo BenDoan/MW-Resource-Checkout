@@ -85,36 +85,40 @@ function printArray($array){
 
 //adds a user to the database, and logs the action
 function makeUser($firstname, $lastname, $username, $email){
+    $cur_user = $_SESSION['user']['user_username'];
     $password = genPassword(7);
     $md5_password = md5($password);
     sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$md5_password')");
     $time = getTimestamp();
     sendSignupEmail(getUserId($username), $password);
-    writeLineToLog("$time - Admin - Added user $username");
+    writeLineToLog("$time - $cur_user - Added user $username");
 }
 
 //adds a resource to the database, and logs the action
 function makeResource($rType, $details, $identifier, $blocktype){
+    $cur_user = $_SESSION['user']['user_username'];
     sqlQuery("INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_blocktype) VALUES ('$rType','$details','$identifier','$blocktype')");
     $time = getTimestamp();
-    writeLineToLog("$time -Admin - Added resource $identifier");
+    writeLineToLog("$time -$cur_user - Added resource $identifier");
 }
 
 //adds a request to the database, and logs the action
 function makeRequest($rType, $username, $date, $block){
+    $cur_user = $_SESSION['user']['user_username'];
 	$date = date("Y-m-d", strtotime($date));
     $username = getUserId($username);
 
     sqlQuery("INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')");
     $time = getTimestamp();
-    writeLineToLog("$time - Admin - Added request $rType");
+    writeLineToLog("$time - $cur_user - Added request $rType");
 }
 
 //adds a request to the database, and logs the action
 function makeType($rType){
+    $cur_user = $_SESSION['user']['user_username'];
     sqlQuery("INSERT INTO types (type_name) VALUES ('$rType')");
     $time = getTimestamp();
-    writeLineToLog("$time - Admin - Added type $rType");
+    writeLineToLog("$time - $cur_user - Added type $rType");
 }
 
 //updates the current user data in SESSION

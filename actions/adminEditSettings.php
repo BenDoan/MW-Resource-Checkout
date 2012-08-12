@@ -2,6 +2,7 @@
 if (!isAdmin()) {
     redirect("./");
 }
+$cur_user = $_SESSION['user']['user_username'];
 $time = getTimestamp();
 extract($_POST);
 switch ($type) {
@@ -9,7 +10,7 @@ switch ($type) {
         sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email' WHERE user_id='$userid'");
 
         $user_name = getUsername($userid);
-        writeLineToLog("$time - Admin - Edited user $user_name");
+        writeLineToLog("$time - $cur_user - Edited user $user_name");
 
         if ($newpass != '' || $newpass2 != '') {
             if ($newpass == $newpass2) {
@@ -28,7 +29,7 @@ switch ($type) {
     case 'resource':
         sqlQuery("UPDATE resources SET resource_type='$resourcetype', resource_details='$details', resource_identifier='$identifier', resource_blocktype='$blocktype' WHERE resource_id='$resource'");
 
-        writeLineToLog("$time - Admin - Edited resource $resource");
+        writeLineToLog("$time - $cur_user - Edited resource $resource");
 
         $_SESSION['tab'] = $type;
         redirect('./', 'Resource saved');
@@ -37,7 +38,7 @@ switch ($type) {
     case 'rType':
         sqlQuery("UPDATE types SET type_name='$name' WHERE type_id='$typeid'");
 
-        writeLineToLog("$time - Admin - Edited type $typeid");
+        writeLineToLog("$time - $cur_user - Edited type $typeid");
 
         $_SESSION['tab'] = 'rType';
         redirect('./', 'Type saved');

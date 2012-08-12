@@ -6,6 +6,7 @@ $time = getTimestamp();
 $page_string = 'current' . $_GET['type'] . 'page';
 $page = $_GET['page'];
 $deleted = '';
+$cur_user = $_SESSION['user']['user_username'];
 
 
 extract($_GET);
@@ -15,7 +16,7 @@ if (isset($type)) {
         //delete user
         $user_name = getUsername($user);
         $deleted = $user_name;
-        writeLineToLog("$time - Admin - Deleted user $user_name");
+        writeLineToLog("$time - $cur_user - Deleted user $user_name");
         sqlQuery("DELETE FROM users WHERE user_id=$user");
 
         ////delete requests that match deleted user
@@ -24,13 +25,13 @@ if (isset($type)) {
 
     case 'request':
         sqlQuery("DELETE FROM schedule WHERE schedule_id=$request");
-        writeLineToLog("$time - Admin - Deleted request $request");
+        writeLineToLog("$time - $cur_user - Deleted request $request");
         $deleted = $request;
         break;
 
     case 'resource':
         $resourceDesc = getResourceDesc($resource);
-        writeLineToLog("$time - Admin - Deleted resource $resourceDesc");
+        writeLineToLog("$time - $cur_user - Deleted resource $resourceDesc");
         sqlQuery("DELETE FROM resources WHERE resource_id={$resource}");
         $deleted = $resourceDesc;
 
@@ -40,7 +41,7 @@ if (isset($type)) {
 
     case 'comment':
         sqlQuery("DELETE FROM comments WHERE comment_id={$comment_id}");
-        writeLineToLog("$time - Admin - Deleted comment $comment_id");
+        writeLineToLog("$time - $cur_user - Deleted comment $comment_id");
         $deleted = $comment_id;
         break;
 
@@ -50,7 +51,7 @@ if (isset($type)) {
 
         while($row = $STH->fetch()) {
             $resourceDesc = getResourceDesc($row['resource_id']);
-            writeLineToLog("$time - Admin - Deleted resource $resourceDesc");
+            writeLineToLog("$time - $cur_user - Deleted resource $resourceDesc");
             sqlQuery("DELETE FROM resources WHERE resource_id={$row['resource_id']}");
 
             sqlQuery("DELETE FROM schedule WHERE schedule_resource_id={$row['resource_id']}");
@@ -58,7 +59,7 @@ if (isset($type)) {
         $type_name = getTypeName($type_id);
         sqlQuery("DELETE FROM types WHERE type_id={$type_id}");
 
-        writeLineToLog("$time - Admin - Deleted type $type_name");
+        writeLineToLog("$time - $cur_user - Deleted type $type_name");
         $deleted = $type_name;
         break;
     }
