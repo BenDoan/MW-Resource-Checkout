@@ -9,6 +9,6 @@
         redirect('./?p=grepResults');
     }else {
         $_SESSION['tab'] = 'log';
-        redirect('./', 'No results');
+        redirect('./', 'No results', 'btn-danger');
     }
 ?>
