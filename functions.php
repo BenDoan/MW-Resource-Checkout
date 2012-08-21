@@ -84,11 +84,11 @@ function printArray($array){
 }
 
 //adds a user to the database, and logs the action
-function makeUser($firstname, $lastname, $username, $email){
+function makeUser($firstname, $lastname, $username, $email, $isReadOnly){
     $cur_user = $_SESSION['user']['user_username'];
     $password = genPassword(7);
     $md5_password = md5($password);
-    sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password) VALUES ('$firstname', '$lastname', '$username', '$email', '$md5_password')");
+    sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password, user_isreadonly) VALUES ('$firstname', '$lastname', '$username', '$email', '$md5_password', '$isReadOnly')");
     $time = getTimestamp();
     sendSignupEmail(getUserId($username), $password);
     writeLineToLog("$time - $cur_user - Added user $username");
@@ -372,10 +372,25 @@ function genSignupEmail($username, $password){
     return $reg_email;
 }
 
+//sends a signup email to the specified user, containing
+//the specified password
 function sendSignupEmail($user_id, $password){
     define('EMAIL_SUBJECT', 'MW Resource Checkout');
     $from = "noreply@westwildcats.org";
     $headers  = "From: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     mail(getUserEmail($user_id), EMAIL_SUBJECT, genSignupEmail(getUsername($user_id), $password), $headers);
+}
+
+//returns true if the current user is a read only user, and
+//false if they are not
+function isReadOnly(){
+    if (!isset($_SESSION['user'])) {
+        return false;
+    }else if (sqlSelectOne("SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'", 'user_isreadonly') == 1) {
+        return true;
+    }else{
+        return false;
+    }
+
 }

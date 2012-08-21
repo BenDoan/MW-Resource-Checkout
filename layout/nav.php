@@ -3,7 +3,6 @@
 $pages = array(
 	'Home' => 'calendar',
 	'My Reservations' => 'currentRequests',
-    'Settings' => 'userSettings'
 );
 
 // Display pages in <ul>
@@ -12,6 +11,11 @@ if (isLoggedIn()) {
     foreach($pages as $name => $p) {
         $class = ($p == $CURR_PAGE) ? 'current' : '';
         echo "<li class=\"$class\"><a href=\"./?p=$p\">$name</a></li>";
+    }
+
+    if (!isReadOnly()) {
+        $class = ('userSettings' == $CURR_PAGE) ? 'current' : '';
+        echo "<li class=\"$class\"><a href=\"./?p=userSettings\">Settings</a></li>";
     }
 
     if (isAdmin()) {

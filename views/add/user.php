@@ -13,6 +13,8 @@
     <input type="text" class="input-xlarge" name="username"><br/>
     Email<br />
     <input type="text" class="input-xlarge" name="email"><br/>
+    read only
+    <input type="checkbox" name="readonly" /><br />
 
     <button type="submit" class="btn btn-success">Save</button>
     <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>

@@ -3,7 +3,12 @@ extract($_POST);
 
 switch ($type) {
     case 'user':
-        makeUser($firstname, $lastname, $username, $email);
+        if ($readonly === 'on') {
+            $readonly = 1;
+        }else {
+            $readonly = 0;
+        }
+        makeUser($firstname, $lastname, $username, $email, $readonly);
         break;
 
     case 'resource':

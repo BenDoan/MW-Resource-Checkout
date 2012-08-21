@@ -7,7 +7,12 @@ $time = getTimestamp();
 extract($_POST);
 switch ($type) {
     case 'user':
-        sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email' WHERE user_id='$userid'");
+        if ($readonly === 'on') {
+            $readonly = 1;
+        }else {
+            $readonly = 0;
+        }
+        sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$readonly' WHERE user_id='$userid'");
 
         $user_name = getUsername($userid);
         writeLineToLog("$time - $cur_user - Edited user $user_name");
