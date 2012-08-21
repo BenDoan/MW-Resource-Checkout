@@ -2,7 +2,6 @@
 // Pages to display in nav, in format ('Name' => 'QS param value')
 $pages = array(
 	'Home' => 'calendar',
-	'My Reservations' => 'currentRequests',
 );
 
 // Display pages in <ul>
@@ -16,6 +15,8 @@ if (isLoggedIn()) {
     if (!isReadOnly()) {
         $class = ('userSettings' == $CURR_PAGE) ? 'current' : '';
         echo "<li class=\"$class\"><a href=\"./?p=userSettings\">Settings</a></li>";
+        $class = ('userSettings' == $CURR_PAGE) ? 'current' : '';
+        echo "<li class=\"$class\"><a href=\"./?p=currentRequests\">My Reservations</a></li>";
     }
 
     if (isAdmin()) {

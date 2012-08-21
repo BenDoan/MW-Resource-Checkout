@@ -13,6 +13,9 @@ switch ($confirmAction) {
         break;
 
     case 'reserve':
+        if (isReadOnly()) {
+            redirect('./', 'You are not allowed to checkout resources', 'alert-error');
+        }
         $user_id=$_SESSION['user']['user_id'];
         if (isset($schedule_date) &&
             $schedule_date!="" &&
