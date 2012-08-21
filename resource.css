@@ -238,9 +238,3 @@ tr.hover .admindelete {
    animation-duration: 1s;
    opacity:1;
 }
-
-td.fc-widget-content {
-    /*height:250px important!;*/
-    /*overflow-y: auto;*/
-    /*overflow-x: hidden;*/
-}
