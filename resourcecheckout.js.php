@@ -54,6 +54,9 @@ function getNextEvent($results){
 //
 $events = array();
 for ($i = 0; $i < $numRows; $i++){
+    if ($i == 4) {
+        break;
+    }
     $events[] = getNextEvent($results);
 }
 
