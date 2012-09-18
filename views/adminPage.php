@@ -27,6 +27,7 @@ $pages = array(
     array("request", "request"),
     array("resource", "resource"),
     array("rType", "Resource Type"),
+    array("summary", "summary"),
     array("comment", "comment"),
     array("settings", "settings"),
     array("log", "log"));
