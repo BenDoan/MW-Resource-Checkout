@@ -1,5 +1,5 @@
 body {
-    background-color:pink;
+    background-color:white;
 }
 
 div#nav {
@@ -10,6 +10,10 @@ ul.nav-tabs {
     display:none;
 }
 
-h1 {
+form.summary-search-form {
+    display:none;
+}
+
+div#content > div > h1:first-child {
     display:none;
 }
