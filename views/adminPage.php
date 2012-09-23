@@ -44,7 +44,7 @@ $pages = array(
             if ($_SESSION['tab'] == $key[0]) {
                 print "<li class=\"active\"><a href=\"#$key[0]\" data-toggle=\"tab\">". ucfirst($key[1]) . "</a></li>\n";
             }else {
-                print "<li><a href=\"#$key[0]\" data-toggle=\"tab\">" . ucfirst($key[0]) . "</a></li>\n";
+                print "<li><a href=\"#$key[0]\" data-toggle=\"tab\">" . ucfirst($key[1]) . "</a></li>\n";
             }
         }else{
             if (DEFAULT_ADMIN_PANEL_ITEM == $key[0]) {
