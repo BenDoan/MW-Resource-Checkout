@@ -17,6 +17,9 @@ $(document).ready(function(){
 </script>
 
 <?php
+if (isset($_GET['date'])) {
+    $_SESSION['tab'] = 'summary';
+}
 
 //to add a page to the admin panel, put the php file into
 //views/admin/ and put the name of the file into this array
@@ -27,6 +30,7 @@ $pages = array(
     array("request", "request"),
     array("resource", "resource"),
     array("rType", "Resource Type"),
+    array("summary", "summary"),
     array("comment", "comment"),
     array("settings", "settings"),
     array("log", "log"));

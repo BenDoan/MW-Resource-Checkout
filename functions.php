@@ -47,6 +47,14 @@ function getUsername($id){
     return sqlSelectOne("SELECT * FROM users WHERE user_id={$id}", 'user_username');
 }
 
+// returns the full name of the user matching id
+function getFullName($id){
+    $firstname = sqlSelectOne("SELECT * FROM users WHERE user_id={$id}", 'user_firstname');
+    $lastname = sqlSelectOne("SELECT * FROM users WHERE user_id={$id}", 'user_lastname');
+
+    return $firstname . ' ' . $lastname;
+}
+
 //returns the user_id matching the username param
 function getUserId($user_name){
     return sqlSelectOne("SELECT * FROM users WHERE user_username='$user_name'", 'user_id');
@@ -164,6 +172,11 @@ function getResourceTypeName($id){
 //returns the id of the resource type matching $name
 function getResourceTypeId($name){
     return sqlSelectOne("SELECT * FROM types WHERE type_name='$name'", 'type_id');
+}
+
+//returns the id of the resource type matching $id
+function getResourceTypeIdFromResource($id){
+    return sqlSelectOne("SELECT * FROM resources WHERE resource_id='$id'", 'resource_type');
 }
 
 //returns the email of the user matching $id
