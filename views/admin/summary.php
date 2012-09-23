@@ -1,16 +1,17 @@
 <link media="print" rel="stylesheet" type="text/css" href="print.css"/>
-<form action="./?p=adminPage">
+<form action="./?p=adminPage" class="summary-search-form">
 <?php
 if (isset($_GET['date'])) {
-    print '<input type="text" name="date" value="'.$_GET['date'].'" />';
+    print '<input style="margin-right:5px;" type="text" name="date" value="'.$_GET['date'].'" />';
+    print '<input type="submit" class="btn btn-primary" />';
     print "<h1>Resources checked out for: {$_GET['date']}</h1>";
 }else {
     $today = date("m/d/Y");
-    print '<input type="text" name="date" value="'.$today.'" />';
+    print '<input style="margin-right:5px;" type="text" name="date" value="'.$today.'" />';
+    print '<input type="submit" class="btn btn-primary" />';
     print "<h1>Resources checked out for: $today</h1>";
 }
 ?>
-<input type="submit" class="btn btn-primary" />
 </form>
 <table class="table table-condensed table-striped">
 <tr>
