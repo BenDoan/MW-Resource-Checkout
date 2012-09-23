@@ -1,0 +1,15 @@
+body {
+    background-color:pink;
+}
+
+div#nav {
+    display:none;
+}
+
+ul.nav-tabs {
+    display:none;
+}
+
+h1 {
+    display:none;
+}
