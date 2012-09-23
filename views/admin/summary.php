@@ -27,7 +27,7 @@ if (isset($_GET['date'])) {
 }else{
     $today = date("Y-m-d");
 }
-$STH = sqlSelect("SELECT * FROM schedule WHERE schedule_date='$today'");
+$STH = sqlSelect("SELECT * FROM schedule WHERE schedule_date='$today' ORDER BY schedule_block ASC");
 while($row = $STH->fetch()) {
     print "<tr>";
     print "<td>" . getResourceTypeName(getResourceTypeIdFromResource($row['schedule_resource_id'])) . "</td>";
