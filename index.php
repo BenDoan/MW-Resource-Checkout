@@ -2,7 +2,6 @@
 ob_start(); // turns on output buffering
 session_start();
 
-
 // Load configuration files
 require_once('functions.php');
 require_once('config/db.php');

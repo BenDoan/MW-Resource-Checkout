@@ -12,7 +12,7 @@ $(document).ready(function(){
         },
         function() {
             $(this).removeClass("hover");
-    });
+        });
 });
 </script>
 
