@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Resource Checkout</title>
+        <meta charset="utf-8">
 
         <link rel="icon" type="image/ico" href="favicon.ico" />
 
