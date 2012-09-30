@@ -32,7 +32,7 @@ foreach($sliced_log as $x){
     print $x;
     print "<br />";
 }
-print "</pre>";
+print "</div>";
 
 print "<div class=\"pagination\">";
 
@@ -68,4 +68,3 @@ if($currentlogpage != $total_pages){
 
 print "</div>";
 ?>
-</div>
