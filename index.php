@@ -23,7 +23,8 @@ $userAllowedActions = Array(
     'cancel',
     'editUserSettings',
     'reserve',
-    'resetPassword');
+    'resetPassword',
+    'checkAvailability');
 
 $unregisteredUserAllowedActions = Array(
     'resetPassword',

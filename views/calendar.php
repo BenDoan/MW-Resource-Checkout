@@ -21,10 +21,19 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('.resource').change(function() {
-        $('.datediv').css('display', 'block');
+$date = "";
+$type = "";
+$('.resource').change(function() {
+    $('.datediv').css('display', 'block');
+    $date = $('.datediv').contents;
+});
+$('.date').change(function() {
+    $.ajax({
+        url: "./?action=checkAvailability&date=" + $date + "&type=" + $type,
+        cache: false
+    }).done(function(html) {
+        $('.datediv').append(html);
     });
-    $('.date').change(function() {
-        $('.blockdiv').css('display', 'block');
-    });
+    $('.blockdiv').css('display', 'block');
+});
 </script>
