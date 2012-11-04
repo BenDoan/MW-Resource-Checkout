@@ -241,6 +241,7 @@ function genPassword($length=7){
 //returns false if the user is not, or if the user
 //is not logged in
 function isAdmin(){
+    //printArray($_SESSION);
     if (!isset($_SESSION['user'])) {
         return false;
     }else if (sqlSelectOne("SELECT * FROM users WHERE user_id='{$_SESSION['user']['user_id']}'", 'user_isadmin') == 1) {
