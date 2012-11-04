@@ -36,6 +36,12 @@ function redirect($location, $message=null, $type="alert-success") {
 	header("Location:$location");
 }
 
+//returns a time stamp suitable
+//for use in logs
+function getTimestamp(){
+    return date('m/d/Y G:h');
+}
+
 //returns the resource identifier matching the resource id param
 //returns null if no matches are found
 function getResourceDesc($id){
@@ -92,13 +98,13 @@ function printArray($array){
 }
 
 //adds a user to the database, and logs the action
-function makeUser($firstname, $lastname, $username, $email, $isReadOnly){
+function makeUser($firstname, $lastname, $username, $email, $department, $isReadOnly){
     $cur_user = $_SESSION['user']['user_username'];
     $password = genPassword(7);
     $md5_password = md5($password);
-    sqlQuery("INSERT INTO users (user_firstname, user_lastname, user_username, user_email, user_password, user_isreadonly) VALUES ('$firstname', '$lastname', '$username', '$email', '$md5_password', '$isReadOnly')");
-    $time = getTimestamp();
+    sqlQuery("INSERT INTO users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$isReadOnly', user_department='$department'");
     sendSignupEmail(getUserId($username), $password);
+    $time = getTimestamp();
     writeLineToLog("$time - $cur_user - Added user $username");
 }
 
@@ -121,12 +127,20 @@ function makeRequest($rType, $username, $date, $block){
     writeLineToLog("$time - $cur_user - Added request $rType");
 }
 
-//adds a request to the database, and logs the action
+//adds a type to the database
 function makeType($rType){
     $cur_user = $_SESSION['user']['user_username'];
     sqlQuery("INSERT INTO types (type_name) VALUES ('$rType')");
     $time = getTimestamp();
     writeLineToLog("$time - $cur_user - Added type $rType");
+}
+
+//adds a department to the database
+function makeDepartment($department){
+    $cur_user = $_SESSION['user']['user_username'];
+    sqlQuery("INSERT INTO departments (department_name) VALUES ('$department')");
+    $time = getTimestamp();
+    writeLineToLog("$time - $cur_user - Added department $department");
 }
 
 //updates the current user data in SESSION
@@ -182,6 +196,11 @@ function getResourceTypeIdFromResource($id){
 //returns the email of the user matching $id
 function getUserEmail($id){
     return sqlSelectOne("SELECT * FROM users WHERE user_id='$id'", 'user_email');
+}
+
+//returns the name of the department matching $id
+function getDepartmentName($id){
+    return sqlSelectOne("SELECT * FROM departments WHERE department_id='$id'", 'department_name');
 }
 
 //returns true if the username matches a user
@@ -247,9 +266,7 @@ function getBaseUrl(){
 function sqlQuery($sql){
     try {
         $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
-
         $stmt = $DBH->prepare($sql);
-        $stmt->bindParam(':id', filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT), PDO::PARAM_INT);
         return $stmt->execute();
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
@@ -286,12 +303,6 @@ function sqlSelectOne($sql, $col){
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }
-}
-
-//returns a time stamp suitable
-//for use in logs
-function getTimestamp(){
-    return date('m/d/Y G:h');
 }
 
 //returns the blocktype of the resource

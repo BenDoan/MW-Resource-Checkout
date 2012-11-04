@@ -20,7 +20,7 @@ while($row = $STH->fetch()) {
 
 }
 ?>
-<form class="well" method="post" action="./?action=adminEditSettings">
+<form class="well" method="post" action="./?action=edit">
     <input type="hidden" name="resource" value="<?php print $_GET['resource']; ?>">
     <input type="hidden" name="type" value="resource">
     Type<br />

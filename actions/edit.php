@@ -12,7 +12,7 @@ switch ($type) {
         }else {
             $readonly = 0;
         }
-        sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$readonly' WHERE user_id='$userid'");
+        sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$readonly', user_department='$department' WHERE user_id='$userid'");
 
         $user_name = getUsername($userid);
         writeLineToLog("$time - $cur_user - Edited user $user_name");
@@ -21,13 +21,13 @@ switch ($type) {
             if ($newpass == $newpass2) {
                 $md5Pass = md5($newpass);
                 sqlQuery("UPDATE users SET user_password='$md5Pass' WHERE user_id='$userid'");
-                redirect('./', 'Settings saved');
+                redirect('./', 'User saved');
             }else{
                 redirect("./?p=edit&user=$userid&type=user", 'The two passwords you have entered do not match', 'alert-error');
             }
         }else{
             $_SESSION['tab'] = $type;
-            redirect('./', 'Settings saved');
+            redirect('./', 'User saved');
         }
         break;
 
@@ -47,6 +47,15 @@ switch ($type) {
 
         $_SESSION['tab'] = 'rType';
         redirect('./', 'Type saved');
+        break;
+
+    case 'department':
+        sqlQuery("UPDATE departments SET department_name='$name' WHERE department_id='$departmentid'");
+
+        writeLineToLog("$time - $cur_user - Edited department $departmentid");
+
+        $_SESSION['tab'] = 'department';
+        redirect('./', 'Department saved');
         break;
 
     default:

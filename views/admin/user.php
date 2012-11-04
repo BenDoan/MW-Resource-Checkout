@@ -40,6 +40,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Username</th>
+                <th>Department</th>
                 <th>Email</th>
                 <th>Actions</th>
             </tr>
@@ -48,11 +49,13 @@ print "<table class=\"admintable table table-striped table-condensed\">
     ";
 while($row = $results->fetch_assoc()){
     extract($row);
+    $department_name = getDepartmentName($user_department);
     print "
         <tr>
             <td>$user_firstname</td>
             <td>$user_lastname</td>
             <td>$user_username</td>
+            <td>$department_name</td>
             <td>$user_email</td>
             <td>
             <a name=\"$user_username\" href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=user&page=$page\" class=\" btn btn-small btn-danger admindelete\">

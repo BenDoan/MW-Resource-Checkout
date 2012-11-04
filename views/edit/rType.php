@@ -4,7 +4,7 @@ while($row = $STH->fetch()) {
     extract($row);
 }
 ?>
-<form class="well" method="post" action="./?action=adminEditSettings">
+<form class="well" method="post" action="./?action=edit">
     <input type="hidden" name="typeid" value="<?php print $type_id ?>">
     <input type="hidden" name="type" value="rType">
     Resource Type Name<br />

@@ -26,12 +26,13 @@ if (isset($_GET['date'])) {
 //filname then display name
 $pages = array(
     array("info", "info"),
-    array("user", "user"),
-    array("request", "request"),
-    array("resource", "resource"),
-    array("rType", "Resource Type"),
+    array("user", "users"),
+    array("request", "requests"),
+    array("resource", "resources"),
+    array("rType", "Resource Types"),
+    array("department", "Departments"),
     array("summary", "summary"),
-    array("comment", "comment"),
+    array("comment", "comments"),
     array("settings", "settings"),
     array("log", "log"));
 ?>
@@ -44,7 +45,7 @@ $pages = array(
             if ($_SESSION['tab'] == $key[0]) {
                 print "<li class=\"active\"><a href=\"#$key[0]\" data-toggle=\"tab\">". ucfirst($key[1]) . "</a></li>\n";
             }else {
-                print "<li><a href=\"#$key[0]\" data-toggle=\"tab\">" . ucfirst($key[0]) . "</a></li>\n";
+                print "<li><a href=\"#$key[0]\" data-toggle=\"tab\">" . ucfirst($key[1]) . "</a></li>\n";
             }
         }else{
             if (DEFAULT_ADMIN_PANEL_ITEM == $key[0]) {

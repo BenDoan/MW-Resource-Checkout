@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2012 at 05:51 AM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Generation Time: Oct 22, 2012 at 11:01 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -163,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_password` varchar(50) NOT NULL,
   `user_email` varchar(100) NOT NULL,
   `user_isadmin` tinyint(1) NOT NULL,
+  `user_isreadonly` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
@@ -170,12 +171,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_username`, `user_password`, `user_email`, `user_isadmin`) VALUES
-(1, 'Tracy', 'Moody', 'tmoody', '5f4dcc3b5aa765d61d8327deb882cf99', 'tmoody@example.com', 0),
-(2, 'Chris', 'Ramey', 'cramey', '02d8c4ac323c5df679077f020f170453', 'cramey@example.com', 0),
-(5, 'Ben', 'Doan', 'simcaster', '5f4dcc3b5aa765d61d8327deb882cf99', 'bendoan5@gmail.com', 0),
-(4, 'Admin', '', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'ben@simcaster.net', 1),
-(8, 'First', 'Last', 'username', 'b01abf84324066bdb4eed4d5bf20f887', 'email@email.com', 0);
+INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_username`, `user_password`, `user_email`, `user_isadmin`, `user_isreadonly`) VALUES
+(1, 'Tracy', 'Moody', 'tmoody', '5f4dcc3b5aa765d61d8327deb882cf99', 'tmoody@example.com', 0, 0),
+(2, 'Chris', 'Ramey', 'cramey', '02d8c4ac323c5df679077f020f170453', 'cramey@example.com', 0, 0),
+(5, 'Ben', 'Doan', 'simcaster', '5f4dcc3b5aa765d61d8327deb882cf99', 'bendoan5@gmail.com', 0, 0),
+(4, 'Admin', '', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'ben@simcaster.net', 1, 0),
+(8, 'First', 'Last', 'username', 'b01abf84324066bdb4eed4d5bf20f887', 'email@email.com', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
