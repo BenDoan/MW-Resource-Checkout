@@ -15,12 +15,21 @@
 </div>
 <div class="blockdiv" style="display:none;">
     <br />Choose the periods<br />
-    <div class="btn-group blocks" style="display:inline-block;">
+    <div class="btn-group fullblocks" style="display:none;">
         <a href="./?action=reserve" class="btn">1</a>
         <a href="./?action=reserve" class="btn">2</a>
         <a href="./?action=reserve" class="btn">3</a>
         <a href="./?action=reserve" class="btn">4</a>
-        <!-- ./?action=reserve&date=10/10/10&resource=1&block=1&new=1 -->
+    </div>
+    <div class="btn-group halfblocks" style="display:none;">
+        <a href="./?action=reserve" class="btn">1 1<sup>st</sup> half</a>
+        <a href="./?action=reserve" class="btn">1 2<sup>nd</sup> half</a>
+        <a href="./?action=reserve" class="btn">2 1<sup>st</sup> half</a>
+        <a href="./?action=reserve" class="btn">2 2<sup>nd</sup> half</a>
+        <a href="./?action=reserve" class="btn">3 1<sup>st</sup> half</a>
+        <a href="./?action=reserve" class="btn">3 2<sup>nd</sup> half</a>
+        <a href="./?action=reserve" class="btn">4 1<sup>st</sup> half</a>
+        <a href="./?action=reserve" class="btn">4 2<sup>nd</sup> half</a>
     </div>
 </div>
 <script type="text/javascript">
@@ -29,7 +38,6 @@ var type = "";
 function genReserverUrl(rType, block, date) {
     return "./?action=reserve&rType=" + rType + "&block=" + block + "&date=" + date;
 }
-
 
 $('.resource').change(function() {
     $('.datediv').css('display', 'block');
@@ -44,20 +52,38 @@ $('.date').change(function() {
         cache: false
     }).done(function(html) {
         var blockArray = $.parseJSON(html);
-        for ($i = 0; $i < blockArray.length; $i++) {
-            $('.blocks').children('a').each(function (){
-                if ($(this).text() == ($i + 1) && blockArray[$i] == false) {
-                    $(this).addClass('disabled');
+        if (blockArray[0] == 'full') {
+            for ($i = 0; $i < blockArray[1].length; $i++) {
+                $('.fullblocks').children('a').each(function (){
+                    if ($(this).text() == ($i + 1) && blockArray[1][$i] == false) {
+                        $(this).addClass('disabled');
+                    }
+                });
+            }
+            $('.fullblocks').children('a').each(function (){
+                if ($(this).hasClass('disabled')) {
+                    $(this).attr('href', "");
+                }else {
+                    $(this).attr('href', genReserverUrl(type, $(this).text(), date));
                 }
             });
-        }
-        $('.blocks').children('a').each(function (){
-            if ($(this).hasClass('disabled')) {
-                $(this).attr('href', "");
-            }else {
-                $(this).attr('href', genReserverUrl(type, $(this).text(), date));
+        }else {
+            for ($i = 0; $i < blockArray[1].length; $i++) {
+                $('.blocks').children('a').each(function (){
+                    if ($(this).text() == ($i + 1) && blockArray[1][$i] == false) {
+                        $(this).addClass('disabled');
+                    }
+                });
             }
-        });
+            $('.blocks').children('a').each(function (){
+                if ($(this).hasClass('disabled')) {
+                    $(this).attr('href', "");
+                }else {
+                    $(this).attr('href', genReserverUrl(type, $(this).text(), date));
+                }
+            });
+
+        }
     });
     $('.blockdiv').css('display', 'block');
 });
