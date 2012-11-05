@@ -38,6 +38,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
        <thead>
             <tr>
                 <th>Type</th>
+                <th>Blocktype</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -48,6 +49,7 @@ while($row = $results->fetch_assoc()){
     print "
         <tr>
             <td>$type_name</td>
+            <td>$type_blocktype</td>
             <td>
             <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=rType&rType=$type_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>

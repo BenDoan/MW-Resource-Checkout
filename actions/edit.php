@@ -41,7 +41,7 @@ switch ($type) {
         break;
 
     case 'rType':
-        sqlQuery("UPDATE types SET type_name='$name' WHERE type_id='$typeid'");
+        sqlQuery("UPDATE types SET type_name='$name', type_blocktype='$blocktype' WHERE type_id='$typeid'");
 
         writeLineToLog("$time - $cur_user - Edited type $typeid");
 

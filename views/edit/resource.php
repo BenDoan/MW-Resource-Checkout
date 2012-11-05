@@ -8,16 +8,6 @@ while($row = $STH->fetch()) {
     $type = $row['resource_type'];
     $details = $row['resource_details'];
     $identifier = $row['resource_identifier'];
-    $blocktype = $row['resource_blocktype'];
-
-    $fullBlock = "";
-    $halfBlock = "";
-    if ($blocktype == "Full") {
-        $fullBlock = 'selected="selected"';
-    }else{
-        $halfBlock = 'selected="selected"';
-    }
-
 }
 ?>
 <form class="well" method="post" action="./?action=edit">
@@ -43,14 +33,6 @@ while($row = $STH->fetch()) {
 
     Identifier<br />
     <input type="text" class="span3" name="identifier" value="<?php print $identifier ?>"><br/>
-
-    Block Type<br />
-
-
-    <select name="blocktype">
-        <option <?php print $fullBlock; ?> value="Full">Full Block</option>
-    	<option <?php print $halfBlock; ?> value="Half">Half Block</option>
-    </select><br />
 
     <button type="submit" class="btn btn-success">Save</button>
     <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>

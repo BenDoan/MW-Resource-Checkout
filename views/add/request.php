@@ -27,7 +27,7 @@ Resource<br />
         while($row = $STH->fetch()) {
             extract($row);
             $blocktype = getResourceBlockType($resource_id);
-            print "<option value=\"$resource_id\" class=\"$resource_blocktype\">$resource_identifier</option>";
+            print "<option value=\"$resource_id\" class=\"$blocktype\">$resource_identifier</option>";
         }
     ?>
 </select><br />
@@ -106,7 +106,7 @@ $full =
     '</label>'].join('\n');
 
 function updateBlocks(){
-    if (document.getElementById("rType").options[document.getElementById("rType").selectedIndex].className === "Half" ) {
+    if (document.getElementById("rType").options[document.getElementById("rType").selectedIndex].className === "half" ) {
         $('#blocks').html($half);
     }else{
         $('#blocks').html($full);

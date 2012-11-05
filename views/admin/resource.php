@@ -40,7 +40,6 @@ print "<table class=\"admintable table table-striped table-condensed\">
                 <th>Type</th>
                 <th>Details</th>
                 <th>Identifier</th>
-                <th>Block Type</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -54,7 +53,6 @@ while($row = $results->fetch_assoc()){
             <td>$type_name</td>
             <td>$resource_details</td>
             <td>$resource_identifier</td>
-            <td>$resource_blocktype</td>
             <td>
             <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=resource&resource=$resource_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>

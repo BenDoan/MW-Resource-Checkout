@@ -20,7 +20,7 @@ switch ($type) {
         break;
 
     case 'rType':
-        makeType($rType);
+        makeType($rType, $blocktype);
         break;
 
     case 'department':

@@ -35,20 +35,6 @@
             </div>
           </div>
 
-          <div class="control-group">
-            <label class="control-label" for="blocktype">Block Type</label>
-            <div class="controls">
-              <label class="radio">
-                <input type="radio" name="blocktype" value="Full" checked="checked" >
-                Full Block
-              </label>
-              <label class="radio">
-                <input type="radio" name="blocktype" value="Half" >
-                Half Block
-              </label>
-            </div>
-          </div>
-
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>

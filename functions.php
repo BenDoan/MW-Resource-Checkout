@@ -128,9 +128,9 @@ function makeRequest($rType, $username, $date, $block){
 }
 
 //adds a type to the database
-function makeType($rType){
+function makeType($rType, $blocktype){
     $cur_user = $_SESSION['user']['user_username'];
-    sqlQuery("INSERT INTO types (type_name) VALUES ('$rType')");
+    sqlQuery("INSERT INTO types (type_name, type_blocktype) VALUES ('$rType', '$blocktype')");
     $time = getTimestamp();
     writeLineToLog("$time - $cur_user - Added type $rType");
 }
@@ -313,10 +313,10 @@ function getRequestBlockType($request_id){
     return sqlSelectOne("SELECT * FROM resources WHERE 'resource_id=$resource_id'",'resource_blocktype');
 }
 
-//returns the blocktype of the resource
+//deprecated: returns the blocktype of the resource
 //specified
 function getResourceBlockType($resource_id){
-    return sqlSelectOne("SELECT * FROM resources WHERE 'resource_id=$resource_id'",'resource_blocktype');
+    return getBlockType($resource_id);
 }
 
 //changes the database notation for blocks
@@ -418,4 +418,10 @@ function isReadOnly(){
         return false;
     }
 
+}
+
+// returns the blocktype of a resource
+function getBlockType($resource){
+    $type = sqlSelectOne("SELECT * FROM resources WHERE resource_id='$resource'", 'resource_type');
+    return sqlSelectOne("SELECT * FROM types WHERE type_id='$resource'", 'type_blocktype');
 }

@@ -29,7 +29,7 @@ $conn->close();
 		extract($row);
 
 		// If the resource is available for half blocks
-		if ($resource_blocktype=="Half"){
+		if (getBlockType($resource_id) == "Half"){
 			// Determine if the scheduling event is for the first or second half
 			$half = (fmod($schedule_block,10)==1) ? "(First Half)": "(Second Half)";
 			$schedule_block=floor($schedule_block/10)." ".$half;
