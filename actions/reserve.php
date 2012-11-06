@@ -34,4 +34,6 @@ foreach ($resourceList as $resource) {
 $resource_name = getResourceDesc($final_resource);
 $user = $_SESSION['user']['user_id'];
 sqlQuery("INSERT INTO schedule SET schedule_resource_id='$final_resource', schedule_user_id='$user', schedule_date='$date', schedule_block='$block'");
-redirect('./', "You have successfully checkout out $resource_name for $date block $block");
+
+$block = blockToHuman($block);
+redirect('./', "You have successfully checkout out $resource_name for $date $block");

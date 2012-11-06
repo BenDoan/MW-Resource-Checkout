@@ -178,6 +178,20 @@ function getRTypesArray(){
     return $returnArray;
 }
 
+//returns an double scripted array containing all departments -> department_name
+//& department_id
+function getDepartmentsArray(){
+    $STH = sqlSelect("SELECT * FROM departments");
+    $returnArray = Array();
+    while($row = $STH->fetch()) {
+        $departments = Array();
+        $departments['department_id'] = $row['department_id'];
+        $departments['department_name'] = $row['department_name'];
+        $returnArray[] = $departments;
+    }
+    return $returnArray;
+}
+
 //returns the name of the resource type matching $id
 function getResourceTypeName($id){
     return sqlSelectOne("SELECT * FROM types WHERE type_id='$id'", 'type_name');
@@ -423,5 +437,5 @@ function isReadOnly(){
 // returns the blocktype of a resource
 function getBlockType($resource){
     $type = sqlSelectOne("SELECT * FROM resources WHERE resource_id='$resource'", 'resource_type');
-    return sqlSelectOne("SELECT * FROM types WHERE type_id='$resource'", 'type_blocktype');
+    return sqlSelectOne("SELECT * FROM types WHERE type_id='$type'", 'type_blocktype');
 }

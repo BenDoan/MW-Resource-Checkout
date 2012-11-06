@@ -40,6 +40,7 @@ print "<table class=\"admintable table table-striped table-condensed\">
                 <th>Type</th>
                 <th>Details</th>
                 <th>Identifier</th>
+                <th>Department</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -48,11 +49,13 @@ print "<table class=\"admintable table table-striped table-condensed\">
 while($row = $results->fetch_assoc()){
     extract($row);
     $type_name = getResourceTypeName($resource_type);
+    $department_name = getDepartmentName($resource_department);
     print "
         <tr>
             <td>$type_name</td>
             <td>$resource_details</td>
             <td>$resource_identifier</td>
+            <td>$department_name</td>
             <td>
             <a href=\"./?p=confirm&user=$user_id&confirmAction=delete&type=resource&resource=$resource_id&page=$page\" class=\" btn btn-small btn-danger admindelete\">
                 <i class=\"icon-trash icon-white\"></i>

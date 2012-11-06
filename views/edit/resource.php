@@ -8,6 +8,7 @@ while($row = $STH->fetch()) {
     $type = $row['resource_type'];
     $details = $row['resource_details'];
     $identifier = $row['resource_identifier'];
+    $department = $row['resource_department'];
 }
 ?>
 <form class="well" method="post" action="./?action=edit">
@@ -17,10 +18,9 @@ while($row = $STH->fetch()) {
     <select name="resourcetype">
         <?php
             $typesArray = getRTypesArray();
-            print $type;
             foreach ($typesArray as $x) {
                 if ($type == $x['type_id']) {
-                    print '<option selected="selected" value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
+                    print '<option selected="selected" value="' . $x['type_id'] . '">' . $x['type_name'] . '</option>';
                 }else{
                     print '<option value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
                 }
@@ -33,6 +33,20 @@ while($row = $STH->fetch()) {
 
     Identifier<br />
     <input type="text" class="span3" name="identifier" value="<?php print $identifier ?>"><br/>
+
+    Department<br />
+    <select name="department">
+        <?php
+            $departmentsArray = getDepartmentsArray();
+            foreach ($departmentsArray as $department) {
+                if ($department == $department['department_id']) {
+                    print '<option selected="selected" value="' . $department['department_id'] . '">' . $department['department_name'] . '</option>';
+                }else{
+                    print '<option value="' .$department['department_id'] . '">' . $department['department_name'] . '</option>';
+                }
+            }
+        ?>
+    </select><br />
 
     <button type="submit" class="btn btn-success">Save</button>
     <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>

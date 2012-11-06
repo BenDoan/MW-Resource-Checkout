@@ -32,7 +32,7 @@ switch ($type) {
         break;
 
     case 'resource':
-        sqlQuery("UPDATE resources SET resource_type='$resourcetype', resource_details='$details', resource_identifier='$identifier', resource_blocktype='$blocktype' WHERE resource_id='$resource'");
+        sqlQuery("UPDATE resources SET resource_type='$resourcetype', resource_details='$details', resource_identifier='$identifier', resource_department='$department' WHERE resource_id='$resource'");
 
         writeLineToLog("$time - $cur_user - Edited resource $resource");
 
