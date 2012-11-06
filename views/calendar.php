@@ -11,7 +11,7 @@
 </select><br />
 <div class="datediv" style="display:none;">
     <br />Select a date<br />
-    <input type="text" name="date" class="date" /><br />
+    <input type="text" name="checkoutdate" class="date" /><br />
 </div>
 <div class="blockdiv" style="display:none;">
     <br />Choose the periods<br />
