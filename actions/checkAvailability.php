@@ -32,9 +32,11 @@ function convertHalfBlocks($block){
 }
 //./?action=checkAvailability&date=2012-31-10&type=1
 extract($_GET);
-$resourceList = array();
-$STH = sqlSelect("SELECT * FROM resources WHERE resource_type=$type");
+$user_department = $_SESSION['user']['user_department'];
 $blocktype = sqlSelectOne("SELECT * FROM types WHERE type_id='$type'", 'type_blocktype');
+
+$resourceList = array();
+$STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$type' AND (resource_department='$user_department' OR resource_department=0)");
 while($row = $STH->fetch()) {
     $resourceList[] = $row['resource_id'];
 }

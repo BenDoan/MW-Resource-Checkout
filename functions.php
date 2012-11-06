@@ -214,6 +214,9 @@ function getUserEmail($id){
 
 //returns the name of the department matching $id
 function getDepartmentName($id){
+    if ($id == 0) {
+        return "None";
+    }
     return sqlSelectOne("SELECT * FROM departments WHERE department_id='$id'", 'department_name');
 }
 

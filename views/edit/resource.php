@@ -36,13 +36,15 @@ while($row = $STH->fetch()) {
 
     Department<br />
     <select name="department">
+        <option value="0">None</option>
         <?php
             $departmentsArray = getDepartmentsArray();
-            foreach ($departmentsArray as $department) {
-                if ($department == $department['department_id']) {
-                    print '<option selected="selected" value="' . $department['department_id'] . '">' . $department['department_name'] . '</option>';
+            print_r($departmentsArray);
+            foreach ($departmentsArray as $x) {
+                if ($department == $x['department_id']) {
+                    print '<option selected="selected" value="' . $x['department_id'] . '">' . $x['department_name'] . '</option>';
                 }else{
-                    print '<option value="' .$department['department_id'] . '">' . $department['department_name'] . '</option>';
+                    print '<option value="' . $x['department_id'] . '">' . $x['department_name'] . '</option>';
                 }
             }
         ?>

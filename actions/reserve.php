@@ -1,8 +1,10 @@
 <!-- ./?action=reserve&date=10/10/10&resource=1&block=1&new=1 -->
 <?php
 extract($_GET);
+$user_department = $_SESSION['user']['user_department'];
+
 $resourceList = array();
-$STH = sqlSelect("SELECT * FROM resources WHERE resource_type=$rType");
+$STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$rType' AND (resource_department='$user_department' OR resource_department=0)");
 while($row = $STH->fetch()) {
     $resourceList[] = $row['resource_id'];
 }
