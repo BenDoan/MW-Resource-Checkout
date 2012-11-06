@@ -15,6 +15,7 @@
     <input type="text" class="input-xlarge" name="email"><br/>
     Department<br />
     <select name="department" id="department" >
+        <option value="0">None</option>
         <?php
             //prints out resource types
             $STH = sqlSelect("SELECT * FROM departments");

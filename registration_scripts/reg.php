@@ -20,7 +20,7 @@ if(isset($_GET['action'])){
 function addUser($user){
 	//get list of users from database
     $conn = new mysqli('localhost',DB_USERNAME,DB_PASSWORD,DB_NAME);
-	$users = $conn->query("SELECT * FROM users");
+    $users = $conn->query("SELECT * FROM users");
 	//check if current user already exists
 	$isNewUser = true;
 	while($currUser = $users->fetch_object()){

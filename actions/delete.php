@@ -44,6 +44,9 @@ if (isset($type)) {
         writeLineToLog("$time - $cur_user - Deleted department $department_name");
         sqlQuery("DELETE FROM departments WHERE department_id={$department}");
 
+        sqlQuery("UPDATE users SET user_department=0 WHERE user_department='$department'");
+        sqlQuery("UPDATE resources SET user_department=0 WHERE user_department='$department'");
+
         $deleted = $department_name;
         break;
 

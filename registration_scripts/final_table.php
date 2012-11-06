@@ -10,7 +10,7 @@
 <td>
 <a href="mailto:jlallen@mpsomaha.org" title="jlallen@mpsomaha.org">Allen, Jennifer</a></td>
 <td>Administrative</td>
-<td>Assistant Prin. - Curriculum & Instruction</td>
+<td>Assistant Prin. - Curriculum and Instruction</td>
 <td>715-6007</td></tr>
 
 <tr>
@@ -37,8 +37,8 @@
 <tr>
 <td>
 <a href="mailto:kbeiting@mpsomaha.org" title="kbeiting@mpsomaha.org">Beiting, Kate</a></td>
-<td>Family & Consumer Science</td>
-<td>Family & Consumer Science Teacher</td>
+<td>Family and Consumer Science</td>
+<td>Family and Consumer Science Teacher</td>
 <td>715-6032</td></tr>
 
 <tr>
@@ -170,8 +170,8 @@
 <tr>
 <td>
 <a href="mailto:dhcarlson@mpsomaha.org" title="dhcarlson@mpsomaha.org">Carlson, Dian</a></td>
-<td>Family & Consumer Science</td>
-<td>Family & Consumer Science Teacher</td>
+<td>Family and Consumer Science</td>
+<td>Family and Consumer Science Teacher</td>
 <td>715-6032</td></tr>
 
 <tr>
@@ -415,7 +415,7 @@
 <tr>
 <td>
 <a href="mailto:kmhannon@mpsomaha.org" title="kmhannon@mpsomaha.org">Hannon, Kelsey</a></td>
-<td>Family & Consumer Science</td>
+<td>Family and Consumer Science</td>
 <td>Family Consumer Science Teacher</td>
 <td>715-6032</td></tr>
 
@@ -675,7 +675,7 @@
 <td>
 <a href="mailto:slongacr@mpsomaha.org" title="slongacr@mpsomaha.org">Longacre, Stacy</a></td>
 <td>Administrative</td>
-<td>Assistant Prin. - Safety & Security</td>
+<td>Assistant Prin. - Safety and Security</td>
 <td>715-6006</td></tr>
 
 <tr>
@@ -723,8 +723,8 @@
 <tr>
 <td>
 <a href="mailto:wamatson@mpsomaha.org" title="wamatson@mpsomaha.org">Matson, Whitney</a></td>
-<td>Family & Consumer Science</td>
-<td>Family & Consumer Science Teacher</td>
+<td>Family and Consumer Science</td>
+<td>Family and Consumer Science Teacher</td>
 <td>715-6032</td></tr>
 
 <tr>
@@ -794,7 +794,7 @@
 <td>
 <a href="mailto:jmmeyer@mpsomaha.org" title="jmmeyer@mpsomaha.org">Meyer, Jeanne</a></td>
 <td>Counseling</td>
-<td>Speech Pathologist & Education Academy</td>
+<td>Speech Pathologist and Education Academy</td>
 <td>715-6072</td></tr>
 
 <tr>
@@ -927,7 +927,7 @@
 <td>
 <a href="mailto:cjramey@mpsomaha.org" title="cjramey@mpsomaha.org">Ramey, Chris</a></td>
 <td>Mathematics</td>
-<td>Computer Science & Math Teacher</td>
+<td>Computer Science and Math Teacher</td>
 <td>715-6046</td></tr>
 
 <tr>
@@ -1024,8 +1024,8 @@
 <tr>
 <td>
 <a href="mailto:blschmidt@mpsomaha.org" title="blschmidt@mpsomaha.org">Schmidt, Brenda</a></td>
-<td>Family & Consumer Science</td>
-<td>Family & Consumer Science Teacher</td>
+<td>Family and Consumer Science</td>
+<td>Family and Consumer Science Teacher</td>
 <td>715-6032</td></tr>
 
 <tr>
@@ -1102,7 +1102,7 @@
 <td>
 <a href="mailto:tstauffe@mpsomaha.org" title="tstauffe@mpsomaha.org">Stauffer, Tracy</a></td>
 <td>Physical Education</td>
-<td>Social Studies & Swim Teacher</td>
+<td>Social Studies and Swim Teacher</td>
 <td>715-6005</td></tr>
 
 <tr>
@@ -1192,8 +1192,8 @@
 <tr>
 <td>
 <a href="mailto:sewaldron@mpsomaha.org" title="sewaldron@mpsomaha.org">Waldron, Susan</a></td>
-<td>Family & Consumer Science</td>
-<td>Family & Consumer Science Teacher</td>
+<td>Family and Consumer Science</td>
+<td>Family and Consumer Science Teacher</td>
 <td>715-6032</td></tr>
 
 <tr>
