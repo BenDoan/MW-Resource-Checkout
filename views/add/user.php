@@ -13,7 +13,19 @@
     <input type="text" class="input-xlarge" name="username"><br/>
     Email<br />
     <input type="text" class="input-xlarge" name="email"><br/>
-    read only
+    Department<br />
+    <select name="department" id="department" >
+        <?php
+            //prints out resource types
+            $STH = sqlSelect("SELECT * FROM departments");
+
+            while($row = $STH->fetch()) {
+                extract($row);
+                print "<option value=\"$department_id\">$department_name</option>";
+            }
+        ?>
+    </select><br />
+    Read only
     <input type="checkbox" name="readonly" /><br />
 
     <button type="submit" class="btn btn-success">Save</button>

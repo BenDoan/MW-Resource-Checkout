@@ -8,29 +8,19 @@ while($row = $STH->fetch()) {
     $type = $row['resource_type'];
     $details = $row['resource_details'];
     $identifier = $row['resource_identifier'];
-    $blocktype = $row['resource_blocktype'];
-
-    $fullBlock = "";
-    $halfBlock = "";
-    if ($blocktype == "Full") {
-        $fullBlock = 'selected="selected"';
-    }else{
-        $halfBlock = 'selected="selected"';
-    }
-
+    $department = $row['resource_department'];
 }
 ?>
-<form class="well" method="post" action="./?action=adminEditSettings">
+<form class="well" method="post" action="./?action=edit">
     <input type="hidden" name="resource" value="<?php print $_GET['resource']; ?>">
     <input type="hidden" name="type" value="resource">
     Type<br />
     <select name="resourcetype">
         <?php
             $typesArray = getRTypesArray();
-            print $type;
             foreach ($typesArray as $x) {
                 if ($type == $x['type_id']) {
-                    print '<option selected="selected" value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
+                    print '<option selected="selected" value="' . $x['type_id'] . '">' . $x['type_name'] . '</option>';
                 }else{
                     print '<option value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
                 }
@@ -44,12 +34,20 @@ while($row = $STH->fetch()) {
     Identifier<br />
     <input type="text" class="span3" name="identifier" value="<?php print $identifier ?>"><br/>
 
-    Block Type<br />
-
-
-    <select name="blocktype">
-        <option <?php print $fullBlock; ?> value="Full">Full Block</option>
-    	<option <?php print $halfBlock; ?> value="Half">Half Block</option>
+    Department<br />
+    <select name="department">
+        <option value="0">None</option>
+        <?php
+            $departmentsArray = getDepartmentsArray();
+            print_r($departmentsArray);
+            foreach ($departmentsArray as $x) {
+                if ($department == $x['department_id']) {
+                    print '<option selected="selected" value="' . $x['department_id'] . '">' . $x['department_name'] . '</option>';
+                }else{
+                    print '<option value="' . $x['department_id'] . '">' . $x['department_name'] . '</option>';
+                }
+            }
+        ?>
     </select><br />
 
     <button type="submit" class="btn btn-success">Save</button>

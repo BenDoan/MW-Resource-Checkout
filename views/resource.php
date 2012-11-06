@@ -44,7 +44,7 @@ if (isset($date)&& isset($id) && $date !="" && $id!=""){
 <table class="details">
 	<tr>
 		<th>Availability</th>
-		<td><?php echo $resource_blocktype;?> Blocks</td>
+		<td><?php print ucfirst(getBlockType($id));?> Blocks</td>
 	</tr>
 	<tr>
 		<th></th>
@@ -63,7 +63,7 @@ if (isset($date)&& isset($id) && $date !="" && $id!=""){
 	$class="";
 	// Generate the rows for every block (i is the block number)
 	for ($i=1;$i<5;$i++){
-		$class=getRows($class, $resource_type, $resource_identifier, $resource_id, $date, $i, $resource_blocktype);
+		$class=getRows($class, $resource_type, $resource_identifier, $resource_id, $date, $i, getBlockType($resource_id));
 	}
 	?>
 </table>

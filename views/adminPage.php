@@ -26,12 +26,13 @@ if (isset($_GET['date'])) {
 //filname then display name
 $pages = array(
     array("info", "info"),
-    array("user", "user"),
-    array("request", "request"),
-    array("resource", "resource"),
-    array("rType", "Resource Type"),
+    array("user", "users"),
+    array("request", "requests"),
+    array("resource", "resources"),
+    array("rType", "Resource Types"),
+    array("department", "Departments"),
     array("summary", "summary"),
-    array("comment", "comment"),
+    array("comment", "comments"),
     array("settings", "settings"),
     array("log", "log"));
 ?>

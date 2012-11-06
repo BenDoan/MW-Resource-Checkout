@@ -11,7 +11,7 @@ if(isset($_GET['logout'])) {
 	$user = validateUser($username, $password);
     $user = $user->fetch();
 	// User found
-	if($user != null) {
+	if($user != null && !isset($_SESSION['user'])) {
         $_SESSION['user'] = $user;
         $message = 'Welcome back, '.$user['user_firstname'].'!';
         $location = './';

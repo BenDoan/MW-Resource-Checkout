@@ -28,16 +28,10 @@ $conn->close();
 	while ($row = $results->fetch_assoc()){
 		extract($row);
 
-		// If the resource is available for half blocks
-		if ($resource_blocktype=="Half"){
-			// Determine if the scheduling event is for the first or second half
-			$half = (fmod($schedule_block,10)==1) ? "(First Half)": "(Second Half)";
-			$schedule_block=floor($schedule_block/10)." ".$half;
-		}
 		// Display the row
 		echo '<tr>';
 			echo '<td>'.date('m/d/Y', strtotime($schedule_date)).'</td>';
-			echo '<td>'.$schedule_block.'</td>';
+			echo '<td>' . blockToHuman($schedule_block) . '</td>';
 			echo '<td><a href="./?p=resource&id='.$resource_id.'&date='.$schedule_date.'">'.getResourceTypeName($resource_type).'</a></td>';
 			echo '<td>'.$resource_identifier.'</td>';
 			echo '<td><a href="./?p=confirm&confirmAction=cancel&cancel=&schedule_id='.$schedule_id.'">cancel</a></td>';

@@ -6,7 +6,7 @@ while($row = $STH->fetch()) {
     $lastname = $row['user_lastname'];
 }
 ?>
-<form class="well" method="post" action="./?action=adminEditSettings">
+<form class="well" method="post" action="./?action=edit">
     <input type="hidden" name="userid" value="<?php print $_GET['user']; ?>">
     <input type="hidden" name="urlstring" value="p=edit&user=<?php print $_GET['user']; ?>&type=user">
     First Name<br />

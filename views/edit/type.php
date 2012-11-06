@@ -4,7 +4,7 @@ while($row = $STH->fetch()) {
     $type_name = $row['type_name'];
 }
 ?>
-<form class="well" method="post" action="./?action=adminEditSettings">
+<form class="well" method="post" action="./?action=edit">
     <input type="hidden" name="userid" value="<?php print $_GET['type']; ?>">
     <input type="hidden" name="type" value="type">
     First Name<br />

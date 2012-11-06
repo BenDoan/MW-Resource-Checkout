@@ -15,7 +15,7 @@ if (isLoggedIn()) {
     if (!isReadOnly()) {
         $class = ('userSettings' == $CURR_PAGE) ? 'current' : '';
         echo "<li class=\"$class\"><a href=\"./?p=userSettings\">Settings</a></li>";
-        $class = ('userSettings' == $CURR_PAGE) ? 'current' : '';
+        $class = ('currentRequests' == $CURR_PAGE) ? 'current' : '';
         echo "<li class=\"$class\"><a href=\"./?p=currentRequests\">My Reservations</a></li>";
     }
 

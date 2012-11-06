@@ -39,6 +39,14 @@ if (isset($type)) {
         sqlQuery("DELETE FROM schedule WHERE schedule_resource_id={$resource}");
         break;
 
+    case 'department':
+        $department_name = getDepartmentName($department);
+        writeLineToLog("$time - $cur_user - Deleted department $department_name");
+        sqlQuery("DELETE FROM departments WHERE department_id={$department}");
+
+        $deleted = $department_name;
+        break;
+
     case 'comment':
         sqlQuery("DELETE FROM comments WHERE comment_id={$comment_id}");
         writeLineToLog("$time - $cur_user - Deleted comment $comment_id");

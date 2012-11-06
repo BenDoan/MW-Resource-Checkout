@@ -3,12 +3,12 @@ extract($_POST);
 
 switch ($type) {
     case 'user':
-        if ($readonly === 'on') {
+        if (isset($readonly) && $readonly === 'on') {
             $readonly = 1;
         }else {
             $readonly = 0;
         }
-        makeUser($firstname, $lastname, $username, $email, $readonly);
+        makeUser($firstname, $lastname, $username, $email, $department, $readonly);
         break;
 
     case 'resource':
@@ -20,7 +20,12 @@ switch ($type) {
         break;
 
     case 'rType':
-        makeType($rType);
+        makeType($rType, $blocktype);
+        break;
+
+    case 'department':
+        print $department;
+        makeDepartment($department);
         break;
 
     default:

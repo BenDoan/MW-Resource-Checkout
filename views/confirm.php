@@ -48,6 +48,7 @@ switch ($confirmAction) {
                 isset($request) ||
                 isset($resource) ||
                 isset($comment) ||
+                isset($department) ||
             isset($rType) )) {
             $args = "";
             $page = $_GET['page'];
@@ -70,6 +71,10 @@ switch ($confirmAction) {
 
                 case 'rType':
                     $args = "type=rType&type_id=$rType&page=$page";
+                    break;
+
+                case 'department':
+                    $args = "type=department&department=$department&page=$page";
                     break;
             }
             print getDeleteForm($args, $type);
