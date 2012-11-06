@@ -4,7 +4,11 @@ extract($_GET);
 $user_department = $_SESSION['user']['user_department'];
 
 $resourceList = array();
-$STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$rType' AND (resource_department='$user_department' OR resource_department=0)");
+if (isAdmin()) {
+    $STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$rType'");
+} else {
+    $STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$rType' AND (resource_department='$user_department' OR resource_department=0)");
+}
 while($row = $STH->fetch()) {
     $resourceList[] = $row['resource_id'];
 }

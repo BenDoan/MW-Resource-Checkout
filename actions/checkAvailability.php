@@ -36,7 +36,11 @@ $user_department = $_SESSION['user']['user_department'];
 $blocktype = sqlSelectOne("SELECT * FROM types WHERE type_id='$type'", 'type_blocktype');
 
 $resourceList = array();
-$STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$type' AND (resource_department='$user_department' OR resource_department=0)");
+if (isAdmin()) {
+    $STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$type')");
+}else {
+    $STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$type' AND (resource_department='$user_department' OR resource_department=0)");
+}
 while($row = $STH->fetch()) {
     $resourceList[] = $row['resource_id'];
 }
