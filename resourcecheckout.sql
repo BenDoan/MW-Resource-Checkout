@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2012 at 06:24 PM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Generation Time: Nov 06, 2012 at 03:53 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -56,14 +56,15 @@ CREATE TABLE IF NOT EXISTS `departments` (
   `department_id` int(11) NOT NULL AUTO_INCREMENT,
   `department_name` varchar(60) NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `departments`
 --
 
 INSERT INTO `departments` (`department_id`, `department_name`) VALUES
-(1, 'Computer Science');
+(1, 'Computer Science'),
+(2, 'English');
 
 -- --------------------------------------------------------
 
@@ -76,6 +77,7 @@ CREATE TABLE IF NOT EXISTS `resources` (
   `resource_type` varchar(100) NOT NULL,
   `resource_details` varchar(50) NOT NULL,
   `resource_identifier` varchar(50) NOT NULL,
+  `resource_department` int(11) NOT NULL,
   PRIMARY KEY (`resource_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
@@ -83,9 +85,9 @@ CREATE TABLE IF NOT EXISTS `resources` (
 -- Dumping data for table `resources`
 --
 
-INSERT INTO `resources` (`resource_id`, `resource_type`, `resource_details`, `resource_identifier`) VALUES
-(1, '1', '25 Computers', 'Room 234'),
-(4, '3', 'Fifty Pieces', 'Package 2');
+INSERT INTO `resources` (`resource_id`, `resource_type`, `resource_details`, `resource_identifier`, `resource_department`) VALUES
+(1, '1', '25 Computers', 'Room 234', 2),
+(4, '3', 'Fifty Pieces', 'Package 2', 1);
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `schedule_date` date NOT NULL,
   `schedule_block` int(11) NOT NULL,
   PRIMARY KEY (`schedule_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
 
 --
 -- Dumping data for table `schedule`
@@ -147,7 +149,12 @@ INSERT INTO `schedule` (`schedule_id`, `schedule_resource_id`, `schedule_user_id
 (90, 1, 4, '2012-09-20', 11),
 (91, 1, 5, '2012-09-18', 11),
 (92, 4, 5, '2012-09-20', 2),
-(93, 4, 5, '2012-11-06', 1);
+(93, 4, 5, '2012-11-06', 1),
+(94, 1, 5, '2012-11-05', 11),
+(95, 1, 5, '2012-11-05', 12),
+(96, 1, 5, '2012-11-06', 11),
+(97, 4, 5, '2012-11-06', 2),
+(98, 1, 5, '2012-11-06', 12);
 
 -- --------------------------------------------------------
 
