@@ -1,48 +1,51 @@
 <h2>Checkout a resource</h2>
-<br />Choose a resource<br />
-<select name="resource" class="resource">
-    <option></option>
-    <?php
-        $typesArray = getRTypesArray();
-        foreach ($typesArray as $x) {
-            print '<option value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
-        }
-    ?>
-</select><br />
-<div class="datediv" style="display:none;">
-    <br />Select a date<br />
-    <input type="text" name="checkoutdate" class="date" /><br />
-</div>
-<div class="blockdiv" style="display:none;">
-    <br />Choose the periods<br />
-    <div class="btn-group fullblocks" style="display:none;">
+<div class="modules">
+    <div class="resourcediv attention" style="display:inline-block;">
+        <p>Choose a resource</p>
+        <select name="resource" class="resource">
+            <option></option>
+            <?php
+                $typesArray = getRTypesArray();
+                foreach ($typesArray as $x) {
+                    print '<option value="' .$x['type_id'] . '">' . $x['type_name'] . '</option>';
+                }
+            ?>
+        </select>
+    </div>
+    <div class="datediv attention" style="display:none;">
+        <p>Select a date</p>
+        <input type="text" name="checkoutdate" class="date" />
+    </div>
+    <div class="fullblocks attention" style="display:none;">
+        <p>Choose the periods</p>
         <a href="./?action=reserve" class="btn">1</a>
         <a href="./?action=reserve" class="btn">2</a>
         <a href="./?action=reserve" class="btn">3</a>
         <a href="./?action=reserve" class="btn">4</a>
     </div>
-    <div class="btn-group halfblocks" style="display:none;">
-        <table>
-        <tr>
-            <td><span style="padding-right:5px;">Block 1</span></td>
-            <td style="padding-right:5px;"><a href="./?action=reserve" id="11" class="btn">1<sup>st</sup> half</a>
-            <td><a href="./?action=reserve" id="12" class="btn">2<sup>nd</sup> half</a>
-        </tr>
-        <tr>
-            <td><span style="padding-right:5px;">Block 2</span>
-            <td style="padding-right:5px;"><a href="./?action=reserve" id="21" class="btn">1<sup>st</sup> half</a>
-            <td><a href="./?action=reserve" id="22" class="btn">2<sup>nd</sup> half</a>
-        </tr>
-        <tr>
-            <td><span style="padding-right:5px;">Block 3</span>
-            <td style="padding-right:5px;"><a href="./?action=reserve" id="31" class="btn">1<sup>st</sup> half</a>
-            <td><a href="./?action=reserve" id="32" class="btn">2<sup>nd</sup> half</a>
-        </tr>
-        <tr>
-            <td><span style="padding-right:5px;">Block 4</span>
-            <td style="padding-right:5px;"><a href="./?action=reserve" id="41" class="btn">1<sup>st</sup> half</a>
-            <td><a href="./?action=reserve" id="42" class="btn">2<sup>nd</sup> half</a>
-        </tr>
+    <div class="halfblocks attention" style="display:none;">
+        <p>Choose the periods</p>
+        <table style="display:block;">
+            <tr>
+                <td><span style="padding-right:5px;">Block 1</span></td>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="11" class="btn">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="12" class="btn">2<sup>nd</sup> half</a>
+            </tr>
+            <tr>
+                <td><span style="padding-right:5px;">Block 2</span>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="21" class="btn">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="22" class="btn">2<sup>nd</sup> half</a>
+            </tr>
+            <tr>
+                <td><span style="padding-right:5px;">Block 3</span>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="31" class="btn">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="32" class="btn">2<sup>nd</sup> half</a>
+            </tr>
+            <tr>
+                <td><span style="padding-right:5px;">Block 4</span>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="41" class="btn">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="42" class="btn">2<sup>nd</sup> half</a>
+            </tr>
         </table>
     </div>
 </div>
@@ -54,7 +57,7 @@ function genReserverUrl(rType, block, date) {
 }
 
 $('.resource').change(function() {
-    $('.datediv').css('display', 'block');
+    $('.datediv').css('display', 'inline-block');
     type = $('.resource :selected').val();
 });
 
@@ -82,7 +85,7 @@ $('.date').change(function() {
                 }
             });
             $('.halfblocks').css('display', 'none');
-            $('.fullblocks').css('display', 'block');
+            $('.fullblocks').css('display', 'inline-block');
         }else {
             for ($i = 0; $i < blockArray[1].length; $i++) {
                 $('.halfblocks').find('a').each(function (index, value){
@@ -100,9 +103,8 @@ $('.date').change(function() {
                 }
             });
             $('.fullblocks').css('display', 'none');
-            $('.halfblocks').css('display', 'block');
+            $('.halfblocks').css('display', 'inline-block');
         }
     });
-    $('.blockdiv').css('display', 'block');
 });
 </script>

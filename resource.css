@@ -238,3 +238,14 @@ tr.hover .admindelete {
    animation-duration: 1s;
    opacity:1;
 }
+
+div.attention {
+    padding:5px;
+    border: 2px solid orange;
+    border-radius:3px;
+    -moz-border-radius:3px;
+}
+
+div.modules {
+    /*height:200px;*/
+}
