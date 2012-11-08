@@ -1,3 +1,4 @@
+<div class="checkout-alerts"></div>
 <h2>Checkout a resource</h2>
 <div class="modules">
     <div class="resourcediv attention" style="display:inline-block;">
@@ -11,40 +12,43 @@
                 }
             ?>
         </select>
+        <i class="icon-ok resource-ok" style="display:none;"></i>
     </div>
     <div class="datediv attention" style="display:none;">
         <p>Select a date</p>
         <input type="text" name="checkoutdate" class="date" />
+        <i class="icon-ok date-ok" style="display:none;"></i>
     </div>
     <div class="fullblocks attention" style="display:none;">
         <p>Choose the periods</p>
-        <a href="./?action=reserve" class="btn">1</a>
-        <a href="./?action=reserve" class="btn">2</a>
-        <a href="./?action=reserve" class="btn">3</a>
-        <a href="./?action=reserve" class="btn">4</a>
+        <a href="./?action=reserve" class="btn reserve-link">1</a>
+        <a href="./?action=reserve" class="btn reserve-link">2</a>
+        <a href="./?action=reserve" class="btn reserve-link">3</a>
+        <a href="./?action=reserve" class="btn reserve-link">4</a>
     </div>
     <div class="halfblocks attention" style="display:none;">
         <p>Choose the periods</p>
-        <table style="display:block;">
+        <input type="" style="visibility:hidden"/>
+        <table>
             <tr>
                 <td><span style="padding-right:5px;">Block 1</span></td>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="11" class="btn">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="12" class="btn">2<sup>nd</sup> half</a>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="11" class="btn reserve-link">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="12" class="btn reserve-link">2<sup>nd</sup> half</a>
             </tr>
             <tr>
                 <td><span style="padding-right:5px;">Block 2</span>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="21" class="btn">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="22" class="btn">2<sup>nd</sup> half</a>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="21" class="btn reserve-link">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="22" class="btn reserve-link">2<sup>nd</sup> half</a>
             </tr>
             <tr>
                 <td><span style="padding-right:5px;">Block 3</span>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="31" class="btn">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="32" class="btn">2<sup>nd</sup> half</a>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="31" class="btn reserve-link">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="32" class="btn reserve-link">2<sup>nd</sup> half</a>
             </tr>
             <tr>
                 <td><span style="padding-right:5px;">Block 4</span>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="41" class="btn">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="42" class="btn">2<sup>nd</sup> half</a>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="41" class="btn reserve-link">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="42" class="btn reserve-link">2<sup>nd</sup> half</a>
             </tr>
         </table>
     </div>
@@ -52,16 +56,44 @@
 <script type="text/javascript">
 var date = "";
 var type = "";
-function genReserverUrl(rType, block, date) {
+function genReserveUrl(rType, block, date) {
     return "./?action=reserve&rType=" + rType + "&block=" + block + "&date=" + date;
 }
 
+$(function(){
+    //function reserve(e){
+        //e.preventDefault();
+        //var url = e.currentTarget;
+        //var target = 'a[href="' + url + '"]';
+        //alert(target);
+        //alert($(target + ':first').text());
+
+        ////$.ajax({
+            ////url: url,
+            ////cache: false
+        ////}).done(function(html) {
+            ////$('.checkout-alerts').append(html);
+        ////});
+        //return false;
+    //}
+    //$('.reserve-link').click(reserve);
+    $('.reserve-link').click(function(){
+        var url = $(this).target();
+        alert(url);
+        $(this).attr("href", "javascript:void(0);");
+    });
+});
+
 $('.resource').change(function() {
+    $('.resourcediv').removeClass('attention');
+    $('.resource-ok').css('display', 'inline-block');
     $('.datediv').css('display', 'inline-block');
     type = $('.resource :selected').val();
 });
 
 $('.date').change(function() {
+    $('.datediv').removeClass('attention');
+    $('.date-ok').css('display', 'inline-block');
     date = $('.datediv :input').val();
     date = $.datepicker.formatDate('yy-mm-dd', new Date(date));
     $.ajax({
@@ -81,7 +113,7 @@ $('.date').change(function() {
                 if ($(this).hasClass('disabled')) {
                     $(this).attr('href', "");
                 }else {
-                    $(this).attr('href', genReserverUrl(type, $(this).text(), date));
+                    $(this).attr('href', genReserveUrl(type, $(this).text(), date));
                 }
             });
             $('.halfblocks').css('display', 'none');
@@ -98,8 +130,7 @@ $('.date').change(function() {
                 if ($(this).hasClass('disabled')) {
                     $(this).attr('href', "");
                 }else {
-                    console.log($(this).val());
-                    $(this).attr('href', genReserverUrl(type, $(this).attr('id'), date));
+                    $(this).attr('href', genReserveUrl(type, $(this).attr('id'), date));
                 }
             });
             $('.fullblocks').css('display', 'none');
