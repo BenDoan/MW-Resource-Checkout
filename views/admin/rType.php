@@ -64,6 +64,7 @@ while($row = $results->fetch_assoc()){
 }
 print "</tbody></table>
         <div class=\"pagination\">
+        <ul>
     ";
 
 if($currenttypepage > 1){
@@ -95,7 +96,7 @@ if($currenttypepage != $total_pages){
     print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
     print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
-print "</div><a class=\"btn add\" href=\"./?p=add&type=rType\">Add type</a>";
+print "</ul></div><a class=\"btn add\" href=\"./?p=add&type=rType\">Add type</a>";
 
 $conn->close();
 ?>

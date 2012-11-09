@@ -31,7 +31,7 @@ $pages = array(
     array("resource", "resources"),
     array("rType", "Resource Types"),
     array("department", "Departments"),
-    array("summary", "summary"),
+    //array("summary", "summary"),
     array("comment", "comments"),
     array("settings", "settings"),
     array("log", "log"));

@@ -1,5 +1,5 @@
 <link media="print" rel="stylesheet" type="text/css" href="print.css"/>
-<form action="./?p=adminPage" class="summary-search-form">
+<form action="./?p=adminPage" class="form-inline summary-search-form">
 <?php
 if (isset($_GET['date'])) {
     print '<input style="margin-right:5px;" type="text" name="date" value="'.$_GET['date'].'" />';

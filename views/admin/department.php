@@ -62,6 +62,7 @@ while($row = $results->fetch_assoc()){
 }
 print "</tbody></table>
         <div class=\"pagination\">
+        <ul>
     ";
 
 if($currentdepartmentpage > 1){
@@ -93,7 +94,7 @@ if($currentdepartmentpage != $total_pages){
     print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
     print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
-print "</div><a class=\"btn add\" href=\"./?p=add&type=department\">Add department</a>";
+print "</ul></div><a class=\"btn add\" href=\"./?p=add&type=department\">Add department</a>";
 
 $conn->close();
 ?>

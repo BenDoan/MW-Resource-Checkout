@@ -34,7 +34,7 @@ foreach($sliced_log as $x){
 }
 print "</div>";
 
-print "<div class=\"pagination\">";
+print "<div class=\"pagination\"><ul>";
 
 if($currentlogpage > 1){
     print "<li><a href=\"./?action=redirect&currentlogpage=1&type=$type\">&laquo;</a></li>";
@@ -66,5 +66,5 @@ if($currentlogpage != $total_pages){
     print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
 
-print "</div>";
+print "</ul></div>";
 ?>

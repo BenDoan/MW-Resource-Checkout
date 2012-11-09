@@ -249,3 +249,16 @@ div.attention {
 div.modules {
     /*height:200px;*/
 }
+
+ul.nav > li > a {
+    font-size:12px;
+}
+
+div.alert > h4 {
+    color:#000;
+}
+
+div.alert {
+    color:#000;
+}
+

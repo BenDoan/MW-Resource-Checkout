@@ -72,6 +72,7 @@ while($row = $results->fetch_assoc()){
 }
 print "</tbody></table>
         <div class=\"pagination\">
+        <ul>
     ";
 
 if($currentuserpage > 1){
@@ -105,7 +106,7 @@ if($currentuserpage != $total_pages){
 }
 
 
-print "</div><a class=\"btn add\" href=\"./?p=add&type=user\">Add user</a>";
+print "</ul></div><a class=\"btn add\" href=\"./?p=add&type=user\">Add user</a>";
 
 $conn->close();
 ?>
