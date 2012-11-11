@@ -15,8 +15,8 @@
 		<link rel="stylesheet" type="text/css" href="js/css/custom-theme/datepicker.css"/>
 		<link rel="stylesheet" type="text/css" href="resource.css"/>
 
-
-
+		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
         <!-- Created by Tracy Moody, Destiny Osbourne and Ben Doan with assistance from the Omaha Bytes Club-->
 	</head>
     <?php flush(); ?>
@@ -35,8 +35,6 @@
 		<div id="footer">
 			<?php include('layout/footer.php');?>
 		</div>
-		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type='text/javascript' src='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.min.js'></script>
 		<script type="text/javascript" src="resourcecheckout.js.php"></script>
