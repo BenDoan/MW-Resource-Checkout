@@ -56,49 +56,16 @@
 <script type="text/javascript">
 var date = "";
 var type = "";
+var resourceTriggered = false;
+var dateTriggered = false;
 function genReserveUrl(rType, block, date) {
     return "./?action=reserve&rType=" + rType + "&block=" + block + "&date=" + date;
 }
 
-$(function(){
-    $('.cancel-link').live("click", function(e){
-        e.preventDefault();
-        var url = $(this).attr('href');
-        $.ajax({
-            url: url,
-            cache: false
-        }).done(function(html) {
-            var resource = $.parseJSON(html);
-            $('.' + resource).remove();
-        });
-    });
-    $('.reserve-link').click(function(e){
-        e.preventDefault();
-        var url = $(this).attr('href');
-        $.ajax({
-            url: url,
-            cache: false
-        }).done(function(html) {
-            var checkoutData = $.parseJSON(html);
-            var alertText = '<div class="alert alert-success ' + checkoutData[0] + '"><a class="close" data-dismiss="alert">&times;</a>' + checkoutData[1] + '<a style="float:right;" class="btn btn-mini btn-danger cancel-link" href="./?action=cancelRequest&request=' + checkoutData[0] +'">Cancel</a></div>';
-            $('.checkout-alerts').append(alertText);
-        });
-        $(this).addClass('disabled');
-    });
-});
-
-$('.resource').change(function() {
-    $('.resourcediv').removeClass('attention');
-    $('.resource-ok').css('display', 'inline-block');
-    $('.datediv').css('display', 'inline-block');
-    type = $('.resource :selected').val();
-});
-
-$('.date').change(function() {
-    $('.datediv').removeClass('attention');
-    $('.date-ok').css('display', 'inline-block');
-    date = $('.datediv :input').val();
-    date = $.datepicker.formatDate('yy-mm-dd', new Date(date));
+function showBlocks(){
+    if (!(resourceTriggered && dateTriggered)) {
+        return 0;
+    }
     $.ajax({
         url: "./?action=checkAvailability&date=" + date + "&type=" + type,
         cache: false
@@ -150,5 +117,66 @@ $('.date').change(function() {
             $('.halfblocks').css('display', 'inline-block');
         }
     });
+}
+
+$(function(){
+    $('.cancel-link').live("click", function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            cache: false
+        }).done(function(html) {
+            var resource = $.parseJSON(html);
+            $('.' + resource).remove();
+        });
+    });
+    $('.reserve-link').click(function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            cache: false
+        }).done(function(html) {
+            var checkoutData = $.parseJSON(html);
+            var alertText = '<div class="alert alert-success ' + checkoutData[0] + '"><a class="close" data-dismiss="alert">&times;</a>' + checkoutData[1] + '<a style="float:right;" class="btn btn-mini btn-danger cancel-link" href="./?action=cancelRequest&request=' + checkoutData[0] +'">Cancel</a></div>';
+            $('.checkout-alerts').append(alertText);
+        });
+        $(this).addClass('disabled');
+    });
 });
+
+$('.resource').change(function() {
+    resourceTriggered = true;
+    $('.resourcediv').removeClass('attention');
+    $('.resource-ok').css('display', 'inline-block');
+    $('.datediv').css('display', 'inline-block');
+    type = $('.resource :selected').val();
+    showBlocks();
+});
+
+$('.date').change(function() {
+    dateTriggered = true;
+    $('.datediv').removeClass('attention');
+    $('.date-ok').css('display', 'inline-block');
+    date = $('.datediv :input').val();
+    date = $.datepicker.formatDate('yy-mm-dd', new Date(date));
+    showBlocks();
+});
+
+function dateFilled(getDate){
+    $('.date').val(getDate);
+    $('.datediv').css('display', 'inline-block');
+    $('.datediv').removeClass('attention');
+    $('.date-ok').css('display', 'inline-block');
+    date = getDate;
+    date = $.datepicker.formatDate('yy-mm-dd', new Date(date));
+    dateTriggered = true;
+}
+<?php
+    if (isset($_GET['date'])) {
+        $date = $_GET['date'];
+        print "dateFilled('$date')";
+    }
+?>
 </script>

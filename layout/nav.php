@@ -1,7 +1,8 @@
 <?php
 // Pages to display in nav, in format ('Name' => 'QS param value')
 $pages = array(
-	'Home' => 'checkout',
+	'Home' => 'calendar',
+    'Checkout' => 'checkout'
 );
 
 // Display pages in <ul>

@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    die();
-}
-
 require_once('config/db.php');
 require_once('functions.php');
 $today=date('Y-m-d');
@@ -34,7 +30,8 @@ function getNextEvent($results){
 	$block = ($schedule_block > 10) ? floor($schedule_block/10): $schedule_block;
 
     $resource_name = getResourceTypeName($resource_type);
-    if ($resource_blocktype == 'Full') {
+    $resource_blocktype = getBlockType($schedule_resource_id);
+    if ($resource_blocktype == 'full') {
         $event = array(
             'title'  =>	"$resource_name - Block $block",
             'start'	=>	$schedule_date,
@@ -54,9 +51,6 @@ function getNextEvent($results){
 //
 $events = array();
 for ($i = 0; $i < $numRows; $i++){
-    if ($i == 4) {
-        break;
-    }
     $events[] = getNextEvent($results);
 }
 
@@ -65,7 +59,6 @@ $conn->close();
 var EVENTS = <?php echo json_encode($events) ?>;
 $(function() {
 	initCalendar();
-	$('input[name=date]').datepicker({dateFormat: 'mm/dd/yy', beforeShowDay:$.datepicker.noWeekends});
 });
 
 function initCalendar() {
@@ -91,7 +84,7 @@ function initCalendar() {
 			var y = date.getFullYear();
 
 
-	    	window.location = './?p=resultList&date=' + m + '/' + d + '/' + y;
+	    	window.location = './?p=checkout&date=' + m + '/' + d + '/' + y;
 	    }
 	});
 }
