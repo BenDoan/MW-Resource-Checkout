@@ -2,7 +2,7 @@
 <h2>Checkout a resource</h2>
 <div class="modules well">
     <div class="resourcediv attention" style="display:inline-block;">
-        <p>Choose a resource</p>
+        <p><i class="icon-ok resource-ok" style="display:none;"></i>Choose a resource</p>
         <select name="resource" class="resource">
             <option></option>
             <?php
@@ -12,12 +12,12 @@
                 }
             ?>
         </select>
-        <i class="icon-ok resource-ok" style="display:none;"></i>
+        
     </div>
     <div class="datediv attention" style="display:none;">
-        <p>Select a date</p>
+        <p><i class="icon-ok date-ok" style="display:none;"></i>Select a date</p>
+        
         <input type="text" name="checkoutdate" class="date" />
-        <i class="icon-ok date-ok" style="display:none;"></i>
     </div>
     <div class="fullblocks attention" style="display:none;">
         <p>Choose the periods</p>
