@@ -1,6 +1,6 @@
 <div class="checkout-alerts"></div>
 <h2>Checkout a resource</h2>
-<div class="modules">
+<div class="modules well">
     <div class="resourcediv attention" style="display:inline-block;">
         <p>Choose a resource</p>
         <select name="resource" class="resource">
@@ -61,6 +61,17 @@ function genReserveUrl(rType, block, date) {
 }
 
 $(function(){
+    $('.cancel-link').live("click", function(e){
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            cache: false
+        }).done(function(html) {
+            var resource = $.parseJSON(html);
+            $('.' + resource).remove();
+        });
+    });
     $('.reserve-link').click(function(e){
         e.preventDefault();
         var url = $(this).attr('href');
@@ -69,7 +80,7 @@ $(function(){
             cache: false
         }).done(function(html) {
             var checkoutData = $.parseJSON(html);
-            var alertText = '<div class="alert alert-success"><a class="close" data-dismiss="alert">&times;</a>' + checkoutData[1] + '<a style="float:right;" class="btn btn-mini btn-danger" href="./?action=cancelRequest&request=' + checkoutData[0] +'">Cancel</a></div>';
+            var alertText = '<div class="alert alert-success ' + checkoutData[0] + '"><a class="close" data-dismiss="alert">&times;</a>' + checkoutData[1] + '<a style="float:right;" class="btn btn-mini btn-danger cancel-link" href="./?action=cancelRequest&request=' + checkoutData[0] +'">Cancel</a></div>';
             $('.checkout-alerts').append(alertText);
         });
         $(this).addClass('disabled');

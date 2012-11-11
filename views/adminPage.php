@@ -36,9 +36,8 @@ $pages = array(
     array("settings", "settings"),
     array("log", "log"));
 ?>
-<div class="span10 columns">
     <h1>Admin Panel</h1>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs adminpage">
     <?php
     foreach ($pages as $key) {
         if (isset($_SESSION['tab'])) {
@@ -84,7 +83,6 @@ $pages = array(
             }
         }
         ?>
-</div>
 </div>
 <?php
 unset($_SESSION['type']);

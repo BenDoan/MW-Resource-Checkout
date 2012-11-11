@@ -1,3 +1,7 @@
+* {
+    font-family: 'Ropa Sans', sans-serif;
+}
+
 a {
 	text-decoration: none;
 	color: #91b496;
@@ -239,7 +243,7 @@ tr.hover .admindelete {
    opacity:1;
 }
 
-div.attention {
+.attention {
     padding:5px;
     border: 2px solid orange;
     border-radius:3px;
@@ -256,9 +260,11 @@ ul.nav > li > a {
 
 div.alert > h4 {
     color:#000;
+    font-weight:normal;
 }
 
 div.alert {
     color:#000;
+    font-weight:normal;
 }
 
