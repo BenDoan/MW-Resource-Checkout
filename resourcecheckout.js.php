@@ -84,7 +84,10 @@ function initCalendar() {
 			var y = date.getFullYear();
 
 
-	    	window.location = './?p=checkout&date=' + m + '/' + d + '/' + y;
+            var today = new Date();
+            if (date >= today) {
+                window.location = './?p=checkout&date=' + m + '/' + d + '/' + y;
+            }
 	    }
 	});
 }
