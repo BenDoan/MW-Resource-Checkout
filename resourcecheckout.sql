@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 06, 2012 at 03:53 AM
+-- Generation Time: Nov 11, 2012 at 07:46 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `resources` (
 --
 
 INSERT INTO `resources` (`resource_id`, `resource_type`, `resource_details`, `resource_identifier`, `resource_department`) VALUES
-(1, '1', '25 Computers', 'Room 234', 2),
+(1, '1', '25 Computers', 'Room 234', 0),
 (4, '3', 'Fifty Pieces', 'Package 2', 1);
 
 -- --------------------------------------------------------
@@ -102,21 +102,19 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `schedule_date` date NOT NULL,
   `schedule_block` int(11) NOT NULL,
   PRIMARY KEY (`schedule_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145 ;
 
 --
 -- Dumping data for table `schedule`
 --
 
 INSERT INTO `schedule` (`schedule_id`, `schedule_resource_id`, `schedule_user_id`, `schedule_date`, `schedule_block`) VALUES
-(32, 1, 5, '2012-02-10', 11),
 (13, 3, 1, '2011-12-20', 2),
 (15, 1, 1, '2011-12-20', 42),
 (16, 3, 1, '2011-12-21', 1),
 (17, 3, 1, '2011-12-21', 2),
 (22, 1, 1, '2012-03-25', 31),
 (25, 4, 4, '2012-01-17', 1),
-(31, 1, 5, '2012-02-09', 11),
 (33, 4, 1, '2012-02-15', 1),
 (34, 1, 4, '2012-03-07', 11),
 (35, 1, 4, '2012-03-13', 11),
@@ -124,37 +122,9 @@ INSERT INTO `schedule` (`schedule_id`, `schedule_resource_id`, `schedule_user_id
 (37, 1, 4, '2012-03-14', 11),
 (38, 1, 4, '2012-03-20', 11),
 (39, 1, 1, '2012-05-04', 11),
-(51, 1, 5, '2012-05-11', 42),
-(50, 1, 5, '2012-05-11', 12),
-(46, 1, 5, '2012-05-09', 11),
-(69, 1, 5, '2012-07-18', 12),
-(71, 1, 5, '2012-08-22', 11),
-(72, 1, 5, '2012-08-22', 12),
-(73, 1, 5, '2012-08-22', 21),
-(74, 1, 5, '2012-08-22', 22),
-(75, 1, 5, '2012-08-22', 31),
-(76, 1, 5, '2012-08-22', 32),
-(77, 1, 5, '2012-08-22', 41),
-(78, 1, 5, '2012-08-22', 42),
-(80, 1, 5, '2012-08-28', 22),
-(81, 1, 5, '2012-08-29', 11),
-(82, 1, 5, '2012-08-30', 11),
-(83, 1, 5, '2012-08-31', 21),
-(84, 1, 5, '2012-09-03', 11),
-(85, 1, 5, '2012-09-04', 11),
-(86, 1, 5, '2012-08-31', 11),
-(87, 4, 5, '2012-08-30', 1),
-(88, 4, 5, '2012-08-31', 1),
 (89, 1, 4, '2012-09-19', 11),
 (90, 1, 4, '2012-09-20', 11),
-(91, 1, 5, '2012-09-18', 11),
-(92, 4, 5, '2012-09-20', 2),
-(93, 4, 5, '2012-11-06', 1),
-(94, 1, 5, '2012-11-05', 11),
-(95, 1, 5, '2012-11-05', 12),
-(96, 1, 5, '2012-11-06', 11),
-(97, 4, 5, '2012-11-06', 2),
-(98, 1, 5, '2012-11-06', 12);
+(99, 1, 4, '2012-11-06', 21);
 
 -- --------------------------------------------------------
 
@@ -188,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `types` (
   `type_name` varchar(100) NOT NULL,
   `type_blocktype` enum('full','half') NOT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `types`
