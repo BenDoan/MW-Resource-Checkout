@@ -102,7 +102,7 @@ function makeUser($firstname, $lastname, $username, $email, $department, $isRead
     $cur_user = $_SESSION['user']['user_username'];
     $password = genPassword(7);
     $md5_password = md5($password);
-    sqlQuery("INSERT INTO users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$isReadOnly', user_department='$department'");
+    sqlQuery("INSERT INTO users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$isReadOnly', user_department='$department', user_password='$md5_password'");
     sendSignupEmail(getUserId($username), $password);
     $time = getTimestamp();
     writeLineToLog("$time - $cur_user - Added user $username");
