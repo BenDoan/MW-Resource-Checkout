@@ -1,35 +1,4 @@
 <?php
-function convertHalfBlocks($block){
-    switch ($block) {
-        case 11:
-            return 1;
-            break;
-        case 12:
-            return 2;
-            break;
-        case 21:
-            return 3;
-            break;
-        case 22:
-            return 4;
-            break;
-        case 31:
-            return 5;
-            break;
-        case 32:
-            return 6;
-            break;
-        case 41:
-            return 7;
-            break;
-        case 42:
-            return 8;
-            break;
-
-        default:
-            break;
-    }
-}
 //./?action=checkAvailability&date=2012-31-10&type=1
 extract($_GET);
 $user_department = $_SESSION['user']['user_department'];
@@ -41,6 +10,7 @@ if (isAdmin()) {
 }else {
     $STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$type' AND (resource_department='$user_department' OR resource_department=0)");
 }
+
 while($row = $STH->fetch()) {
     $resourceList[] = $row['resource_id'];
 }
@@ -59,9 +29,12 @@ if ($blocktype == 'full') {
         }
     }
     $sqlResourceList .= ')';
+
     $STH = sqlSelect("SELECT * FROM schedule WHERE schedule_date='$date' AND schedule_resource_id in $sqlResourceList");
-    while($row = $STH->fetch()) {
-        $resourceBlocks[$row['schedule_resource_id']][$row['schedule_block'] - 1] = false;
+    if ($STH) {
+        while($row = $STH->fetch()) {
+            $resourceBlocks[$row['schedule_resource_id']][$row['schedule_block'] - 1] = false;
+        }
     }
 
     $returnArray = array();

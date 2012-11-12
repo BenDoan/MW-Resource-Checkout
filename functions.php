@@ -298,8 +298,11 @@ function sqlSelect($sql){
     try {
         $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
         $STH = $DBH->query($sql);
-        $STH->setFetchMode(PDO::FETCH_ASSOC);
-        return $STH;
+        if ($STH) {
+            $STH->setFetchMode(PDO::FETCH_ASSOC);
+            return $STH;
+        }
+        return false;
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }
@@ -441,4 +444,36 @@ function isReadOnly(){
 function getBlockType($resource){
     $type = sqlSelectOne("SELECT * FROM resources WHERE resource_id='$resource'", 'resource_type');
     return sqlSelectOne("SELECT * FROM types WHERE type_id='$type'", 'type_blocktype');
+}
+
+function convertHalfBlocks($block){
+    switch ($block) {
+        case 11:
+            return 1;
+            break;
+        case 12:
+            return 2;
+            break;
+        case 21:
+            return 3;
+            break;
+        case 22:
+            return 4;
+            break;
+        case 31:
+            return 5;
+            break;
+        case 32:
+            return 6;
+            break;
+        case 41:
+            return 7;
+            break;
+        case 42:
+            return 8;
+            break;
+
+        default:
+            break;
+    }
 }

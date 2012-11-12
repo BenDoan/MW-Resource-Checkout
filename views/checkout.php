@@ -12,11 +12,11 @@
                 }
             ?>
         </select>
-        
+
     </div>
     <div class="datediv attention" style="display:none;">
         <p><i class="icon-ok date-ok" style="display:none;"></i>Select a date</p>
-        
+
         <input type="text" name="checkoutdate" class="date" />
     </div>
     <div class="fullblocks attention" style="display:none;">
