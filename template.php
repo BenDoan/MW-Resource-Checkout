@@ -37,7 +37,6 @@
 		</div>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type='text/javascript' src='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.min.js'></script>
-		<script type="text/javascript" src="resourcecheckout.js.php"></script>
         <script type="text/javascript">
             $(".alert").alert();
             $(function() {
