@@ -42,4 +42,8 @@ sqlQuery("INSERT INTO schedule SET schedule_resource_id='$final_resource', sched
 
 $humanBlock = blockToHuman($block);
 $request_id = sqlSelectOne("SELECT * FROM schedule WHERE schedule_resource_id='$final_resource' AND schedule_user_id='$user' AND schedule_date='$date' AND schedule_block='$block'", 'schedule_id');
+
+$cur_user = $_SESSION['user']['user_username'];
+$time = getTimestamp();
+writeLineToLog("$time - $cur_user - Checked out $resource_name on $date $humanBlock");
 print json_encode(array($request_id, "You have successfully checkout out $resource_name for $date $humanBlock"));
