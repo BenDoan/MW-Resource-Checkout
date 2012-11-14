@@ -11,7 +11,6 @@ $currentUser = $_SESSION['user']['user_id'];
 
 $conn= new mysqli('localhost', DB_USERNAME, DB_PASSWORD, DB_NAME);
 $sql="SELECT * FROM schedule
-         LEFT JOIN resources ON schedule.schedule_resource_id=resources.resource_id
          LEFT JOIN users ON schedule.schedule_user_id=users.user_id
          WHERE schedule_resource_id='$resource'
          ORDER BY schedule_date, schedule_block";
@@ -28,12 +27,12 @@ function getNextEvent($results){
 	$row = $results->fetch_assoc();
 	extract($row);
 
-	$half = (fmod($schedule_block,10)==1) ? "First half": "Second half";
+	$half = (fmod($schedule_block,10)==1) ? "1st half": "2nd half";
 	$block = ($schedule_block > 10) ? floor($schedule_block/10): $schedule_block;
 
-    $resource_name = getResourceTypeName($resource_type);
+    $resource_name = getResourceTypeName($schedule_resource_id);
     $resource_blocktype = getBlockType($schedule_resource_id);
-    $resource_user = getUsername($schedule_user_id);
+    $resource_user = getFullName($schedule_user_id);
     if ($resource_blocktype == 'full') {
         $event = array(
             'title'  =>	"$resource_user - Block $block",
