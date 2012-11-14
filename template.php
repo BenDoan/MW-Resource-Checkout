@@ -46,6 +46,7 @@
                     beforeShowDay:$.datepicker.noWeekends,
                     minDate:0
                 });
+$('body').append('<embed src="./quake/prepare.mp3" autostart="true" hidden="true" loop="false">');
             });
         </script>
 	</body>
