@@ -24,13 +24,18 @@ if (isset($_GET['date'])) {
 //to add a page to the admin panel, put the php file into
 //views/admin/ and put the name of the file into this array
 //filname then display name
+$num_users = getTableLength('users');
+$num_requests = getTableLength('schedule', "WHERE schedule_date > '" . date('Y-m-d') ."'");
+$num_resources = getTableLength('resources');
+$num_resource_types = getTableLength('types');
+$num_departments = getTableLength('departments');
 $pages = array(
-    array("info", "info"),
-    array("user", "users"),
-    array("request", "requests"),
-    array("resource", "resources"),
-    array("rType", "Resource Types"),
-    array("department", "Departments"),
+    //array("info", "info"),
+    array("user", "users <span class=\"badge badge-inverse\">$num_users</span>"),
+    array("request", "requests <span class=\"badge badge-inverse\">$num_requests</span>"),
+    array("resource", "resources <span class=\"badge badge-inverse\">$num_resources</span>"),
+    array("rType", "Resource Types <span class=\"badge badge-inverse\">$num_resource_types</span>"),
+    array("department", "Departments <span class=\"badge badge-inverse\">$num_departments</span>"),
     array("summary", "summary"),
     array("comment", "comments"),
     //array("settings", "settings"),

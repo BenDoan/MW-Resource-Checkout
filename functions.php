@@ -476,3 +476,7 @@ function convertHalfBlocks($block){
             break;
     }
 }
+
+function getTableLength($table, $where=""){
+    return sqlSelectOne("SELECT COUNT(*) as count FROM $table $where", 'count');
+}

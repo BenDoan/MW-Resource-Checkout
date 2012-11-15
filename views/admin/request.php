@@ -74,10 +74,12 @@ while($row = $results->fetch_assoc()){
             ";
     }
 }
-print '</tbody></table>
-        <div class="pagination">
+$request_count = getTableLength('schedule');
+print "</tbody></table>
+        <p>Number of historical checkouts: <span class=\"badge badge-inverse\">$request_count</span></p>
+        <div class=\"pagination\">
         <ul>
-    ';
+    ";
 
 if($currentrequestpage > 1){
     print "<li><a href=\"./?action=redirect&currentrequestpage=1&type=$type\">&laquo;</a></li>";

@@ -47,6 +47,9 @@
                     minDate:0
                 });
             });
+        $('.disabled').live("click", function(e){
+            e.preventDefault();
+        });
         </script>
 	</body>
 </html>
