@@ -1,9 +1,7 @@
 <?php
-$time = getTimestamp();
 extract($_POST);
 
-$username = $_SESSION['user']['user_username'];
-writeLineToLog("$time - $username - Canceled request $schedule_id");
+alog("Canceled request $schedule_id");
 
 // Delete scheduling event that matches the id from the form
 $result = sqlQuery("DELETE FROM schedule WHERE schedule_id='$schedule_id'");

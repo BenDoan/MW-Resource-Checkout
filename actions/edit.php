@@ -2,8 +2,6 @@
 if (!isAdmin()) {
     redirect("./");
 }
-$cur_user = $_SESSION['user']['user_username'];
-$time = getTimestamp();
 extract($_POST);
 switch ($type) {
     case 'user':
@@ -15,7 +13,7 @@ switch ($type) {
         sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$readonly', user_department='$department' WHERE user_id='$userid'");
 
         $user_name = getUsername($userid);
-        writeLineToLog("$time - $cur_user - Edited user $user_name");
+        alog("Edited user $user_name");
 
         if ($newpass != '' || $newpass2 != '') {
             if ($newpass == $newpass2) {
@@ -34,7 +32,7 @@ switch ($type) {
     case 'resource':
         sqlQuery("UPDATE resources SET resource_type='$resourcetype', resource_details='$details', resource_identifier='$identifier', resource_department='$department' WHERE resource_id='$resource'");
 
-        writeLineToLog("$time - $cur_user - Edited resource $resource");
+        alog("Edited resource $resource");
 
         $_SESSION['tab'] = $type;
         redirect('./', 'Resource saved');
@@ -43,7 +41,7 @@ switch ($type) {
     case 'rType':
         sqlQuery("UPDATE types SET type_name='$name', type_blocktype='$blocktype' WHERE type_id='$typeid'");
 
-        writeLineToLog("$time - $cur_user - Edited type $typeid");
+        alog("Edited type $typeid");
 
         $_SESSION['tab'] = 'rType';
         redirect('./', 'Type saved');
@@ -52,7 +50,7 @@ switch ($type) {
     case 'department':
         sqlQuery("UPDATE departments SET department_name='$name' WHERE department_id='$departmentid'");
 
-        writeLineToLog("$time - $cur_user - Edited department $departmentid");
+        alog("Edited department $departmentid");
 
         $_SESSION['tab'] = 'department';
         redirect('./', 'Department saved');

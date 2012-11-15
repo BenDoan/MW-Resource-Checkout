@@ -36,6 +36,7 @@ if (isset($_GET['key'])) {
     $headers  = "From: $from\r\n";
     $headers .= "Content-type: text/html\r\n";
     mail(getUserEmail(getUserId($username)), "[MW Checkout] Reset your password", $message, $headers);
+    writeLineToLog("$time - Password reset confirmation sent to $username");
     redirect("./?p=login", "A confirmation email will be sent to your email address shortly");
 }else{
     redirect("./?p=login", "The user: $username does not exist");

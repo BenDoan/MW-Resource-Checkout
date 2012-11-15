@@ -20,6 +20,22 @@
           </div>
 
           <div class="control-group">
+            <label class="control-label" for="department">Department</label>
+            <div class="controls">
+                <select name="department">
+                    <option value="0">None</option>
+                	<?php
+                    $STH = sqlSelect("SELECT * FROM departments");
+                    while($row = $STH->fetch()) {
+						extract($row);
+						echo '<option value="'.$department_id.'">'.$department_name.'</option>';
+					}
+					?>
+                </select>
+            </div>
+          </div>
+
+          <div class="control-group">
             <label class="control-label" for="details">Details</label>
             <div class="controls">
               <input type="text" class="input-xlarge" name="details">

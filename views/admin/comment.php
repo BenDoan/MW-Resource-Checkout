@@ -97,7 +97,7 @@ if($currentcommentpage != $total_pages){
     print "<li class=\"disabled\"><a href=\"\">&rsaquo;</a></li>";
     print "<li class=\"disabled\"><a href=\"\">&raquo;</a></li>";
 }
-print "</ul></div><a class=\"btn add\" href=\"./?p=add&type=comment\">Add comment</a>";
+print "</ul></div>";
 
 $conn->close();
 ?>

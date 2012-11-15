@@ -5,6 +5,4 @@ if ($requestUser == $_SESSION['user']['user_id']) {
     sqlQuery("DELETE FROM schedule WHERE schedule_id='$request'");
 }
 print $request;
-$cur_user = $_SESSION['user']['user_username'];
-$time = getTimestamp();
-writeLineToLog("$time - $cur_user - Canceled request $request");
+alog("Canceled request $request");

@@ -19,7 +19,7 @@ var users = <?php print $data_source?>.sort();
 <form class="well" method="post" action="./?action=add">
 <input type="hidden" name="type" value="<?php print $_GET['type'] ?>" />
 Resource<br />
-<select name="rType" id="rType" onChange="updateBlocks()">
+<select name="resource" id="resource" onChange="updateBlocks()">
     <?php
         //prints out resource types
         $STH = sqlSelect("SELECT * FROM resources");
@@ -32,7 +32,7 @@ Resource<br />
     ?>
 </select><br />
 User<br />
-<input id="user" name="username" data-provide="typeahead" />
+<input type="text" id="user" name="username" data-provide="typeahead" />
 <p class="help-block">Start typing for suggestions</p>
 Date<br />
 <input type="text" name="date"><br />
@@ -106,7 +106,7 @@ $full =
     '</label>'].join('\n');
 
 function updateBlocks(){
-    if (document.getElementById("rType").options[document.getElementById("rType").selectedIndex].className === "half" ) {
+    if (document.getElementById("resource").options[document.getElementById("resource").selectedIndex].className === "half" ) {
         $('#blocks').html($half);
     }else{
         $('#blocks').html($full);

@@ -80,6 +80,13 @@ function writeLineToLog($line){
     fclose($fh);
 }
 
+// logs line to the logfile with time and user
+function alog($line){
+    $cur_user = $_SESSION['user']['user_username'];
+    $time = getTimestamp();
+    writeLineToLog("$time - $cur_user - $line");
+}
+
 //returns returns an array containing the whole log file
 function readLog(){
     $file = "log.txt";
@@ -99,48 +106,40 @@ function printArray($array){
 
 //adds a user to the database, and logs the action
 function makeUser($firstname, $lastname, $username, $email, $department, $isReadOnly){
-    $cur_user = $_SESSION['user']['user_username'];
     $password = genPassword(7);
     $md5_password = md5($password);
     sqlQuery("INSERT INTO users SET user_firstname='$firstname', user_lastname='$lastname', user_username='$username', user_email='$email', user_isreadonly='$isReadOnly', user_department='$department', user_password='$md5_password'");
     sendSignupEmail(getUserId($username), $password);
-    $time = getTimestamp();
-    writeLineToLog("$time - $cur_user - Added user $username");
+    alog("Added user $username");
 }
 
 //adds a resource to the database, and logs the action
-function makeResource($rType, $details, $identifier, $blocktype){
-    $cur_user = $_SESSION['user']['user_username'];
-    sqlQuery("INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_blocktype) VALUES ('$rType','$details','$identifier','$blocktype')");
-    $time = getTimestamp();
-    writeLineToLog("$time -$cur_user - Added resource $identifier");
+function makeResource($rType, $details, $identifier, $department){
+    sqlQuery("INSERT INTO resources (resource_type, resource_details, resource_identifier, resource_department) VALUES ('$rType','$details','$identifier','$department')");
+    alog("Added resource $identifier");
 }
 
 //adds a request to the database, and logs the action
-function makeRequest($rType, $username, $date, $block){
-    $cur_user = $_SESSION['user']['user_username'];
+function makeRequest($resource, $username, $date, $block){
 	$date = date("Y-m-d", strtotime($date));
-    $username = getUserId($username);
+    $user = getUserId($username);
 
-    sqlQuery("INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$rType','$username','$date','$block')");
-    $time = getTimestamp();
-    writeLineToLog("$time - $cur_user - Added request $rType");
+    sqlQuery("INSERT INTO schedule (schedule_resource_id, schedule_user_id, schedule_date, schedule_block) VALUES ('$resource','$user','$date','$block')");
+    $resource = getResourceDesc($resource);
+    $block = blockToHuman($block);
+    alog("Added request for $username for $resource on $date $block");
 }
 
 //adds a type to the database
 function makeType($rType, $blocktype){
-    $cur_user = $_SESSION['user']['user_username'];
     sqlQuery("INSERT INTO types (type_name, type_blocktype) VALUES ('$rType', '$blocktype')");
-    $time = getTimestamp();
-    writeLineToLog("$time - $cur_user - Added type $rType");
+    alog("Added type $rType");
 }
 
 //adds a department to the database
 function makeDepartment($department){
-    $cur_user = $_SESSION['user']['user_username'];
     sqlQuery("INSERT INTO departments (department_name) VALUES ('$department')");
-    $time = getTimestamp();
-    writeLineToLog("$time - $cur_user - Added department $department");
+    alog("Added department $department");
 }
 
 //updates the current user data in SESSION

@@ -12,11 +12,11 @@ switch ($type) {
         break;
 
     case 'resource':
-        makeResource($rType, $details, $identifier, $blocktype);
+        makeResource($rType, $details, $identifier, $department);
         break;
 
     case 'request':
-        makeRequest($rType, $username, $date, $block);
+        makeRequest($resource, $username, $date, $block);
         break;
 
     case 'rType':
