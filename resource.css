@@ -268,3 +268,8 @@ div.alert {
     font-weight:normal;
 }
 
+ul.adminpage > li > a {
+    padding-left:6px;
+    padding-right:6px;
+}
+
