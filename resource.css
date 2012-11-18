@@ -16,11 +16,6 @@ a:hover {
 }
 
 body {
-	margin-left: auto;
-	margin-right: auto;
-	width: 850px;
-	margin-top: 15px;
-	font-family: "Georgia", "Times New Roman";
 	background-color: #919191;
 }
 
@@ -45,12 +40,8 @@ div #thedate {
 }
 
 #footer {
-	text-align: center;
+    margin:0 auto;
 	width: 850px;
-}
-
-#footer p {
-	margin: 8px;
 }
 
 h1 {
@@ -76,38 +67,6 @@ h4.dateresults {
 	margin-bottom: 0px;
 }
 
-#nav {
-	height: 50px;
-	background-image: url('images/nav2.jpg');
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-#nav ul {
-	list-style-type: none;
-	padding: 15px 0px 0px 30px;
-	margin: 0px;
-}
-
-#nav ul li {
-	float: left;
-	padding-right: 18px;
-	margin: 0px;
-}
-
-#nav ul li.current {
-	font-style: italic;
-	font-weight: bold;
-}
-
-a.logout {
-	margin: 0px;
-	color: #91b496;
-	text-decoration: none;
-	font-size: 13pt;
-	padding: 0px;
-	font-weight: bold;
-}
 
 a.logout:hover {
 	color: #919191;
@@ -170,14 +129,11 @@ div.confirm {
 	text-align: center;
 }
 
-#userinfo {
-	padding: 0px;
-	color: #91b496;
-	font-size: 10pt;
-	width: 820px;
-}
-
 #wrapper {
+    margin:0 auto;
+	width: 850px;
+	margin-top: 5px;
+	font-family: "Georgia", "Times New Roman";
 	background-color: white;
 }
 
@@ -269,3 +225,34 @@ ul.adminpage > li > a {
     padding-right:6px;
 }
 
+.form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: white;
+    border: 1px solid #E5E5E5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-password {
+    max-width: 400px;
+}
+
+div.logincontainer {
+    margin-top:40px;
+}
+
+div#nav {
+    width:850px;
+    margin:0 auto;
+    margin-top:10px;
+}
+
+div.navbar {
+    margin-bottom:0;
+}

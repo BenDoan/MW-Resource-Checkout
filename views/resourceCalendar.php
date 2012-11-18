@@ -1,4 +1,4 @@
-<h1>Select a resource to view its history</h1>
+<h2>Select a resource to view its history</h2>
 <form class="form-inline" action="./" method="get">
     <input type="hidden" value="resourceCalendar" name="p"  />
     <select name="resource">

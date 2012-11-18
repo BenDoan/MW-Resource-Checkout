@@ -17,17 +17,20 @@
 
 		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Created by Tracy Moody, Destiny Osbourne and Ben Doan with assistance from the Omaha Bytes Club-->
 	</head>
     <?php flush(); ?>
 	<body>
+        <?php if(isLoggedIn()): ?>
 		<header>
-			<?php include('layout/header.php');?>
+            <?php //include('layout/header.php');?>
 		</header>
-		<div id="wrapper">
 			<div id="nav">
-				<?php include('layout/nav.php');?>
+				<?php if (isLoggedIn()) include('layout/nav.php');?>
 			</div>
+		<div id="wrapper">
 			<div id="content">
 				<?php include('layout/content.php');?>
 			</div>
@@ -35,6 +38,9 @@
 		<div id="footer">
 			<?php include('layout/footer.php');?>
 		</div>
+        <?php else: ?>
+            <?php include('layout/content.php') ?>
+        <?php endif ?>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type='text/javascript' src='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.min.js'></script>
         <script type="text/javascript">

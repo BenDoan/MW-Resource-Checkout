@@ -64,7 +64,7 @@ if(isLoggedIn() ||
 		loadFile("actions/$action.php");
 	}
 } else { // Otherwise, force them to login
-	redirect('./?p=login', 'Please login');
+	redirect('./?p=login');
 }
 ob_flush(); // flushes the output buffer
 ?>

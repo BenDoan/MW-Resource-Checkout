@@ -1,11 +1,11 @@
-<h1 style="text-align:left;">Login</h1>
-<form action="./?action=authenticate" method="post">
-    <fieldset>
-        <div class="control-group"><input type="text" id="username" placeholder="Username" name="username" /></div>
-        <div class="control-group"><input type="password" placeholder="Password" name="password" /></div>
-        <button class="btn btn-primary" type="submit">Sign in</button>
+<div class="logincontainer">
+    <form action="./?action=authenticate" method="post" class="form-signin">
+        <h2>Please sign in</h2>
+        <input type="text" placeholder="Username" name="username" class="input-block-level" />
+        <input type="password" placeholder="Password" name="password" class="input-block-level" />
+        <button class="btn btn-primary" type="submit" >Login</button>
         <p>
-        	<a href="./?p=resetPassword">Reset password</a>
+            <a href="./?p=resetPassword">Reset password</a>
         </p>
-    </fieldset>
-</form>
+    </form>
+</div>

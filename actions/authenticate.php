@@ -4,7 +4,7 @@ extract($_POST);
 if(isset($_GET['logout'])) {
 	// Remove user from session data
 	unset($_SESSION['user']);
-	$message = 'You have successfully logged out.';
+	$message = '';
 	$location = './?p=login';
 // If the user is trying to logging in
 } elseif($username != '' && $password != '') {	// If a username AND password were entered
