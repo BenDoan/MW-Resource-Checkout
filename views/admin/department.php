@@ -54,7 +54,7 @@ while($row = $results->fetch_assoc()){
                 delete
             </a>
             <a href=\"./?p=edit&department=$department_id&type=department\" class=\" btn btn-small admindelete\">
-                <i class=\"icon-pencil icon-black\"></i>
+                <i class=\"icon-edit icon-black\"></i>
                 edit
             </a>
         </tr>

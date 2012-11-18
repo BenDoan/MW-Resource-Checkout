@@ -63,7 +63,7 @@ while($row = $results->fetch_assoc()){
                 delete
             </a>
             <a href=\"./?p=edit&user=$user_id&type=user\" class=\" btn btn-small admindelete\">
-                <i class=\"icon-pencil icon-black\"></i>
+                <i class=\"icon-edit icon-black\"></i>
                 edit
             </a>
             </td>

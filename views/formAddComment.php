@@ -13,6 +13,7 @@
             </div>
             <input type="hidden" name="resource_id" value="<?php echo $id; ?>"/>
             <button class="btn btn-primary" type="submit">Add Comment</button>
+            <input type="reset" value="Back" class="btn" onclick="history.go(-1);">
         </fieldset>
     </form>
 </div>

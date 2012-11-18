@@ -67,7 +67,7 @@ while($row = $results->fetch_assoc()){
             </a>
 <!-- disabled -->
             <!--<a href=\"./?p=edit&request=$schedule_id&type=request\" class=\" btn btn-small admindelete\">
-                <i class=\"icon-pencil icon-black\"></i>
+                <i class=\"icon-edit icon-black\"></i>
                 edit
             </a>-->
             </tr>

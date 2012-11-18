@@ -3,7 +3,7 @@
 if(isset($_SESSION['message'])) {
 	// Display message
 	//echo "<div class=\"message\">{$_SESSION['message']}</div>";
-    print "<div class=\"alert {$_SESSION['messagetype']}\">
+    print "<div class=\"alert fade-in {$_SESSION['messagetype']}\">
                 <a class=\"close\" data-dismiss=\"alert\">&times;</a>
                 <h4>{$_SESSION['message']}</h4>
             </div>
