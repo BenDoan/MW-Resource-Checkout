@@ -14,7 +14,7 @@ if (isset($_GET['date'])) {
     print "<h1>Resources checked out for: $today</h1>";
 }
 ?>
-<table class="table table-condensed table-striped">
+<table class="table table-condensed table-striped responsive">
 <tr>
     <th>Resource Type</th>
     <th>Resource</th>

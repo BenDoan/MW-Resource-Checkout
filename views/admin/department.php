@@ -34,7 +34,7 @@ $offset = ($currentdepartmentpage - 1) * $rows_per_page;
 $sql = "SELECT * FROM departments LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"admintable table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed responsive\">
        <thead>
             <tr>
                 <th>Department</th>

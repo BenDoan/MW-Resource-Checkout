@@ -26,7 +26,7 @@ function getNextEvent($results){
 	$row = $results->fetch_assoc();
 	extract($row);
 
-	$half = (fmod($schedule_block,10)==1) ? "First half": "Second half";
+	$half = (fmod($schedule_block,10)==1) ? "1st half": "2nd half";
 	$block = ($schedule_block > 10) ? floor($schedule_block/10): $schedule_block;
 
     $resource_name = getResourceTypeName($resource_type);

@@ -15,7 +15,7 @@ $sql="SELECT * FROM schedule
 $results = $conn->query($sql);
 $conn->close();
 	?>
-	<table class="table table-striped table-condensed">
+	<table class="table table-striped table-condensed responsive">
 		<tr>
 			<th>Date</th>
 			<th>Block</th>

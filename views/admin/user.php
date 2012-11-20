@@ -34,7 +34,7 @@ $offset = ($currentuserpage - 1) * $rows_per_page;
 $sql = "SELECT * FROM users WHERE user_isAdmin != '1' ORDER BY user_lastname LIMIT $offset, $rows_per_page";
 $results = $conn->query($sql);
 
-print "<table class=\"admintable table table-striped table-condensed\">
+print "<table class=\"admintable table table-striped table-condensed responsive\">
        <thead>
             <tr>
                 <th>First Name</th>
