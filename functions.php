@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Determines whether or not the user is logged in
  * @return True if logged in, false if not
@@ -282,9 +281,8 @@ function getBaseUrl(){
 //returns the number of affected rows
 function sqlQuery($sql){
     try {
-        $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
-        $stmt = $DBH->prepare($sql);
-        return $stmt->execute();
+        $db = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        return $db->execute();
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }
@@ -311,15 +309,10 @@ function sqlSelect($sql){
 //the [$col] of the first occurance
 function sqlSelectOne($sql, $col){
     try {
-        $DBH = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
-        $STH = $DBH->query($sql);
-        $STH->setFetchMode(PDO::FETCH_ASSOC);
-
-        $result = null;
-        while($row = $STH->fetch()) {
-            $result = $row[$col];
+        $db = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        foreach ($db->query($sql) as $row) {
+            return $row[$col];
         }
-        return $result;
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }
@@ -481,3 +474,4 @@ function convertHalfBlocks($block){
 function getTableLength($table, $where=""){
     return sqlSelectOne("SELECT COUNT(*) as count FROM $table $where", 'count');
 }
+

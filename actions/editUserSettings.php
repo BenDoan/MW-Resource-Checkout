@@ -2,6 +2,14 @@
 extract($_POST);
 extract($_SESSION['user']);
 
+$curpass = mysql_real_escape_string($curpass);
+$firstname = mysql_real_escape_string($firstname);
+$email = mysql_real_escape_string($email);
+$user_id = mysql_real_escape_string($user_id);
+$newpass = mysql_real_escape_string($newpass);
+$newpass2 = mysql_real_escape_string($newpass2);
+
+
 
 if (md5($curpass) == $_SESSION['user']['user_password']) {
     sqlQuery("UPDATE users SET user_firstname='$firstname', user_lastname='$lastname', user_email='$email' WHERE user_id='$user_id'");

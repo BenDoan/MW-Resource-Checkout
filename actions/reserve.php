@@ -1,6 +1,9 @@
 <?php
 extract($_GET);
 $user_department = $_SESSION['user']['user_department'];
+$rType = mysql_real_escape_string($rType);
+$block = mysql_real_escape_string($block);
+$date = mysql_real_escape_string($date)
 
 $resourceList = array();
 if (isAdmin()) {
