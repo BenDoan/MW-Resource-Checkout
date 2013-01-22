@@ -18,7 +18,9 @@ while($row = $STH->fetch()) {
 if ($blocktype == 'full') {
     $resourceBlocks = array();
     foreach ($resourceList as $x) {
-        $resourceBlocks[$x] = array(true, true, true, true);
+        for ($i = 0; $i < NUM_BLOCKS; $i++) {
+            $resourceBlocks[$x][] = true;
+        }
     }
 
     $sqlResourceList = "(";
@@ -38,7 +40,7 @@ if ($blocktype == 'full') {
     }
 
     $returnArray = array();
-    for ($i = 0; $i < 4; $i++) {
+    for ($i = 0; $i < NUM_BLOCKS; $i++) {
         $countTaken = 0;
         foreach ($resourceBlocks as $resource) {
             if (!$resource[$i]) {
@@ -52,7 +54,10 @@ if ($blocktype == 'full') {
 
     $resourceBlocks = array();
     foreach ($resourceList as $x) {
-        $resourceBlocks[$x] = array(true, true, true, true, true, true, true, true);
+        $resourceBlocks[$x] = array();
+        for ($i = 0; $i < NUM_BLOCKS * 2; $i++) {
+            $resourceBlocks[$x][] = true;
+        }
     }
 
     $sqlResourceList = "(";
@@ -69,7 +74,7 @@ if ($blocktype == 'full') {
         $resourceBlocks[$row['schedule_resource_id']][$block - 1] = false;
     }
     $returnArray = array();
-    for ($i = 0; $i < 8; $i++) {
+    for ($i = 0; $i < NUM_BLOCKS * 2; $i++) {
         $countTaken = 0;
         foreach ($resourceBlocks as $resource) {
             if (!$resource[$i]) {

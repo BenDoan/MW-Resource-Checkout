@@ -334,46 +334,25 @@ function getResourceBlockType($resource_id){
 //changes the database notation for blocks
 //to human readable text
 function blockToHuman($block){
-    switch ($block) {
-        case 1:
-            return "Block 1";
-            break;
-        case 2:
-            return "Block 2";
-            break;
-        case 3:
-            return "Block 3";
-            break;
-        case 4:
-            return "Block 4";
-            break;
-        case 11:
-            return "Block 1 first half";
-            break;
-        case 12:
-            return "Block 1 second half";
-            break;
-        case 21:
-            return "Block 2 first half";
-            break;
-        case 22:
-            return "Block 2 second half";
-            break;
-        case 31:
-            return "Block 3 first half";
-            break;
-        case 32:
-            return "Block 3 second half";
-            break;
-        case 41:
-            return "Block 4 first half";
-            break;
-        case 42:
-            return "Block 4 second half";
-            break;
-        default:
-            return "Error";
-            break;
+    if (strlen($block) != 1 && strlen($block) != 2) {
+        return "BtH Error";
+    }
+
+    $block_base = substr($block, 0, 1);
+    if (strlen($block) == 1) {
+        $block_half = null;
+    }else {
+        $block_half = substr($block, 1, 1);
+    }
+
+    if ($block_half) {
+        if ($block_half == 1) {
+            return "Block $block_base first half";
+        }else{
+            return "Block $block_base second half";
+        }
+    }else {
+        return "block $block_base";
     }
 }
 

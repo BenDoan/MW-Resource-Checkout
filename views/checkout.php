@@ -21,35 +21,23 @@
     </div>
     <div class="fullblocks attention" style="display:none;">
         <p>Choose the periods</p>
-        <a href="./?action=reserve" class="btn reserve-link">1</a>
-        <a href="./?action=reserve" class="btn reserve-link">2</a>
-        <a href="./?action=reserve" class="btn reserve-link">3</a>
-        <a href="./?action=reserve" class="btn reserve-link">4</a>
+        <?php for ($i = 0; $i < NUM_BLOCKS; $i++) { ?>
+            <a href="./?action=reserve" class="btn reserve-link"><?php print $i+1 ?></a>
+        <?php } ?>
     </div>
     <div class="halfblocks attention" style="display:none;">
         <p>Choose the periods</p>
         <input type="" style="visibility:hidden"/>
         <table>
+
+            <?php for ($i = 0; $i < NUM_BLOCKS; $i++) {
+?>
             <tr>
-                <td><span style="padding-right:5px;">Block 1</span></td>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="11" class="btn reserve-link">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="12" class="btn reserve-link">2<sup>nd</sup> half</a>
+                <td><span style="padding-right:5px;">Block <?php print $i+1 ?></span></td>
+                <td style="padding-right:5px;"><a href="./?action=reserve" id="<?php print $i+1 ?>1" class="btn reserve-link">1<sup>st</sup> half</a>
+                <td><a href="./?action=reserve" id="<?php print $i+1?>2" class="btn reserve-link">2<sup>nd</sup> half</a>
             </tr>
-            <tr>
-                <td><span style="padding-right:5px;">Block 2</span>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="21" class="btn reserve-link">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="22" class="btn reserve-link">2<sup>nd</sup> half</a>
-            </tr>
-            <tr>
-                <td><span style="padding-right:5px;">Block 3</span>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="31" class="btn reserve-link">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="32" class="btn reserve-link">2<sup>nd</sup> half</a>
-            </tr>
-            <tr>
-                <td><span style="padding-right:5px;">Block 4</span>
-                <td style="padding-right:5px;"><a href="./?action=reserve" id="41" class="btn reserve-link">1<sup>st</sup> half</a>
-                <td><a href="./?action=reserve" id="42" class="btn reserve-link">2<sup>nd</sup> half</a>
-            </tr>
+            <?php  }?>
         </table>
     </div>
 </div>
@@ -129,6 +117,7 @@ $(function(){
         }).done(function(html) {
             var resource = $.parseJSON(html);
             $('.' + resource).remove();
+            showBlocks();
         });
     });
     $('.reserve-link').click(function(e){
