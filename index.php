@@ -24,6 +24,7 @@ $userAllowedActions = Array(
     'reserve',
     'resetPassword',
     'checkAvailability',
+    'changeReserve',
     'cancelRequest');
 
 $unregisteredUserAllowedActions = Array(

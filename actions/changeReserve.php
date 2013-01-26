@@ -4,14 +4,23 @@ $user_department = $_SESSION['user']['user_department'];
 $rType = mysql_real_escape_string($rType);
 $block = mysql_real_escape_string($block);
 $date = mysql_real_escape_string($date);
+$resourceId = mysql_real_escape_string($resource);
+$cancelId = mysql_real_escape_string($cancelId);
 
-$resourceList = array();
+//validate that the user owns the request they are changing
+$requestUser = sqlSelectOne("SELECT * FROM schedule WHERE schedule_id='$cancelId'", 'schedule_user_id');
+if ($requestUser != $_SESSION['user']['user_id']) {
+    return;
+}
+sqlQuery("DELETE FROM schedule WHERE schedule_id='$cancelId'"); // cancels previous request
+
 if (isAdmin()) {
     $STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$rType'");
 } else {
     $STH = sqlSelect("SELECT * FROM resources WHERE resource_type='$rType' AND (resource_department='$user_department' OR resource_department=0)");
 }
 
+$resourceList = array();
 while($row = $STH->fetch()) {
     $resourceList[] = $row['resource_id'];
 }
@@ -46,19 +55,12 @@ foreach ($final_resources as $resource) {
     $resources_complete[] = array(getResourceDesc($resource), $resource);
 }
 
-$resource_name = getResourceDesc($final_resources[0]);
-
-//$dropdown = "<span class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">$resource_name<span class=\"caret\"></span></a>";
-//$dropdown .= "<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownMenu\">";
-//foreach ($resources_complete as $resource) {
-    //$dropdown .= "<li><a tabindex=\"-1\" href=\"#\" id=\"{$resource[1]}\">$resource[0]</a></li>";
-//}
-//$dropdown .= "</ul></span>";
+$resource_name = getResourceDesc($resourceId);
 
 $user = $_SESSION['user']['user_id'];
-$id = sqlQuery("INSERT INTO schedule SET schedule_resource_id='$final_resources[0]', schedule_user_id='$user', schedule_date='$date', schedule_block='$block'");
+$id = sqlQuery("INSERT INTO schedule SET schedule_resource_id='$resourceId', schedule_user_id='$user', schedule_date='$date', schedule_block='$block'");
 
 $humanBlock = blockToHuman($block);
 
 alog("Checked out $resource_name on $date $humanBlock");
-print json_encode(array($id, "You have successfully checkout out <strong>{$resource_name}</strong> for <strong>{$date}</strong> <strong>{$humanBlock}</strong>", $resources_complete, $block));
+print json_encode(array($id, "You have successfully changed to <strong>{$resource_name}</strong> for <strong>{$date}</strong> <strong>{$humanBlock}</strong>", $resources_complete, $cancelId));

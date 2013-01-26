@@ -282,7 +282,9 @@ function getBaseUrl(){
 function sqlQuery($sql){
     try {
         $db = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
-        return $db->exec($sql);
+        $exec = $db->exec($sql);
+        if (substr($sql, 0, 6) == "INSERT" || substr($sql, 0, 6) == "insert") return $db->lastInsertId();
+        return $exec;
     }catch(PDOException $e){
         redirect('./', 'DB Error: ' . $e->getMessage());
     }

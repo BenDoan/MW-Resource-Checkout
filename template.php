@@ -17,6 +17,8 @@
 
 		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="resourceCheckout.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Created by Tracy Moody, Destiny Osbourne and Ben Doan with assistance from the Omaha Bytes Club-->
@@ -41,21 +43,6 @@
         <?php else: ?>
             <?php include('layout/content.php') ?>
         <?php endif ?>
-        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type='text/javascript' src='calendar/fullcalendar-1.5.2/fullcalendar/fullcalendar.min.js'></script>
-        <script type="text/javascript">
-            $(".alert").alert();
-            $(function() {
-                $('input[name=date]').datepicker({dateFormat: 'mm/dd/yy', beforeShowDay:$.datepicker.noWeekends});
-                $('input[name=checkoutdate]').datepicker({
-                    dateFormat: 'mm/dd/yy',
-                    beforeShowDay:$.datepicker.noWeekends,
-                    minDate:0
-                });
-            });
-        $('.disabled').live("click", function(e){
-            e.preventDefault();
-        });
-        </script>
 	</body>
 </html>

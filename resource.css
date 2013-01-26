@@ -229,3 +229,7 @@ div#nav {
 div.navbar {
     margin-bottom:0;
 }
+
+span.dropdown a {
+    color:black;
+}
