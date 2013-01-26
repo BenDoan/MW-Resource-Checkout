@@ -45,7 +45,7 @@ for ($i = 0; $i < sizeof($resourceList); $i++) {
 
 $final_resources = array();
 foreach ($resourceList as $resource) {
-    if ($resource) {
+    if ($resource && $resource != $resourceId) {
         $final_resources[] = $resource;
     }
 }
@@ -63,4 +63,4 @@ $id = sqlQuery("INSERT INTO schedule SET schedule_resource_id='$resourceId', sch
 $humanBlock = blockToHuman($block);
 
 alog("Checked out $resource_name on $date $humanBlock");
-print json_encode(array($id, "You have successfully changed to <strong>{$resource_name}</strong> for <strong>{$date}</strong> <strong>{$humanBlock}</strong>", $resources_complete, $cancelId));
+print json_encode(array($id, "You have successfully checkout out <strong>{$resource_name}</strong> for <strong>{$date}</strong> <strong>{$humanBlock}</strong>", $resources_complete, $block, $cancelId));

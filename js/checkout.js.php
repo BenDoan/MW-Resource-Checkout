@@ -1,4 +1,4 @@
-/* VIM: set filetype=javascript */
+// vim: ft=javascript
 
 var date = "";
 var type = "";
@@ -12,7 +12,7 @@ function createCheckoutAlert(checkoutData, alert_type){
     var alertText = '<div class="alert alert-' + alert_type + ' ' + checkoutData[0] + '"><a class="close" data-dismiss="alert">&times;</a>' + checkoutData[1];
     alertText += '<a style="float:right;" class="btn btn-mini btn-danger cancel-link" href="./?action=cancelRequest&request=' + checkoutData[0] + '">Cancel</a>';
     if (checkoutData[2].length > 1) {
-        alertText += '<span class="dropdown" style="float:right;margin-right:5px;"><a class="dropdown-toggle btn btn-mini btn-warning" style="color:white;" data-toggle="dropdown" href="#">Change<span class="caret"></span></a><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">';
+        alertText += '<span class="dropdown" style="float:right;margin-right:5px;"><a class="dropdown-toggle btn btn-mini btn-inverse" style="color:white;" data-toggle="dropdown" href="#">Change Resource<span class="caret"></span></a><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">';
         checkoutData[2].forEach(function(resource, index){
                 alertText += '<li><a tabindex="-1" href="./?action=changeReserve&resource=' + resource[1] + '&date=' + date + '&block=' + checkoutData[3] + '&rType=' + type + '&cancelId=' + checkoutData[0] + '" class="change-link" >' + resource[0] + '</a></li>';
         });
@@ -102,7 +102,7 @@ $(function(){
         }).done(function(html) {
             var checkoutData = $.parseJSON(html);
             createCheckoutAlert(checkoutData, 'info');
-            $('.' + checkoutData[3]).remove();
+            $('.' + checkoutData[4]).remove();
         });
     });
 

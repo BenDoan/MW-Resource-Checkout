@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once('config/db.php');
-require_once('functions.php');
+require_once('../config/db.php');
+require_once('../functions.php');
 $today=date('Y-m-d');
 
 $currentUser = $_SESSION['user']['user_id'];

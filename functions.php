@@ -354,7 +354,7 @@ function blockToHuman($block){
             return "Block $block_base second half";
         }
     }else {
-        return "block $block_base";
+        return "Block $block_base";
     }
 }
 

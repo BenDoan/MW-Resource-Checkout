@@ -42,8 +42,10 @@ foreach ($resourceList as $resource) {
 }
 
 $resources_complete = array();
-foreach ($final_resources as $resource) {
-    $resources_complete[] = array(getResourceDesc($resource), $resource);
+foreach ($final_resources as $key => $resource) {
+    if ($key != 0) {
+        $resources_complete[] = array(getResourceDesc($resource), $resource);
+    }
 }
 
 $resource_name = getResourceDesc($final_resources[0]);

@@ -18,7 +18,7 @@
 		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="resourceCheckout.js"></script>
+        <script type="text/javascript" src="js/resourceCheckout.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Created by Tracy Moody, Destiny Osbourne and Ben Doan with assistance from the Omaha Bytes Club-->

@@ -46,8 +46,8 @@
     </div>
 </div>
 <?php if (isset($_GET['date'])) { ?>
-    <script type="text/javascript" src="checkout.js.php?date=<?php print $_GET['date'] ?>" >
+    <script type="text/javascript" src="js/checkout.js.php?date=<?php print $_GET['date'] ?>" >
 <?php }else { ?>
-    <script type="text/javascript" src="checkout.js.php" >
+    <script type="text/javascript" src="js/checkout.js.php" >
 <?php
 }
