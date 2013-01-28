@@ -2,10 +2,16 @@
     if (!isAdmin()) {
         redirect("./");
     }
-    sqlQuery("UPDATE settings SET setting_value='{$_POST['1']}'WHERE setting_id=1");
-    sqlQuery("UPDATE settings SET setting_value='{$_POST['2']}'WHERE setting_id=2");
+    foreach ($_POST as $key => $val) {
+        $key = mysql_real_escape_string($key);
+        $val = mysql_real_escape_string($val);
+        sqlQuery("UPDATE settings SET setting_value='$val' WHERE setting_id=$key");
 
-    alog("Deleted user $user_name");
+        $setting_type = getSettingType($key);
+        alog("updated setting $key to $val");
+    }
 
+
+    $_SESSION['tab'] = 'settings';
     redirect('./', 'Settings saved');
 ?>

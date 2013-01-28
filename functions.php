@@ -456,3 +456,12 @@ function getTableLength($table, $where=""){
     return sqlSelectOne("SELECT COUNT(*) as count FROM $table $where", 'count');
 }
 
+//returns the type of setting $id
+function getSettingType($id){
+    return sqlSelectOne("SELECT * FROM settings WHERE setting_id='$id'", 'setting_type');
+}
+
+//returns the value of the setting with type $type
+function getSettingValue($type){
+    return sqlSelectOne("SELECT * FROM settings WHERE setting_type='$type'", 'setting_value');
+}

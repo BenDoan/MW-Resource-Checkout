@@ -32,10 +32,10 @@ Resource<br />
     ?>
 </select><br />
 User<br />
-<input type="text" id="user" name="username" data-provide="typeahead" />
+<input type="text" id="user" name="username" data-provide="typeahead" autocomplete="off" />
 <p class="help-block">Start typing for suggestions</p>
 Date<br />
-<input type="text" name="date"><br />
+<input type="text" name="checkoutdate"><br />
 Block<br />
 <div id="blocks"></div>
 
@@ -43,73 +43,24 @@ Block<br />
 <button type="reset" class="btn" onclick="history.go(-1);">Cancel</button>
 </form>
 <script type="text/javascript">
-$half =
-    ['<label class="radio">',
-    '<input type="radio" name="block" value="11" checked="checked" >',
-    'Block 1 first half',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="12" checked="checked" >',
-    'Block 1 second half',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="21" checked="checked" >',
-    'Block 2 first half',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="22" checked="checked" >',
-    'Block 2 second half',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="31" checked="checked" >',
-    'Block 3 first half',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="32" checked="checked" >',
-    'Block 3 second half',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="41" checked="checked" >',
-    'Block 4 first half',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="42" checked="checked" >',
-    'Block 4 second half',
-    '</label>'].join('\n');
-
-$full =
-    ['<label class="radio">',
-    '<input type="radio" name="block" value="1" checked="checked" >',
-    'Block 1',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="2" checked="checked" >',
-    'Block 2',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="3" checked="checked" >',
-    'Block 3',
-    '</label>',
-
-    '<label class="radio">',
-    '<input type="radio" name="block" value="4" checked="checked" >',
-    'Block 4',
-    '</label>'].join('\n');
+var num_blocks = <?php print NUM_BLOCKS?>;
+var half = "";
+for (var i = 0; i < num_blocks; i++) {
+    if (i == 0) {var checked = 'checked="checked"'} else {var checked = ''}
+    half += '<label class="radio"><input type="radio" name="block" value="' + (i+1) + '1" ' + checked + ' >Block ' + (i+1) + ' first half</label>';
+    half += '<label class="radio"><input type="radio" name="block" value="' + (i+1) + '2" >Block ' + (i+1) + ' second half</label>';
+}
+var full = "";
+for (var i = 0; i < num_blocks; i++) {
+    if (i == 0) {var checked = 'checked="checked"'} else {var checked = ''}
+    full += '<label class="radio"><input type="radio" name="block" value="' + (i+2) + '" ' + checked + '">Block ' + (i+1) + '</label>';
+}
 
 function updateBlocks(){
     if (document.getElementById("resource").options[document.getElementById("resource").selectedIndex].className === "half" ) {
-        $('#blocks').html($half);
+        $('#blocks').html(half);
     }else{
-        $('#blocks').html($full);
+        $('#blocks').html(full);
     }
 }
 updateBlocks();

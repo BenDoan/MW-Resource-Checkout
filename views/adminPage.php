@@ -39,7 +39,7 @@ $pages = array(
     array("department", "Departments <span class=\"badge badge-inverse\">$num_departments</span>"),
     array("summary", "summary"),
     array("comment", "comments <span class=\"badge badge-inverse\">$num_comments</span>"),
-    //array("settings", "settings"),
+    array("settings", "settings"),
     array("log", "log"));
 ?>
     <h1>Admin Panel</h1>

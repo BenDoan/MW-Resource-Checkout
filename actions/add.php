@@ -16,7 +16,7 @@ switch ($type) {
         break;
 
     case 'request':
-        makeRequest($resource, $username, $date, $block);
+        makeRequest($resource, $username, $checkoutdate, $block);
         break;
 
     case 'rType':
