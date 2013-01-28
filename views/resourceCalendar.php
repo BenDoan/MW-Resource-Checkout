@@ -20,7 +20,7 @@
 if (isset($_GET['resource'])) {
     print '<a href="./?p=formAddComment&id=' . $_GET["resource"] . '" class="btn">Add comment</a>';
     $resource = $_GET['resource'];
-    print '<script type="text/javascript" src="resourceCalendar.js.php?resource=' . $resource . '"></script>';
+    print '<script type="text/javascript" src="js/resourceCalendar.js.php?resource=' . $resource . '"></script>';
     print "<div id='calendar'></div>";
 }
 ?>
