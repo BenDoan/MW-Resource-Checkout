@@ -464,4 +464,10 @@ function getSettingType($id){
 //returns the value of the setting with type $type
 function getSettingValue($type){
     return sqlSelectOne("SELECT * FROM settings WHERE setting_type='$type'", 'setting_value');
+
+}
+
+//very simple, incomplete boolval function
+function boolval($val){
+    return $val === 'true' ? true : false;
 }

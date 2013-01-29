@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 28, 2013 at 11:14 PM
+-- Generation Time: Jan 29, 2013 at 06:54 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `schedule_date` date NOT NULL,
   `schedule_block` int(11) NOT NULL,
   PRIMARY KEY (`schedule_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=265 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=267 ;
 
 --
 -- Dumping data for table `schedule`
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `setting_type` varchar(60) NOT NULL,
   `setting_value` varchar(100) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `settings`
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 INSERT INTO `settings` (`setting_id`, `setting_type`, `setting_value`) VALUES
 (3, 'Number of Blocks', '4'),
-(5, 'Number of Blocks', '4'),
-(6, 'Site Name', 'MW Checkout');
+(6, 'Site Name', 'MW Checkout'),
+(7, 'Display table counts', 'true');
 
 -- --------------------------------------------------------
 
