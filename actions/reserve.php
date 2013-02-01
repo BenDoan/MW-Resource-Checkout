@@ -50,13 +50,6 @@ foreach ($final_resources as $key => $resource) {
 
 $resource_name = getResourceDesc($final_resources[0]);
 
-//$dropdown = "<span class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">$resource_name<span class=\"caret\"></span></a>";
-//$dropdown .= "<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dropdownMenu\">";
-//foreach ($resources_complete as $resource) {
-    //$dropdown .= "<li><a tabindex=\"-1\" href=\"#\" id=\"{$resource[1]}\">$resource[0]</a></li>";
-//}
-//$dropdown .= "</ul></span>";
-
 $user = $_SESSION['user']['user_id'];
 $id = sqlQuery("INSERT INTO schedule SET schedule_resource_id='$final_resources[0]', schedule_user_id='$user', schedule_date='$date', schedule_block='$block'");
 
