@@ -24,7 +24,6 @@ if (isset($_GET['date'])) {
 //to add a page to the admin panel, put the php file into
 //views/admin/ and put the name of the file into this array
 //filname then display name
-
 $pages = array(
     //array("info", "info"),
     "user" => "Users",

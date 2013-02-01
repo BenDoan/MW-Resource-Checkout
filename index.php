@@ -1,11 +1,16 @@
 <?php
 ob_start(); // turns on output buffering
 session_start();
+$isSetup = file_exists("isSetup");
 
 // Load configuration files
 require_once('functions.php');
-require_once('config/db.php');
-require_once('config/app.php');
+if ($isSetup) {
+    require_once('config/db.php');
+    require_once('config/app.php');
+}else {
+    define('DEFAULT_VIEW', '');
+}
 
 $time = getTimestamp();
 
@@ -32,7 +37,11 @@ $unregisteredUserAllowedActions = Array(
     'authenticate');
 
 $action = null;
-if (isset($_SESSION['user'])) {
+if (!$isSetup) {
+    if (isset($_GET['action'])) {
+        $action = 'setup';
+    }
+}elseif (isset($_SESSION['user'])) {
     if (isAdmin()) {
         if (isset($_GET['action'])) {
             $action = $_GET['action'];
@@ -56,7 +65,8 @@ if (isset($_SESSION['user'])) {
 if(isLoggedIn() ||
     in_array($action, $unregisteredUserAllowedActions, true) ||
     $CURR_PAGE === 'login' ||
-    $CURR_PAGE === 'resetPassword') {
+    $CURR_PAGE === 'resetPassword' ||
+    !$isSetup) {
 
 	// If no action is specified
 	if($action == null) {

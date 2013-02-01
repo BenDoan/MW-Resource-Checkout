@@ -171,16 +171,7 @@ INSERT INTO `settings` (`setting_id`, `setting_type`, `setting_value`) VALUES
 (3, 'Number of Blocks', '4'),
 (6, 'Site Name', 'MW Checkout'),
 (7, 'Display table counts', 'true');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `types`
---
-
-CREATE TABLE IF NOT EXISTS `types` (
-  `type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_name` varchar(100) NOT NULL,
+-- -------------------------------------------------------- -- -- Table structure for table `types` -- CREATE TABLE IF NOT EXISTS `types` ( `type_id` int(11) NOT NULL AUTO_INCREMENT, `type_name` varchar(100) NOT NULL,
   `type_blocktype` enum('full','half') NOT NULL,
   PRIMARY KEY (`type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;

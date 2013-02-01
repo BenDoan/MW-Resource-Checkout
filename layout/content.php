@@ -15,7 +15,9 @@ if(isset($_SESSION['message'])) {
 
 $file = "views/$CURR_PAGE.php";
 // If page exist, load it
-if(file_exists($file)) {
+if (!$isSetup) {
+	include('views/setup.php');
+} elseif(file_exists($file)) {
 	include($file);
 } else { // Page doesn't exist, display 404
 	include('views/404.php');
