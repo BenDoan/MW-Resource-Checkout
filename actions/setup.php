@@ -62,7 +62,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `settings` (
   `setting_type` varchar(60) NOT NULL,
   `setting_value` varchar(100) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3;";
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0;";
 sqlQuery($sql);
 
 $sql = "INSERT INTO `settings` (`setting_id`, `setting_type`, `setting_value`) VALUES
@@ -99,4 +99,5 @@ $hashed_password = md5($_POST['password']);
 $sql = "INSERT INTO `users` (`user_firstname`, `user_lastname`, `user_username`, `user_password`, `user_email`, `user_isadmin`, `user_isreadonly`, `user_department`) VALUES ('{$_POST['firstname']}', '{$_POST['lastname']}', '{$_POST['username']}', '$hashed_password', '{$_POST['email']}', 1, 0, 0)";
 sqlQuery($sql);
 file_put_contents('isSetup', '');
+file_put_contents('log.txt', 'Begin log');
 redirect("./", "Setup finished");
