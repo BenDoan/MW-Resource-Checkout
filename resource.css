@@ -223,7 +223,6 @@ div.logincontainer {
 div#nav {
     max-width:960px;
     margin:0 auto;
-    margin-top:10px;
 }
 
 div.navbar {
@@ -232,4 +231,10 @@ div.navbar {
 
 span.dropdown a {
     color:black;
+}
+
+div#header {
+    max-width:960px;
+    margin:0 auto;
+    margin-top:10px;
 }

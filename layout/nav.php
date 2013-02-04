@@ -13,7 +13,7 @@ $pages = array(
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
 </a>
-<a class="brand" href="./"><?php print APP_NAME ?></a><div class="nav-collapse collapse">
+<a class="brand" href="./"><img src="images/mw-black-trans.png" alt="" style="margin-right:5px;" /><?php print APP_NAME ?></a><div class="nav-collapse collapse">
 <ul class="nav">
 <?php
 if (isLoggedIn()) {
