@@ -31,8 +31,8 @@ redirect($location,$message);
 // Check if user is in database
 // Return a result object
 function validateUser($username, $password){
-    $username = mysql_real_escape_string($username);
-    $password = mysql_real_escape_string($password);
+    $username = addslashes($username);
+    $password = addslashes($password);
 	$password = md5($password);
 	return sqlSelect("SELECT * FROM users WHERE user_username='$username' AND user_password='$password'");
 }

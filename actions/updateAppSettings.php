@@ -3,8 +3,8 @@
         redirect("./");
     }
     foreach ($_POST as $key => $val) {
-        $key = mysql_real_escape_string($key);
-        $val = mysql_real_escape_string($val);
+        $key = addslashes($key);
+        $val = addslashes($val);
         sqlQuery("UPDATE settings SET setting_value='$val' WHERE setting_id=$key");
 
         $setting_type = getSettingType($key);

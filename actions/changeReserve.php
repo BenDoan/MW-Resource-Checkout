@@ -1,11 +1,11 @@
 <?php
 extract($_GET);
 $user_department = $_SESSION['user']['user_department'];
-$rType = mysql_real_escape_string($rType);
-$block = mysql_real_escape_string($block);
-$date = mysql_real_escape_string($date);
-$resourceId = mysql_real_escape_string($resource);
-$cancelId = mysql_real_escape_string($cancelId);
+$rType = addslashes($rType);
+$block = addslashes($block);
+$date = addslashes($date);
+$resourceId = addslashes($resource);
+$cancelId = addslashes($cancelId);
 
 //validate that the user owns the request they are changing
 $requestUser = sqlSelectOne("SELECT * FROM schedule WHERE schedule_id='$cancelId'", 'schedule_user_id');
