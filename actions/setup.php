@@ -1,6 +1,5 @@
 <?php
 require_once('functions.php');
-require_once('config/dev-db.php');
 
 if ($_POST['password'] !== $_POST['password2']) {
     redirect('./', 'Passwords do not match');
@@ -13,6 +12,7 @@ $data .= 'define("DB_USERNAME", "' . $_POST["dbusername"] . '");' . PHP_EOL;
 $data .= 'define("DB_PASSWORD", "' . $_POST["dbpassword"] . '");';
 
 file_put_contents('config/db.php', $data);
+require_once('config/db.php');
 
 //comments
 $sql = "CREATE TABLE IF NOT EXISTS `comments` (
@@ -65,10 +65,19 @@ $sql = "CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0;";
 sqlQuery($sql);
 
-$sql = "INSERT INTO `settings` (`setting_id`, `setting_type`, `setting_value`) VALUES
-(0, 'Number of Blocks', '4'),
-(1, 'Site Name', 'MW Checkout'),
-(2, 'Display table counts', 'true');";
+
+$sql = "INSERT INTO settings setting_type='Number of Blocks', setting_value='4'";
+sqlQuery($sql);
+$sql = "INSERT INTO settings setting_type='Site Name', setting_value='Checkout'";
+sqlQuery($sql);
+$sql = "INSERT INTO settings setting_type='Display table counts', setting_value='true'";
+sqlQuery($sql);
+
+$sql = "INSERT INTO `settings` (`setting_type`, `setting_value`) VALUES ('Site Name', 'Checkout')";
+sqlQuery($sql);
+$sql = "INSERT INTO `settings` (`setting_type`, `setting_value`) VALUES ('Site Name', 'Checkout')";
+sqlQuery($sql);
+$sql = "INSERT INTO `settings` (`setting_type`, `setting_value`) VALUES ('Site Name', 'Checkout')";
 sqlQuery($sql);
 
 //types
