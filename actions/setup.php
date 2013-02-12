@@ -71,6 +71,8 @@ $sql = "INSERT INTO settings (setting_type, setting_value) VALUES ('Number of Bl
 sqlQuery($sql);
 $sql = "INSERT INTO settings (setting_type, setting_value) VALUES ('Display table counts', 'true')";
 sqlQuery($sql);
+$sql = "INSERT INTO settings (setting_type, setting_value) VALUES ('Site Email', 'admin@example.com')";
+sqlQuery($sql);
 
 //types
 $sql = "CREATE TABLE IF NOT EXISTS `types` (
