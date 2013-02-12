@@ -65,19 +65,11 @@ $sql = "CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0;";
 sqlQuery($sql);
 
-
-$sql = "INSERT INTO settings setting_type='Number of Blocks', setting_value='4'";
+$sql = "INSERT INTO settings (setting_type, setting_value) VALUES ('Site Name', 'Checkout')";
 sqlQuery($sql);
-$sql = "INSERT INTO settings setting_type='Site Name', setting_value='Checkout'";
+$sql = "INSERT INTO settings (setting_type, setting_value) VALUES ('Number of Blocks', '4')";
 sqlQuery($sql);
-$sql = "INSERT INTO settings setting_type='Display table counts', setting_value='true'";
-sqlQuery($sql);
-
-$sql = "INSERT INTO `settings` (`setting_type`, `setting_value`) VALUES ('Site Name', 'Checkout')";
-sqlQuery($sql);
-$sql = "INSERT INTO `settings` (`setting_type`, `setting_value`) VALUES ('Site Name', 'Checkout')";
-sqlQuery($sql);
-$sql = "INSERT INTO `settings` (`setting_type`, `setting_value`) VALUES ('Site Name', 'Checkout')";
+$sql = "INSERT INTO settings (setting_type, setting_value) VALUES ('Display table counts', 'true')";
 sqlQuery($sql);
 
 //types

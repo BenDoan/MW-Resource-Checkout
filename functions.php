@@ -469,5 +469,5 @@ function getSettingValue($type){
 
 //very simple, incomplete boolval function
 function boolval($val){
-    return $val === 'true' ? true : false;
+    return $val === 'true';
 }
