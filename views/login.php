@@ -9,3 +9,4 @@
         </p>
     </form>
 </div>
+<script type="text/javascript">$('input, textarea').placeholder()</script>
