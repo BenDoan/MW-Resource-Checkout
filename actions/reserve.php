@@ -56,4 +56,4 @@ $id = sqlQuery("INSERT INTO schedule SET schedule_resource_id='$final_resources[
 $humanBlock = blockToHuman($block);
 
 alog("Checked out $resource_name on $date $humanBlock");
-print json_encode(array($id, "You have successfully checkout out <strong>{$resource_name}</strong> for <strong>{$date}</strong> <strong>{$humanBlock}</strong>", $resources_complete, $block));
+print json_encode(array($id, "You have successfully checked out <strong>{$resource_name}</strong> for <strong>{$date}</strong> <strong>{$humanBlock}</strong>", $resources_complete, $block));
