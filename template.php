@@ -27,9 +27,6 @@
     <?php flush(); ?>
 	<body>
         <?php if(isLoggedIn()): ?>
-            <div id="header">
-                    <?php //include('layout/header.php');?>
-            </div>
 			<div id="nav">
 				<?php if (isLoggedIn()) include('layout/nav.php');?>
 			</div>

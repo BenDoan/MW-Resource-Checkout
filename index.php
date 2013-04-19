@@ -15,7 +15,7 @@ if ($isSetup) {
 $time = getTimestamp();
 
 // Set current page
-if(isLoggedIn() && isAdmin()){
+if(isAdmin()){
     $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : 'adminPage';
 }else{
     $CURR_PAGE = isset($_GET['p']) ? $_GET['p'] : DEFAULT_VIEW;

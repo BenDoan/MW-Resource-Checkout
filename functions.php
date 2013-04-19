@@ -253,7 +253,7 @@ function genPassword($length=7){
 }
 
 //returns true if the current user is an admin
-//returns false if the user is not, or if the user
+//returns false if the user is not, or if a user
 //is not logged in
 function isAdmin(){
     //printArray($_SESSION);
