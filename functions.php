@@ -468,6 +468,6 @@ function getSettingValue($type){
 }
 
 //very simple, incomplete boolval function
-function boolval($val){
+function stringToBool($val){
     return $val === 'true';
 }
